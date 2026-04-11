@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mukesh Kumar Sharma — Lead iOS Engineer</title>
+<meta name="description" content="Lead iOS Engineer with 14+ years shipping production apps in Swift, SwiftUI, and modern concurrency. Building Doctor AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-raised: #141414;
+    --ink: #f2ede4;
+    --ink-dim: #9a948a;
+    --ink-faint: #4a463f;
+    --accent: #e8a34b;
+    --accent-dim: #8a5e28;
+    --rule: #222019;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter Tight', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(ellipse at 15% 0%, rgba(232,163,75,0.06), transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+  .mono { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-dim); letter-spacing: 0.04em; text-transform: uppercase; }
+  a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent-dim); transition: color .2s, border-color .2s; }
+  a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Nav */
+  nav { padding: 2.5rem 0 0; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; }
+  nav .sig { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; letter-spacing: -0.01em; }
+  nav .sig span { color: var(--accent); }
+  nav ul { display: flex; gap: 1.75rem; list-style: none; }
+  nav ul a { border: none; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-dim); }
+  nav ul a:hover { color: var(--accent); }
+
+  /* Hero */
+  header.hero { padding: 7rem 0 6rem; border-bottom: 1px solid var(--rule); }
+  header.hero .label { margin-bottom: 2rem; }
+  header.hero h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    font-variation-settings: 'opsz' 144;
+    max-width: 14ch;
+  }
+  header.hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  header.hero p.tagline {
+    margin-top: 2.25rem;
+    font-size: 1.15rem;
+    max-width: 52ch;
+    color: var(--ink-dim);
+    font-weight: 300;
+  }
+  header.hero .meta { margin-top: 3rem; display: flex; gap: 2.5rem; flex-wrap: wrap; }
+  header.hero .meta div { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-dim); }
+  header.hero .meta strong { display: block; color: var(--ink); font-weight: 500; margin-top: 0.35rem; text-transform: none; letter-spacing: 0; }
+
+  /* Section framing */
+  section { padding: 6rem 0; border-bottom: 1px solid var(--rule); }
+  section .label { margin-bottom: 3rem; display: flex; align-items: baseline; gap: 1rem; }
+  section .label::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--accent); }
+  section h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    max-width: 20ch;
+    margin-bottom: 2rem;
+  }
+  section h2 em { font-style: italic; color: var(--accent); }
+
+  /* Now / Featured project */
+  .featured {
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    padding: 3rem;
+    margin-top: 2rem;
+    position: relative;
+  }
+  .featured::before {
+    content: 'LIVE · TESTFLIGHT BETA';
+    position: absolute; top: -0.6rem; left: 2.5rem;
+    background: var(--bg);
+    padding: 0 0.75rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .featured h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .featured .kicker { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .featured p { color: var(--ink-dim); max-width: 62ch; margin-bottom: 1.5rem; }
+  .featured .stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .featured .stack span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--ink-faint);
+    color: var(--ink-dim);
+  }
+
+  /* Work timeline */
+  .work { display: grid; gap: 0; }
+  .role {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    gap: 3rem;
+    padding: 2.25rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .role:first-child { border-top: none; padding-top: 0; }
+  .role .when { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-dim); padding-top: 0.4rem; }
+  .role h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 0.3rem; }
+  .role h3 em { color: var(--accent); font-style: normal; }
+  .role .company { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.9rem; }
+  .role p { color: var(--ink-dim); max-width: 58ch; font-size: 0.95rem; }
+
+  /* Repos grid */
+  .repos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 2rem; }
+  .repo {
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+    transition: border-color .2s, transform .2s;
+    display: block;
+    border-bottom: 1px solid var(--rule);
+  }
+  .repo:hover { border-color: var(--accent-dim); transform: translateY(-2px); color: var(--ink); }
+  .repo h4 { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); margin-bottom: 0.5rem; }
+  .repo p { font-size: 0.85rem; color: var(--ink-dim); margin-bottom: 0.75rem; }
+  .repo .stars { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-faint); }
+
+  /* Contact */
+  .contact { padding: 6rem 0 4rem; }
+  .contact h2 { margin-bottom: 2rem; }
+  .contact .links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .contact .links a {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    border: none;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .contact .links a::before {
+    content: '→';
+    color: var(--accent);
+    font-family: var(--sans);
+    transition: transform .2s;
+  }
+  .contact .links a:hover::before { transform: translateX(4px); }
+
+  footer {
+    padding: 2rem 0 3rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* Entrance */
+  @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .rise { animation: rise 0.9s cubic-bezier(.2,.7,.3,1) both; }
+  .rise:nth-child(2) { animation-delay: 0.12s; }
+  .rise:nth-child(3) { animation-delay: 0.24s; }
+  .rise:nth-child(4) { animation-delay: 0.36s; }
+
+  @media (max-width: 680px) {
+    .wrap { padding: 0 1.5rem; }
+    header.hero { padding: 5rem 0 4rem; }
+    section { padding: 4rem 0; }
+    .role { grid-template-columns: 1fr; gap: 0.5rem; }
+    .featured { padding: 2rem 1.5rem; }
+    nav ul { gap: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="sig">mks<span>.</span></div>
+    <ul>
+      <li><a href="#now">Now</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#code">Code</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="label mono rise">London, ON · Est. 2011</div>
+    <h1 class="rise">Mukesh Kumar<br>Sharma<em>.</em></h1>
+    <p class="tagline rise">Lead iOS engineer — fourteen years building production apps in Swift, SwiftUI, and modern concurrency. Most recently shipping <a href="#now">Doctor AI</a>, a full-stack iOS + Node.js project exploring LLMs in clinical workflows.</p>
+    <div class="meta rise">
+      <div>Focus<strong>iOS · Swift · AI</strong></div>
+      <div>Shipped<strong>15+ production apps</strong></div>
+      <div>Currently<strong>Tech Mahindra · TruPOS</strong></div>
+    </div>
+  </header>
+
+  <section id="now">
+    <div class="label mono">§ 01 — Now</div>
+    <h2>A full-stack side project, <em>built in public.</em></h2>
+
+    <div class="featured">
+      <div class="kicker">Personal Project · 2024 → Present</div>
+      <h3>Doctor AI</h3>
+      <p>An iOS + Android consultation tool that uses LLMs to generate structured clinical notes from doctor–patient conversations. Solo-built across six repositories: Swift/SwiftUI client, Android companion, shared Swift Package, a TypeScript + Node.js backend on Google App Engine, and an evaluation notebook for prompt iteration.</p>
+      <p>The interesting parts: speaker diarization for attributing turns in the transcript, Twilio Video for secure calls, Apple Speech for on-device transcription, and LLM orchestration server-side so prompts can be versioned without shipping new iOS builds.</p>
+      <div class="stack">
+        <span>Swift</span><span>SwiftUI</span><span>Combine</span><span>Apple Speech</span><span>Twilio Video</span><span>TypeScript</span><span>Node.js</span><span>Google App Engine</span><span>Firebase</span><span>OpenAI</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="label mono">§ 02 — Selected Work</div>
+    <h2>Fourteen years, across <em>payments, banking, retail, health.</em></h2>
+
+    <div class="work">
+      <div class="role">
+        <div class="when">2025 →</div>
+        <div>
+          <h3>Lead iOS Engineer <em>— TruPOS</em></h3>
+          <div class="company">Tech Mahindra · Enterprise POS</div>
+          <p>0→1 development of an enterprise POS app. Offline transaction queue with Core Data + BGTaskScheduler. Reusable payment Swift Package across three internal apps. Face ID auth, Bluetooth card readers, 80% test coverage on business logic, full CI/CD on Fastlane + Xcode Cloud.</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">2023 — 2025</div>
+        <div>
+          <h3>Lead iOS Engineer <em>— NEOM Smart City</em></h3>
+          <div class="company">Tech Mahindra · Saudi Arabia</div>
+          <p>Shipped the first production release of the NEOM Smart City iOS app. Published NEOMCore — a reusable SPM framework for networking, OAuth, SSL pinning, and shared UI — adopted across ~20 internal NEOM apps. Integrated Apollo iOS for GraphQL, OpenAI for in-app AI assistance, Twilio for resident-agent calls. Led a small iOS team over the 19-month project lifecycle.</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">2023</div>
+        <div>
+          <h3>Senior iOS / Release Engineer <em>— Kroger</em></h3>
+          <div class="company">Tech Mahindra · Retail</div>
+          <p>Delivered v1 and v2 of the Kroger Gamification module shipped across Kroger and sister-banner apps (Ralph's, Fred Meyer, Harris Teeter). Authored DevOps pipelines in Fastlane + GitHub Actions + Node.js used by the entire iOS org.</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">2021 — 2022</div>
+        <div>
+          <h3>Senior iOS Engineer <em>— TD Canada Banking</em></h3>
+          <div class="company">Clearbridge Mobile / Amdocs</div>
+          <p>Led development on SIJ, MHA, and CIBA loan modules for the TD Canada banking app. Integrated Face ID / Touch ID via LocalAuthentication and Keychain. Contributed to the TD iOS Banking Foundation Framework.</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">2011 — 2021</div>
+        <div>
+          <h3>Earlier <em>— Lead iOS, Tata Consultancy Services and others</em></h3>
+          <div class="company">Trickl · Pfizer · GlobalLogic · Regard Solutions</div>
+          <p>A decade across smart utilities (Trickl for London Hydro, Toronto Hydro), Pfizer internal apps, and early-iOS consumer work (Objective-C, Core Data, Core Graphics). Shipped 10+ apps to the App Store. Migrated codebases from Objective-C → Swift and Swift 3 → Swift 4 as the language evolved.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="code">
+    <div class="label mono">§ 03 — Open Source</div>
+    <h2>Public experiments, mostly at the intersection <em>of Swift and AI.</em></h2>
+
+    <div class="repos">
+      <a class="repo" href="https://github.com/imuks/chatGPT_iOS" target="_blank" rel="noopener">
+        <h4>chatGPT_iOS</h4>
+        <p>Native iOS client for OpenAI's chat API. One of the earlier public Swift integrations, January 2023.</p>
+        <div class="stars">Swift · MIT · ★ 10</div>
+      </a>
+      <a class="repo" href="https://github.com/imuks/StableDiffusion_iOS" target="_blank" rel="noopener">
+        <h4>StableDiffusion_iOS</h4>
+        <p>Stability AI / Stable Diffusion integration for iOS image generation.</p>
+        <div class="stars">Swift · MIT · ★ 9</div>
+      </a>
+      <a class="repo" href="https://github.com/imuks/swift_DSA" target="_blank" rel="noopener">
+        <h4>swift_DSA</h4>
+        <p>Data structures and algorithms in Swift — a public interview-prep reference.</p>
+        <div class="stars">Swift · MIT</div>
+      </a>
+      <a class="repo" href="https://github.com/imuks/AIDoctor-SPM" target="_blank" rel="noopener">
+        <h4>AIDoctor-SPM</h4>
+        <p>The public Swift Package component of the Doctor AI project.</p>
+        <div class="stars">Swift</div>
+      </a>
+      <a class="repo" href="https://github.com/imuks/Pharma-iOS" target="_blank" rel="noopener">
+        <h4>Pharma-iOS</h4>
+        <p>Swift/SwiftUI exploration of healthcare iOS patterns.</p>
+        <div class="stars">Swift</div>
+      </a>
+      <a class="repo" href="https://github.com/imuks" target="_blank" rel="noopener">
+        <h4>github.com/imuks →</h4>
+        <p>Full profile and additional repositories.</p>
+        <div class="stars">All work</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="label mono">§ 04 — Contact</div>
+    <h2>Open to conversations<br>about <em>senior and staff iOS roles.</em></h2>
+    <p style="color: var(--ink-dim); max-width: 52ch; margin-top: 1.5rem;">Currently in London, Ontario. Interested in product-focused teams doing interesting work with Swift, on-device ML, or modern AI tooling on iOS.</p>
+    <div class="links">
+      <a href="mailto:mukesh.ct.pce@gmail.com">mukesh.ct.pce@gmail.com</a>
+      <a href="https://linkedin.com/in/imuks" target="_blank" rel="noopener">linkedin.com/in/imuks</a>
+      <a href="https://github.com/imuks" target="_blank" rel="noopener">github.com/imuks</a>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Mukesh Kumar Sharma</div>
+    <div>Built with HTML and restraint.</div>
+  </footer>
+</div>
+
+</body>
+</html>
