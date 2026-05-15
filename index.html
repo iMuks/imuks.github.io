@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mukesh Kumar Sharma — Lead iOS Engineer</title>
-<meta name="description" content="Lead iOS Engineer with 14+ years shipping production apps in Swift, SwiftUI, and modern concurrency. Building Doctor AI.">
+<title>Mukesh Kumar Sharma — Senior / Lead iOS Engineer</title>
+<meta name="description" content="Senior / Lead iOS Engineer — 14+ years in the Apple ecosystem. Shipped 30+ production apps in Swift, SwiftUI, Combine, and Swift Concurrency across payments, banking, retail, healthcare, and smart cities. Currently leading TruPOS at Tech Mahindra; building Doctor AI (iOS) and CarSales Bot (macOS desktop) solo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -50,7 +50,7 @@
   nav { padding: 2.5rem 0 0; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; }
   nav .sig { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; letter-spacing: -0.01em; }
   nav .sig span { color: var(--accent); }
-  nav ul { display: flex; gap: 1.75rem; list-style: none; }
+  nav ul { display: flex; gap: 1.75rem; list-style: none; flex-wrap: wrap; }
   nav ul a { border: none; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-dim); }
   nav ul a:hover { color: var(--accent); }
 
@@ -74,7 +74,7 @@
   header.hero p.tagline {
     margin-top: 2.25rem;
     font-size: 1.15rem;
-    max-width: 52ch;
+    max-width: 56ch;
     color: var(--ink-dim);
     font-weight: 300;
   }
@@ -92,12 +92,43 @@
     font-size: clamp(2rem, 4vw, 3rem);
     letter-spacing: -0.025em;
     line-height: 1.1;
-    max-width: 20ch;
+    max-width: 22ch;
     margin-bottom: 2rem;
   }
   section h2 em { font-style: italic; color: var(--accent); }
+  section p.lede { color: var(--ink-dim); max-width: 62ch; margin-bottom: 2rem; }
 
-  /* Now / Featured project */
+  /* Numbers strip */
+  .numbers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 1rem;
+  }
+  .numbers div {
+    background: var(--bg);
+    padding: 1.75rem 1.25rem;
+  }
+  .numbers .n {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 2.4rem;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .numbers .k {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Featured project */
   .featured {
     background: var(--bg-raised);
     border: 1px solid var(--rule);
@@ -106,7 +137,7 @@
     position: relative;
   }
   .featured::before {
-    content: 'LIVE · TESTFLIGHT BETA';
+    content: attr(data-label);
     position: absolute; top: -0.6rem; left: 2.5rem;
     background: var(--bg);
     padding: 0 0.75rem;
@@ -115,6 +146,7 @@
     letter-spacing: 0.1em;
     color: var(--accent);
   }
+  .featured + .featured { margin-top: 3.5rem; }
   .featured h3 {
     font-family: var(--serif);
     font-weight: 600;
@@ -132,6 +164,11 @@
     border: 1px solid var(--ink-faint);
     color: var(--ink-dim);
   }
+  .featured code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    color: var(--accent);
+  }
 
   /* Work timeline */
   .work { display: grid; gap: 0; }
@@ -147,7 +184,44 @@
   .role h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 0.3rem; }
   .role h3 em { color: var(--accent); font-style: normal; }
   .role .company { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.9rem; }
-  .role p { color: var(--ink-dim); max-width: 58ch; font-size: 0.95rem; }
+  .role p { color: var(--ink-dim); max-width: 58ch; font-size: 0.95rem; margin-bottom: 0.6rem; }
+  .role ul { color: var(--ink-dim); max-width: 58ch; font-size: 0.95rem; list-style: none; margin-top: 0.4rem; }
+  .role ul li { padding-left: 1.1rem; position: relative; margin-bottom: 0.45rem; }
+  .role ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent-dim); }
+
+  /* Apps grid */
+  .apps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .app {
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+    transition: border-color .2s, transform .2s;
+    background: var(--bg-raised);
+  }
+  .app:hover { border-color: var(--accent-dim); transform: translateY(-2px); }
+  .app .domain { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .app h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 0.4rem; }
+  .app .client { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+  .app p { font-size: 0.85rem; color: var(--ink-dim); }
+
+  /* Impact / leadership callouts */
+  .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 2rem; }
+  .pillars > div { background: var(--bg); padding: 2rem 1.75rem; }
+  .pillars h4 { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 0.6rem; }
+  .pillars h4 em { font-style: italic; color: var(--accent); }
+  .pillars p { color: var(--ink-dim); font-size: 0.9rem; }
+
+  /* Skills */
+  .skills { display: grid; gap: 1.5rem; margin-top: 1rem; }
+  .skill-row {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .skill-row:first-child { border-top: none; padding-top: 0; }
+  .skill-row .k { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; padding-top: 0.15rem; }
+  .skill-row .v { color: var(--ink-dim); font-size: 0.92rem; }
 
   /* Repos grid */
   .repos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 2rem; }
@@ -206,8 +280,11 @@
     header.hero { padding: 5rem 0 4rem; }
     section { padding: 4rem 0; }
     .role { grid-template-columns: 1fr; gap: 0.5rem; }
+    .skill-row { grid-template-columns: 1fr; gap: 0.4rem; }
     .featured { padding: 2rem 1.5rem; }
-    nav ul { gap: 1.25rem; }
+    .numbers { grid-template-columns: repeat(2, 1fr); }
+    .numbers .n { font-size: 1.9rem; }
+    nav ul { gap: 1.1rem; }
   }
 </style>
 </head>
@@ -219,134 +296,421 @@
     <ul>
       <li><a href="#now">Now</a></li>
       <li><a href="#work">Work</a></li>
+      <li><a href="#apps">Apps</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#stack">Stack</a></li>
       <li><a href="#code">Code</a></li>
+      <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
   <header class="hero">
-    <div class="label mono rise">London, ON · Est. 2011</div>
+    <div class="label mono rise">London / Toronto, ON · iOS since 2011</div>
     <h1 class="rise">Mukesh Kumar<br>Sharma<em>.</em></h1>
-    <p class="tagline rise">Lead iOS engineer — fourteen years building production apps in Swift, SwiftUI, and modern concurrency. Most recently shipping <a href="#now">Doctor AI</a>, a full-stack iOS + Node.js project exploring LLMs in clinical workflows.</p>
+    <p class="tagline rise">Senior / Lead iOS Engineer — fourteen years in the Apple ecosystem, shipping 30+ production apps in Swift, SwiftUI, Combine, and Swift Concurrency across payments, banking, retail, healthcare, and smart cities. Currently leading <a href="#work">TruPOS</a> at Tech Mahindra and building two solo AI products — <a href="#now">Doctor AI</a> on iOS and <a href="#now">CarSales Bot</a> on macOS desktop.</p>
     <div class="meta rise">
       <div>Focus<strong>iOS · Swift · AI</strong></div>
-      <div>Shipped<strong>15+ production apps</strong></div>
+      <div>Shipped<strong>30+ production apps</strong></div>
       <div>Currently<strong>Tech Mahindra · TruPOS</strong></div>
+      <div>Status<strong>Open to senior / staff iOS roles · TN-eligible</strong></div>
+    </div>
+
+    <div class="numbers rise" style="margin-top: 3.5rem;">
+      <div><div class="n">14+</div><div class="k">Years on iOS · since 2011</div></div>
+      <div><div class="n">10+</div><div class="k">Years in Swift · 5+ in SwiftUI</div></div>
+      <div><div class="n">~20</div><div class="k">NEOM apps using NEOMCore</div></div>
+      <div><div class="n">80%</div><div class="k">Test coverage on TruPOS</div></div>
     </div>
   </header>
 
   <section id="now">
     <div class="label mono">§ 01 — Now</div>
-    <h2>A full-stack side project, <em>built in public.</em></h2>
+    <h2>Two full-stack AI projects, <em>built in public.</em></h2>
+    <p class="lede">When I'm not shipping payments at TruPOS, I'm building solo. Doctor AI explores what an LLM-native clinical app can look like on iOS. CarSales Bot ships AI-driven WhatsApp automation as a signed, notarized macOS / Linux desktop app for car dealerships. Both end-to-end, one engineer.</p>
 
-    <div class="featured">
-      <div class="kicker">Personal Project · 2024 → Present</div>
+    <div class="featured" data-label="TESTFLIGHT BETA · SOLO BUILD">
+      <div class="kicker">Personal Project · Jan 2024 → Present</div>
       <h3>Doctor AI</h3>
-      <p>An iOS + Android consultation tool that uses LLMs to generate structured clinical notes from doctor–patient conversations. Solo-built across six repositories: Swift/SwiftUI client, Android companion, shared Swift Package, a TypeScript + Node.js backend on Google App Engine, and an evaluation notebook for prompt iteration.</p>
-      <p>The interesting parts: speaker diarization for attributing turns in the transcript, Twilio Video for secure calls, Apple Speech for on-device transcription, and LLM orchestration server-side so prompts can be versioned without shipping new iOS builds.</p>
+      <p>An iOS + Android consultation tool that uses LLMs to generate structured clinical notes from doctor–patient conversations. Solo-built across six repositories: a Swift/SwiftUI client, an Android companion, a shared Swift Package (<a href="https://github.com/imuks/AIDoctor-SPM" target="_blank" rel="noopener">AIDoctor-SPM</a>), a TypeScript + Node.js backend on Google App Engine, and an evaluation notebook for prompt iteration.</p>
+      <p>The interesting parts: Twilio Video for secure doctor–patient calls, Apple Speech for on-device transcription, and server-side LLM orchestration so prompts can be versioned without shipping a new iOS build. Firebase (Auth, Firestore, FCM) covers identity, realtime data, and push for the beta cohort. A Jupyter notebook handles model evaluation between prompt iterations.</p>
       <div class="stack">
-        <span>Swift</span><span>SwiftUI</span><span>Combine</span><span>Apple Speech</span><span>Twilio Video</span><span>TypeScript</span><span>Node.js</span><span>Google App Engine</span><span>Firebase</span><span>OpenAI</span>
+        <span>Swift</span><span>SwiftUI</span><span>Combine</span><span>Swift Concurrency</span><span>Apple Speech</span><span>Twilio Video</span><span>TypeScript</span><span>Node.js</span><span>Google App Engine</span><span>Firebase</span><span>OpenAI</span><span>LangChain</span>
+      </div>
+    </div>
+
+    <div class="featured" data-label="DESKTOP APP · MACOS + LINUX · SIGNED &amp; NOTARIZED">
+      <div class="kicker">Personal Project · March 2026 → Present</div>
+      <h3>CarSales Bot</h3>
+      <p>An AI-driven WhatsApp sales assistant for car dealerships, shipped as a signed and notarized desktop app (macOS DMG, Linux .deb / AppImage) so non-technical dealers can install it themselves. The system pairs to a dealership's WhatsApp number, answers inventory questions through an OpenAI tool-calling agent, sends vehicle photos and videos as native attachments, and keeps the catalog fresh via a scheduled scraping daemon — replacing hours of repetitive sales-rep messaging with a 24/7 first-line bot that qualifies leads and routes serious buyers to a human.</p>
+      <p>The interesting parts: a 3-tier service layout (Repository → Service → Adapter) cleanly separates the Baileys WhatsApp transport, the agent loop, and the SQLite inventory; pluggable scraper adapters (cheerio + undici) feed the catalog; QR pairing is rendered as SVG in the Electron main process and piped over IPC to a sandboxed renderer (<code>contextIsolation: true</code>, <code>nodeIntegration: false</code>); electron-builder produces arm64/x64 DMGs with Developer ID signing + notarization, with electron-updater wired to GitHub Releases for OTA. <strong style="color: var(--ink); font-weight: 500;">290+ Vitest tests</strong>, strict TypeScript end-to-end, and a companion license server for dealer-key issuance. On macOS: menu-bar status glyphs, Notification Center alerts, and login-item auto-start.</p>
+      <div class="stack">
+        <span>TypeScript</span><span>Node.js 22</span><span>Electron 33</span><span>OpenAI</span><span>Baileys</span><span>SQLite</span><span>cheerio</span><span>undici</span><span>electron-builder</span><span>electron-updater</span><span>@electron/notarize</span><span>Vitest</span>
       </div>
     </div>
   </section>
 
   <section id="work">
     <div class="label mono">§ 02 — Selected Work</div>
-    <h2>Fourteen years, across <em>payments, banking, retail, health.</em></h2>
+    <h2>Fourteen years, across <em>payments, banking, retail, health, smart cities.</em></h2>
+    <p class="lede">A continuous arc from Objective-C and iOS 5 in 2011 to Swift 5.x, SwiftUI, async/await, and on-device ML in 2026 — owning architecture, CI/CD, reusable frameworks, and the engineers around me at each stop.</p>
 
     <div class="work">
       <div class="role">
         <div class="when">2025 →</div>
         <div>
-          <h3>Lead iOS Engineer <em>— TruPOS</em></h3>
-          <div class="company">Tech Mahindra · Enterprise POS</div>
-          <p>0→1 development of an enterprise POS app. Offline transaction queue with Core Data + BGTaskScheduler. Reusable payment Swift Package across three internal apps. Face ID auth, Bluetooth card readers, 80% test coverage on business logic, full CI/CD on Fastlane + Xcode Cloud.</p>
+          <h3>Lead iOS Engineer <em>— TruPOS, Enterprise POS</em></h3>
+          <div class="company">Tech Mahindra · Payments</div>
+          <p>0→1 development of TruPOS, the enterprise's central payment platform iOS app in Swift/SwiftUI/Combine — the single checkout hub for multiple business lines, with deep-link integrations into systems like Field Service 365.</p>
+          <ul>
+            <li>Designed an offline transaction queue (Core Data + BGTaskScheduler, 72-hour retention) so field sales teams can take payments in low-connectivity sites and sync on reconnect — closing the dominant cause of failed transactions in remote scenarios.</li>
+            <li>Authored a reusable payment Swift Package (checkout, receipts, deep links) adopted by 3 internal apps.</li>
+            <li>Real-time payment status with async/await, Actors, and Sendable; integrated MFi Bluetooth card readers with background-mode support and a custom retry/error layer.</li>
+            <li>80% unit-test coverage on business logic (XCTest/XCUITest), full CI/CD on Fastlane + GitHub Actions + Xcode Cloud, Crashlytics + Sentry symbolicated reporting, Face ID via LocalAuthentication + Keychain.</li>
+            <li>Profiled launch and memory with Instruments — diagnosed retain cycles and redundant work in the checkout path. Replaced a manual release process with automated TestFlight + App Store delivery.</li>
+          </ul>
         </div>
       </div>
 
       <div class="role">
-        <div class="when">2023 — 2025</div>
+        <div class="when">Jun 2023 — Jan 2025</div>
         <div>
-          <h3>Lead iOS Engineer <em>— NEOM Smart City</em></h3>
+          <h3>Senior / Lead iOS Engineer <em>— NEOM Smart City</em></h3>
           <div class="company">Tech Mahindra · Saudi Arabia</div>
-          <p>Shipped the first production release of the NEOM Smart City iOS app. Published NEOMCore — a reusable SPM framework for networking, OAuth, SSL pinning, and shared UI — adopted across ~20 internal NEOM apps. Integrated Apollo iOS for GraphQL, OpenAI for in-app AI assistance, Twilio for resident-agent calls. Led a small iOS team over the 19-month project lifecycle.</p>
+          <p>Architected and shipped the first production release of the NEOM Smart City iOS app for residents, visitors, and service providers — and the platform framework that powers ~20 other NEOM apps.</p>
+          <ul>
+            <li>Defined the architecture, interface contracts, and versioning strategy for <strong>NEOMCore</strong> — a reusable SPM framework for networking, OAuth, SSL pinning, and shared UI adopted across ~20 internal NEOM mobile apps.</li>
+            <li>Built MVVM SwiftUI modules with async/await; designed reusable NavigationStacks, ViewModifiers, and ViewBuilders.</li>
+            <li>Integrated Apollo iOS for type-safe GraphQL, OpenAI + a LangChain-based prompt SDK for an in-app digital assistant, Twilio audio/video for resident-agent support, and Apple Speech for voice interactions.</li>
+            <li>Led a small iOS team across the 19-month project: design reviews, architectural decisions, mentoring 3 engineers, Grafana observability for API latency and crash-free rate.</li>
+          </ul>
         </div>
       </div>
 
       <div class="role">
-        <div class="when">2023</div>
+        <div class="when">Mar 2023 — Dec 2024</div>
         <div>
-          <h3>Senior iOS / Release Engineer <em>— Kroger</em></h3>
-          <div class="company">Tech Mahindra · Retail</div>
-          <p>Delivered v1 and v2 of the Kroger Gamification module shipped across Kroger and sister-banner apps (Ralph's, Fred Meyer, Harris Teeter). Authored DevOps pipelines in Fastlane + GitHub Actions + Node.js used by the entire iOS org.</p>
+          <h3>Senior Mobile Engineer (React Native) <em>— TruGreen</em></h3>
+          <div class="company">Tech Mahindra · Consumer · concurrent engagement</div>
+          <p>Concurrent Tech Mahindra engagement alongside Kroger and NEOM. Shipped production features for the TruGreen consumer app in React Native + TypeScript across iOS and Android. Authored native iOS modules in Swift and bridged them to JS — exposing biometrics, deep links, and secure storage that pure JS couldn't reach. Debugged Metro / Hermes / native-bridge issues and symbolicated cross-platform Crashlytics.</p>
         </div>
       </div>
 
       <div class="role">
-        <div class="when">2021 — 2022</div>
+        <div class="when">Jan 2023 — Jun 2023</div>
+        <div>
+          <h3>Senior / Lead iOS &amp; Release Engineer <em>— Kroger &amp; Banner Apps</em></h3>
+          <div class="company">Tech Mahindra · Retail</div>
+          <p>Owned end-to-end iOS delivery for the Kroger Gamification module (v1.0 and v2.0), shipped across Kroger and sister-banner apps (Ralph's, Fred Meyer, Harris Teeter). Authored DevOps pipelines in Fastlane + GitHub Actions + shell/Ruby/Node.js used by the entire iOS org. Instrumented Gamification with Firebase Remote Config feature flags and A/B experiments; monitored rollouts via Crashlytics and Grafana.</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">Jun 2022 — Dec 2022</div>
+        <div>
+          <h3>Senior iOS Engineer <em>— GAP Browse</em></h3>
+          <div class="company">Avenue Code @ GAP Inc.</div>
+          <p>Delivered iOS features across GAP, Athleta, Banana Republic, and Old Navy storefronts in Swift/SwiftUI and Objective-C. Led the Notification System workstream from scratch to production — story-pointing, code reviews, stakeholder demos.</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">Sep 2021 — Jun 2022</div>
         <div>
           <h3>Senior iOS Engineer <em>— TD Canada Banking</em></h3>
           <div class="company">Clearbridge Mobile / Amdocs</div>
-          <p>Led development on SIJ, MHA, and CIBA loan modules for the TD Canada banking app. Integrated Face ID / Touch ID via LocalAuthentication and Keychain. Contributed to the TD iOS Banking Foundation Framework.</p>
+          <p>Led development on the SIJ, MHA, and CIBA loan modules in Swift and Objective-C — features used by millions of TD customers. Integrated Face ID / Touch ID via LocalAuthentication + Keychain and hardened the app against jailbreak and tampering. Contributed to the TD iOS Banking Foundation Framework and republished it via CocoaPods.</p>
         </div>
       </div>
 
       <div class="role">
-        <div class="when">2011 — 2021</div>
+        <div class="when">Nov 2017 — Aug 2021</div>
         <div>
-          <h3>Earlier <em>— Lead iOS, Tata Consultancy Services and others</em></h3>
-          <div class="company">Trickl · Pfizer · GlobalLogic · Regard Solutions</div>
-          <p>A decade across smart utilities (Trickl for London Hydro, Toronto Hydro), Pfizer internal apps, and early-iOS consumer work (Objective-C, Core Data, Core Graphics). Shipped 10+ apps to the App Store. Migrated codebases from Objective-C → Swift and Swift 3 → Swift 4 as the language evolved.</p>
+          <h3>Lead iOS Engineer <em>— Trickl &amp; Green Button</em></h3>
+          <div class="company">Tata Consultancy Services · Smart Utilities</div>
+          <p>Owned the iOS codebase for Trickl, a smart-utility app: real-time energy gauges, device-control toggles, push notifications. Migrated the codebase Swift 3 → Swift 4 as the language evolved. Architected Core Data persistence and a GCD-based networking layer over AWS. Built cross-platform Green Button utility apps for Toronto Hydro, London Hydro, and Whitby Hydro on Ionic 4/Capacitor + Angular 9, sharing reusable iOS components as a framework.</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">Jan 2015 — Nov 2017</div>
+        <div>
+          <h3>iOS Engineer <em>— Pfizer Internal Apps</em></h3>
+          <div class="company">Tata Consultancy Services · Pharma</div>
+          <p>Shipped six internal Pfizer iOS apps in Objective-C and Swift — Events, Emotions, GroAssist, Gavi Stats, KC Planner, and supporting tooling. Built reusable expandable table cells, custom Core Graphics charts (scatter, bar, rocker), Janrain SSO integrations, and offline sync modules. Authored technical design docs, class/sequence diagrams, and mentored teammates through code-quality reviews.</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">Aug 2011 — Dec 2014</div>
+        <div>
+          <h3>iOS Engineer <em>— GlobalLogic, smartData, Regard Solutions</em></h3>
+          <div class="company">Healthcare · Retail · Consumer</div>
+          <p>The decade's foundation: 8+ apps to the App Store across healthcare, retail, and consumer — Reliance Jio World, Wall Mall, MindBody Yoga/Fitness, Digital PA, Emergency Link, Share My Pair, EQY-P, Viva iPad. Worked across Objective-C, Titanium, and early iOS SDKs (iOS 5–7). Contributed to accessibility R&amp;D for the Qualcomm Healthy Circle POC.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <section id="apps">
+    <div class="label mono">§ 03 — Apps Shipped</div>
+    <h2>Thirty-plus apps, <em>from iOS 5 to iOS 18.</em></h2>
+    <p class="lede">A representative slice of the production apps I've architected, shipped, or led across the App Store, enterprise distribution, and TestFlight — from Objective-C in 2011 to Swift Concurrency and SwiftUI today. Counting the Kroger and GAP Inc. banner storefronts, the Ontario Hydro Green Button apps, and the six Pfizer internal apps individually, the total comes to <strong style="color: var(--ink);">30+ production iOS apps</strong>.</p>
+
+    <div class="apps">
+      <div class="app">
+        <div class="domain">Payments · 2025 →</div>
+        <h4>TruPOS</h4>
+        <div class="client">Tech Mahindra · Enterprise POS</div>
+        <p>0→1 enterprise checkout app. Offline queue (Core Data + BGTaskScheduler), Bluetooth card readers, Face ID, async/await payment status, 80% test coverage.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Smart City · 2023–2025</div>
+        <h4>NEOM Smart City</h4>
+        <div class="client">Tech Mahindra · Saudi Arabia</div>
+        <p>First production release shipped to the App Store. NEOMCore SPM adopted by ~20 internal NEOM apps; Apollo GraphQL, OpenAI assistant, Twilio calling, Apple Speech.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Consumer · 2023–2024</div>
+        <h4>TruGreen Mobile</h4>
+        <div class="client">Tech Mahindra · React Native</div>
+        <p>React Native + TypeScript app shipped to iOS and Android. Authored native Swift modules and JS bridges for biometrics, deep links, and secure storage.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Retail · 2023</div>
+        <h4>Kroger Gamification (v1 &amp; v2)</h4>
+        <div class="client">Tech Mahindra · Kroger</div>
+        <p>End-to-end iOS delivery of the Gamification module, shipped across Kroger and sister-banner apps (Ralph's, Fred Meyer, Harris Teeter). Firebase Remote Config + A/B.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Retail · 2022</div>
+        <h4>GAP, Athleta, Banana Republic, Old Navy</h4>
+        <div class="client">Avenue Code @ GAP Inc.</div>
+        <p>iOS features shipped across all four GAP Inc. storefronts in Swift/SwiftUI and Objective-C. Owned the Notification System workstream from scratch to production.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Banking · 2021–2022</div>
+        <h4>TD Canada Banking</h4>
+        <div class="client">Clearbridge Mobile / Amdocs</div>
+        <p>SIJ, MHA, and CIBA loan modules used by millions of TD customers. Face ID / Touch ID via LocalAuthentication + Keychain; contributed to the TD iOS Banking Foundation Framework.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Smart Utilities · 2017–2021</div>
+        <h4>Trickl</h4>
+        <div class="client">Tata Consultancy Services</div>
+        <p>Smart-utility app with real-time energy gauges, device-control toggles, push notifications. Core Data + GCD networking over AWS. Swift 3 → Swift 4 migration.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Smart Utilities · 2018–2021</div>
+        <h4>Green Button (Toronto / London / Whitby Hydro)</h4>
+        <div class="client">TCS · Multiple Ontario hydros</div>
+        <p>Cross-platform utility apps on Ionic 4 / Capacitor + Angular 9, sharing reusable iOS components packaged as a framework across three Ontario hydro utilities.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Pharma · 2015–2017</div>
+        <h4>Pfizer iOS Suite — 6 internal apps</h4>
+        <div class="client">Tata Consultancy Services · Pfizer</div>
+        <p>Events, Emotions, GroAssist, Gavi Stats, KC Planner, and supporting tooling. Reusable expandable table cells, Janrain SSO, offline sync, and custom Core Graphics charts (scatter, bar, rocker) built from scratch.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Consumer · 2013–2014</div>
+        <h4>Reliance Jio World</h4>
+        <div class="client">GlobalLogic / smartData</div>
+        <p>Early-iOS consumer app for the Reliance Jio ecosystem in Objective-C.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Health &amp; Fitness · 2012–2014</div>
+        <h4>MindBody Yoga / Fitness</h4>
+        <div class="client">Regard Solutions</div>
+        <p>Yoga and fitness consumer iOS app — class booking, schedules, and user profiles.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Health · 2012–2014</div>
+        <h4>Emergency Link</h4>
+        <div class="client">Regard Solutions</div>
+        <p>Emergency / medical info app for first responders — early accessibility work.</p>
+      </div>
+      <div class="app">
+        <div class="domain">R&amp;D · 2011–2013</div>
+        <h4>Qualcomm Healthy Circle (POC)</h4>
+        <div class="client">smartData · Accessibility R&amp;D</div>
+        <p>Accessibility R&amp;D proof-of-concept exploring inclusive interaction patterns on early iOS.</p>
+      </div>
+      <div class="app">
+        <div class="domain">Early App Store — 2011–2014</div>
+        <h4>Five additional consumer apps</h4>
+        <div class="client">GlobalLogic / Regard Solutions</div>
+        <p>Wall Mall, Digital PA, Share My Pair, EQY-P, and Viva iPad — early-iOS storefront, productivity, social, loyalty, and iPad-enterprise apps shipped in Objective-C and Titanium across iOS 5–7.</p>
+      </div>
+      <div class="app">
+        <div class="domain">AI · 2024 →</div>
+        <h4>Doctor AI</h4>
+        <div class="client">Personal Project · TestFlight Beta</div>
+        <p>Solo full-stack: Swift/SwiftUI iOS client, Android companion, shared Swift Package, Node.js + TypeScript backend on Google App Engine, Firebase, OpenAI orchestration. Apple Speech transcription + Twilio Video.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact">
+    <div class="label mono">§ 04 — Architecture &amp; Impact</div>
+    <h2>Reusable frameworks, design reviews, <em>and the engineers around me.</em></h2>
+    <p class="lede">My most leveraged work isn't a single app — it's the platforms, packages, and patterns other teams build on top of. Reusable iOS infrastructure, mentorship, and stakeholder-facing design reviews are the through-line.</p>
+
+    <div class="pillars">
+      <div>
+        <h4>NEOMCore <em>SPM</em></h4>
+        <p>Reusable iOS framework — networking, OAuth, SSL pinning, shared UI — defined and shipped for the NEOM platform. Adopted across <strong>~20 internal NEOM apps</strong>.</p>
+      </div>
+      <div>
+        <h4>TruPOS Payment <em>Package</em></h4>
+        <p>Swift Package for payment flows, receipt generation, and deep linking — adopted by <strong>3 internal apps</strong>, eliminating per-app reimplementation.</p>
+      </div>
+      <div>
+        <h4>TD Banking <em>Foundation Framework</em></h4>
+        <p>Contributed to and republished the shared iOS framework via CocoaPods to streamline dependency management across the TD Canada banking iOS estate.</p>
+      </div>
+      <div>
+        <h4>Kroger <em>DevOps</em></h4>
+        <p>Authored Fastlane + GitHub Actions + shell/Ruby/Node.js pipelines used by the <strong>entire Kroger iOS org</strong> for build, sign, and deploy.</p>
+      </div>
+      <div>
+        <h4>Green Button <em>Cross-platform</em></h4>
+        <p>Built reusable iOS components packaged as a framework, shared across <strong>three Ontario hydro utilities</strong> (Toronto, London, Whitby).</p>
+      </div>
+      <div>
+        <h4>Stakeholder <em>design reviews</em></h4>
+        <p>Drove design-review sessions across product, backend, security, and design — translating business requirements into documented architecture, interface contracts, and risk plans across TruPOS, NEOM, Kroger, and TD.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="label mono">§ 05 — Stack</div>
+    <h2>The toolset, <em>kept current.</em></h2>
+    <p class="lede">Across the years, the through-line has been Swift and the Apple platform — but the stack I reach for in 2026 is meaningfully different from 2016. A snapshot of what I'm fluent in today.</p>
+
+    <div class="skills">
+      <div class="skill-row">
+        <div class="k">Languages</div>
+        <div class="v">Swift 5.x · SwiftUI · Objective-C · JavaScript / TypeScript (React Native) · C / C++ · Python</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">Apple Frameworks</div>
+        <div class="v">UIKit · SwiftUI · Combine · Swift Concurrency (async/await, Actors, Sendable) · Core Data · Core Animation · Core Graphics · AppIntents · Speech · AVFoundation · MapKit · WidgetKit</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">Architecture</div>
+        <div class="v">MVVM · MVC · VIP/Clean · SOLID · Protocol-Oriented Programming · Dependency Injection · Modularization (SPM) · Apple HIG</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">Networking</div>
+        <div class="v">REST/JSON · GraphQL (Apollo iOS) · OAuth 2.0 · SSL / certificate pinning · WebSockets · URLSession · Codable</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">Security &amp; Platform</div>
+        <div class="v">Keychain · LocalAuthentication (Face ID / Touch ID) · App Transport Security · Universal Links · APNs · Notification Service Extensions</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">AI / LLM on iOS</div>
+        <div class="v">OpenAI SDK integration · prompt engineering · LangChain-based iOS prompt templates · on-device Speech-to-Text · AI-assisted dev workflow (GitHub Copilot, Claude, ChatGPT)</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">Testing</div>
+        <div class="v">XCTest · XCUITest · TDD · mocks / stubs · Accessibility Inspector (VoiceOver)</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">Backend &amp; Tooling</div>
+        <div class="v">Node.js + TypeScript (REST APIs, LLM orchestration, Google App Engine) · Firebase (Auth, Firestore, FCM) · Fastlane (Ruby) · GitHub Actions · Xcode Cloud · Bitbucket · JIRA · Confluence · shell / Bash · Python</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">Performance</div>
+        <div class="v">Instruments (Time Profiler, Allocations, Leaks) · Crashlytics · Sentry · symbolication · launch-time and memory optimization</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">Experimentation</div>
+        <div class="v">Firebase Remote Config · feature flags · A/B testing · Google Analytics · Grafana observability</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">Integrations</div>
+        <div class="v">Bluetooth / MFi accessories · OpenAI SDK · Twilio Video · Apple Speech · MapKit · Core Location</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="label mono">§ 06 — Education</div>
+    <h2>Where it <em>started.</em></h2>
+    <div class="role" style="border-top: none; padding-top: 0;">
+      <div class="when">2007 — 2011</div>
+      <div>
+        <h3>B.E., Computer Technology</h3>
+        <div class="company">Priyadarshini College of Engineering · R.T.M. Nagpur University</div>
+        <p>Graduated 2011. Started shipping iOS apps to the App Store the same year.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="code">
-    <div class="label mono">§ 03 — Open Source</div>
+    <div class="label mono">§ 07 — Open Source</div>
     <h2>Public experiments, mostly at the intersection <em>of Swift and AI.</em></h2>
+    <p class="lede">Selected repositories from <a href="https://github.com/imuks" target="_blank" rel="noopener">github.com/imuks</a> — early Swift integrations for OpenAI and Stable Diffusion, the Doctor AI Swift Package, and reference work in Swift architecture and DSA.</p>
 
     <div class="repos">
       <a class="repo" href="https://github.com/imuks/chatGPT_iOS" target="_blank" rel="noopener">
         <h4>chatGPT_iOS</h4>
-        <p>Native iOS client for OpenAI's chat API. One of the earlier public Swift integrations, January 2023.</p>
-        <div class="stars">Swift · MIT · ★ 10</div>
+        <p>Native iOS client for OpenAI's chat API — published January 2023, one of the earliest public Swift integrations after the API launched.</p>
+        <div class="stars">Swift · MIT · Jan 2023</div>
       </a>
       <a class="repo" href="https://github.com/imuks/StableDiffusion_iOS" target="_blank" rel="noopener">
         <h4>StableDiffusion_iOS</h4>
-        <p>Stability AI / Stable Diffusion integration for iOS image generation.</p>
-        <div class="stars">Swift · MIT · ★ 9</div>
-      </a>
-      <a class="repo" href="https://github.com/imuks/swift_DSA" target="_blank" rel="noopener">
-        <h4>swift_DSA</h4>
-        <p>Data structures and algorithms in Swift — a public interview-prep reference.</p>
-        <div class="stars">Swift · MIT</div>
+        <p>Stability AI / Stable Diffusion integration for on-device iOS image generation, published shortly after the model release.</p>
+        <div class="stars">Swift · MIT · 2023</div>
       </a>
       <a class="repo" href="https://github.com/imuks/AIDoctor-SPM" target="_blank" rel="noopener">
         <h4>AIDoctor-SPM</h4>
-        <p>The public Swift Package component of the Doctor AI project.</p>
+        <p>The shared Swift Package powering the Doctor AI iOS client — domain logic, transport, and AI orchestration types.</p>
         <div class="stars">Swift</div>
       </a>
       <a class="repo" href="https://github.com/imuks/Pharma-iOS" target="_blank" rel="noopener">
         <h4>Pharma-iOS</h4>
-        <p>Swift/SwiftUI exploration of healthcare iOS patterns.</p>
+        <p>Swift/SwiftUI exploration of healthcare iOS patterns inspired by the Pfizer-era work.</p>
         <div class="stars">Swift</div>
+      </a>
+      <a class="repo" href="https://github.com/imuks/swift_DSA" target="_blank" rel="noopener">
+        <h4>swift_DSA</h4>
+        <p>Data structures and algorithms in Swift — a public interview-prep reference.</p>
+        <div class="stars">Swift</div>
+      </a>
+      <a class="repo" href="https://github.com/imuks/carsales-ai-installer" target="_blank" rel="noopener">
+        <h4>carsales-ai-installer</h4>
+        <p>Installer / packaging layer for CarSales Bot — the signed, notarized Electron desktop app powering AI WhatsApp automation for car dealerships.</p>
+        <div class="stars">TypeScript · Electron · 2026</div>
       </a>
       <a class="repo" href="https://github.com/imuks" target="_blank" rel="noopener">
         <h4>github.com/imuks →</h4>
-        <p>Full profile and additional repositories.</p>
+        <p>Full profile — additional iOS, AI, and tooling repositories.</p>
         <div class="stars">All work</div>
       </a>
     </div>
   </section>
 
   <section class="contact" id="contact">
-    <div class="label mono">§ 04 — Contact</div>
+    <div class="label mono">§ 08 — Contact</div>
     <h2>Open to conversations<br>about <em>senior and staff iOS roles.</em></h2>
-    <p style="color: var(--ink-dim); max-width: 52ch; margin-top: 1.5rem;">Currently in London, Ontario. Interested in product-focused teams doing interesting work with Swift, on-device ML, or modern AI tooling on iOS.</p>
+    <p style="color: var(--ink-dim); max-width: 56ch; margin-top: 1.5rem;">Based in London / Toronto, Ontario. Canadian citizen, open to US relocation on TN visa. Interested in product-focused teams doing serious work with Swift, on-device ML, or modern AI tooling on iOS.</p>
     <div class="links">
-      <a href="/cdn-cgi/l/email-protection#59342c323c2a31773a2d77293a3c193e34383035773a3634"><span class="__cf_email__" data-cfemail="b1dcc4dad4c2d99fd2c59fc1d2d4f1d6dcd0d8dd9fd2dedc">[email&#160;protected]</span></a>
+      <a href="mailto:mukesh.ct.pce@gmail.com">mukesh.ct.pce@gmail.com</a>
       <a href="https://linkedin.com/in/imuks" target="_blank" rel="noopener">linkedin.com/in/imuks</a>
       <a href="https://github.com/imuks" target="_blank" rel="noopener">github.com/imuks</a>
+      <a href="Mukesh_Kumar_Sharma_Resume.pdf" target="_blank" rel="noopener">Download résumé (PDF)</a>
     </div>
-  </sec
+  </section>
+
+  <footer>
+    <div>© 2026 Mukesh Kumar Sharma</div>
+    <div>London / Toronto, ON · Canadian Citizen · TN-eligible</div>
+  </footer>
+</div>
+
+</body>
+</html>
