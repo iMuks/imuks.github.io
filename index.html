@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mukesh Kumar Sharma — Senior / Lead iOS Engineer</title>
-<meta name="description" content="Senior / Lead iOS Engineer — 14+ years in the Apple ecosystem. Shipped 30+ production apps in Swift, SwiftUI, Combine, and Swift Concurrency across payments, banking, retail, healthcare, and smart cities. Currently leading TruPOS at Tech Mahindra; building Doctor AI (iOS) and CarSales Bot (macOS desktop) solo.">
+<title>Mukesh Kumar Sharma — Staff / Lead iOS Engineer</title>
+<meta name="description" content="Staff / Lead iOS Engineer — 14+ years in the Apple ecosystem, 10+ in Swift. Shipped 30+ production apps across payments, banking, retail, healthcare and smart cities. Built Vanguard's generative-AI investing assistant end to end — real-time LLM streaming and Swift Concurrency — and fine-tunes Apple Foundation Models with LoRA adapters to run fully on device.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -353,11 +353,27 @@
   <section id="work">
     <div class="label mono">§ 02 — Selected Work</div>
     <h2>Fourteen years, across <em>payments, banking, retail, health, smart cities.</em></h2>
-    <p class="lede">A continuous arc from Objective-C and iOS 5 in 2011 to Swift 5.x, SwiftUI, async/await, and on-device ML in 2026 — owning architecture, CI/CD, reusable frameworks, and the engineers around me at each stop.</p>
+    <p class="lede">A continuous arc from Objective-C and iOS 5 in 2011 to Swift 6, SwiftUI, structured concurrency, and LoRA-fine-tuned Apple Foundation Models running on device in 2026 — owning architecture, CI/CD, reusable frameworks, and the engineers around me at each stop.</p>
 
     <div class="work">
       <div class="role">
-        <div class="when">2025 →</div>
+        <div class="when">Mar 2026 — Aug 2026</div>
+        <div>
+          <h3>Senior iOS Engineer <em>— Explore &amp; Empower, Vanguard</em></h3>
+          <div class="company">Publicis Sapient · Wealth Management · Toronto</div>
+          <p>Built Vanguard's generative-AI investing assistant end to end in Swift and SwiftUI — entry points, first-run onboarding, and streaming conversational chat — shipped to the client's phase 1 production release at a 0.1% customer rollout.</p>
+          <ul>
+            <li>Co-designed the streaming response contract with the backend and AI-platform teams, then implemented <strong>real-time LLM streaming</strong> over Alamofire <code>DataStreamRequest</code> with a custom newline-delimited JSON tokenizer, publishing decoded chunks to the UI through a Combine <code>PassthroughSubject</code> as they arrive.</li>
+            <li>Adopted <strong>Swift Concurrency end to end</strong> — an actor-isolated tokenizer, a custom <code>@globalActor</code> for serialized stream processing, <code>@MainActor</code> UI boundaries, and full Sendable conformance — eliminating data races under load.</li>
+            <li>Drove a component-discriminated streaming schema to agreement across iOS, backend, and design: 8 renderable response types with custom <code>Decodable</code> initializers, parse-boundary validation, and graceful degradation on unrecognized payloads.</li>
+            <li>Shipped a reusable coach-mark framework modeled on TipKit but back-deployed to iOS 17 — adopted by other engineers for guided onboarding; validated through iOS 26.</li>
+            <li>Modularized the feature into internal SPM packages with a protocol and paired mock per ViewModel over a repository pattern, covered with XCTest and Swift Testing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">Dec 2024 — Mar 2026</div>
         <div>
           <h3>Lead iOS Engineer <em>— TruPOS, Enterprise POS</em></h3>
           <div class="company">Tech Mahindra · Payments</div>
@@ -373,7 +389,16 @@
       </div>
 
       <div class="role">
-        <div class="when">Jun 2023 — Jan 2025</div>
+        <div class="when">Dec 2024 — Mar 2026</div>
+        <div>
+          <h3>Senior Mobile Engineer (React Native) <em>— TruGreen</em></h3>
+          <div class="company">Tech Mahindra · Consumer · concurrent engagement</div>
+          <p>Concurrent Tech Mahindra engagement alongside TruPOS. Shipped production features for the TruGreen consumer app in React Native + TypeScript across iOS and Android. Authored native iOS modules in Swift and bridged them to JS — exposing biometrics, deep links, and secure storage that pure JS couldn't reach. Debugged Metro / Hermes / native-bridge issues and symbolicated cross-platform Crashlytics.</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">Jun 2023 — Jan 2024</div>
         <div>
           <h3>Senior / Lead iOS Engineer <em>— NEOM Smart City</em></h3>
           <div class="company">Tech Mahindra · Saudi Arabia</div>
@@ -382,17 +407,8 @@
             <li>Defined the architecture, interface contracts, and versioning strategy for <strong>NEOMCore</strong> — a reusable SPM framework for networking, OAuth, SSL pinning, and shared UI adopted across ~20 internal NEOM mobile apps.</li>
             <li>Built MVVM SwiftUI modules with async/await; designed reusable NavigationStacks, ViewModifiers, and ViewBuilders.</li>
             <li>Integrated Apollo iOS for type-safe GraphQL, OpenAI + a LangChain-based prompt SDK for an in-app digital assistant, Twilio audio/video for resident-agent support, and Apple Speech for voice interactions.</li>
-            <li>Led a small iOS team across the 19-month project: design reviews, architectural decisions, mentoring 3 engineers, Grafana observability for API latency and crash-free rate.</li>
+            <li>Led a small iOS team across the project: design reviews, architectural decisions, mentoring 3 engineers, Grafana observability for API latency and crash-free rate.</li>
           </ul>
-        </div>
-      </div>
-
-      <div class="role">
-        <div class="when">Mar 2023 — Dec 2024</div>
-        <div>
-          <h3>Senior Mobile Engineer (React Native) <em>— TruGreen</em></h3>
-          <div class="company">Tech Mahindra · Consumer · concurrent engagement</div>
-          <p>Concurrent Tech Mahindra engagement alongside Kroger and NEOM. Shipped production features for the TruGreen consumer app in React Native + TypeScript across iOS and Android. Authored native iOS modules in Swift and bridged them to JS — exposing biometrics, deep links, and secure storage that pure JS couldn't reach. Debugged Metro / Hermes / native-bridge issues and symbolicated cross-platform Crashlytics.</p>
         </div>
       </div>
 
@@ -696,10 +712,10 @@
 
   <section class="contact" id="contact">
     <div class="label mono">§ 08 — Contact</div>
-    <h2>Open to conversations<br>about <em>senior and staff iOS roles.</em></h2>
+    <h2>Open to conversations<br>about <em>staff and lead iOS roles.</em></h2>
     <p style="color: var(--ink-dim); max-width: 56ch; margin-top: 1.5rem;">Based in London / Toronto, Ontario. Canadian citizen, open to US relocation on TN visa. Interested in product-focused teams doing serious work with Swift, on-device ML, or modern AI tooling on iOS.</p>
     <div class="links">
-      <a href="mailto:mukesh.ct.pce@gmail.com">mukesh.ct.pce@gmail.com</a>
+      <a href="mailto:mukesh.ct.pce@live.com">mukesh.ct.pce@live.com</a>
       <a href="https://linkedin.com/in/imuks" target="_blank" rel="noopener">linkedin.com/in/imuks</a>
       <a href="https://github.com/imuks" target="_blank" rel="noopener">github.com/imuks</a>
       <a href="Mukesh_Kumar_Sharma_Resume.pdf" target="_blank" rel="noopener">Download résumé (PDF)</a>
