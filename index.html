@@ -286,6 +286,33 @@
     .numbers .n { font-size: 1.9rem; }
     nav ul { gap: 1.1rem; }
   }
+
+  /* Vanguard case study */
+  .case { margin: 3.5rem 0 1rem; padding: 2rem 0 0; border-top: 1px solid var(--rule); }
+  .case > .label { margin-bottom: 1.25rem; }
+  .modules { display: grid; gap: 1.1rem; margin: 1.5rem 0 0; }
+  .mod { padding-left: 1.1rem; border-left: 2px solid var(--ink-faint); }
+  .mod:hover { border-left-color: var(--accent-dim); }
+  .mod h4 { font-family: var(--sans); font-size: .95rem; font-weight: 600;
+            color: var(--ink); margin-bottom: .3rem; letter-spacing: .01em; }
+  .mod h4 span { color: var(--accent); font-family: var(--mono); font-size: .78rem; margin-right: .5rem; }
+  .mod p { color: var(--ink-dim); font-size: .9rem; line-height: 1.65; }
+  .wire { width: 100%; border-collapse: collapse; margin: 1.5rem 0 .5rem; font-size: .82rem; }
+  .wire th { text-align: left; padding: .55rem .7rem; font-family: var(--mono);
+             font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+             color: var(--accent); border-bottom: 1px solid var(--rule); font-weight: 500; }
+  .wire td { padding: .5rem .7rem; border-bottom: 1px solid rgba(26,41,66,.6); color: var(--ink-dim); }
+  .wire td:first-child, .wire td:nth-child(2) { font-family: var(--mono); font-size: .78rem; color: var(--ink); }
+  .wire tr:hover td { background: rgba(212,165,116,.04); }
+  .tablewrap { overflow-x: auto; }
+  .statline { display: flex; flex-wrap: wrap; gap: 2.2rem; margin: 2rem 0 0;
+              padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+  .statline div { min-width: 90px; }
+  .statline b { display: block; font-family: var(--serif); font-size: 1.9rem;
+                font-weight: 300; color: var(--accent); line-height: 1; }
+  .statline span { font-family: var(--mono); font-size: .68rem; letter-spacing: .07em;
+                   text-transform: uppercase; color: var(--ink-faint); }
+  @media (max-width: 640px) { .statline { gap: 1.4rem; } .statline b { font-size: 1.5rem; } }
 </style>
 </head>
 <body>
@@ -361,16 +388,18 @@
         <div>
           <h3>Senior iOS Engineer <em>— Explore &amp; Empower, Vanguard</em></h3>
           <div class="company">Publicis Sapient · Wealth Management · Toronto</div>
-          <p>Built Vanguard's generative-AI investing assistant end to end in Swift and SwiftUI — entry points, first-run onboarding, and streaming conversational chat — shipped to the client's phase 1 production release at a 0.1% customer rollout.</p>
+          <p>Built Vanguard's generative-AI investing assistant end to end in Swift and SwiftUI <strong>across 8 modules</strong> — from the floating entry point on Portfolio Home through first-run onboarding to a fully streaming conversational interface — shipped to the client's <strong>phase 1 production release at a 0.1% customer rollout</strong>.</p>
           <ul>
             <li>Co-designed the streaming response contract with the backend and AI-platform teams, then implemented <strong>real-time LLM streaming</strong> over Alamofire <code>DataStreamRequest</code> with a custom newline-delimited JSON tokenizer, publishing decoded chunks to the UI through a Combine <code>PassthroughSubject</code> as they arrive.</li>
             <li>Adopted <strong>Swift Concurrency end to end</strong> — an actor-isolated tokenizer, a custom <code>@globalActor</code> for serialized stream processing, <code>@MainActor</code> UI boundaries, and full Sendable conformance — eliminating data races under load.</li>
             <li>Drove a component-discriminated streaming schema to agreement across iOS, backend, and design: 8 renderable response types with custom <code>Decodable</code> initializers, parse-boundary validation, and graceful degradation on unrecognized payloads.</li>
-            <li>Shipped a reusable coach-mark framework modeled on TipKit but back-deployed to iOS 17 — adopted by other engineers for guided onboarding; validated through iOS 26.</li>
+            <li>Shipped a reusable <strong>coach-mark framework (17 files)</strong> modeled on TipKit but back-deployed to iOS 17, plus a 5-page animated onboarding flow — <strong>adopted by other engineers</strong>; validated through iOS 26.</li>
             <li>Modularized the feature into internal SPM packages with a protocol and paired mock per ViewModel over a repository pattern, covered with XCTest and Swift Testing.</li>
+            <li>Authored <strong>custom Claude AI development commands</strong> that automate first-pass code review and enforce the team's Swift/SwiftUI coding guidelines across the feature.</li>
           </ul>
         </div>
       </div>
+
 
       <div class="role">
         <div class="when">Dec 2024 — Mar 2026</div>
@@ -467,6 +496,68 @@
       </div>
     </div>
   </section>
+
+    <div class="case">
+    <div class="label mono">§ 02a — Case study · Explore &amp; Empower</div>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:.6rem">Eight modules, one streaming assistant.</h2>
+    <p class="lede">The hard problems weren't the model. They were streaming correctness under concurrency, a response schema that degrades gracefully when the backend sends something the client doesn't recognise, and a component library other engineers could adopt without re-implementing chat.</p>
+
+    <div class="modules">
+      <div class="mod"><h4><span>01</span>Entry point &amp; FAB</h4>
+        <p>Floating action button injected into Portfolio Home, My Portfolio and Performance via a SwiftUI <code>ViewModifier</code> for SwiftUI screens and a protocol + <code>UIHostingController</code> bridge for legacy UIKit screens. iPad-aware placement, remote eligibility and version gating, full-screen cover into chat or onboarding, typed error alerts. Service-locator DI, analytics on every interaction.</p></div>
+
+      <div class="mod"><h4><span>02</span>VGCoachMark — 17 files</h4>
+        <p>A TipKit-inspired framework built in-house so it could run back to iOS 17: tip-content protocol, tip identifier enum, display <code>ViewModifier</code> and a <code>View+VGTip</code> extension, rich-popover and standard styles, and per-user show-once persistence. Adopted by other engineers on the project. Fixed for iOS 26.</p></div>
+
+      <div class="mod"><h4><span>03</span>Onboarding</h4>
+        <p>Five-page animated walkthrough: welcome, account-snapshot demo (animated table), navigation help (animated line chart), decision guardrails, and privacy / human-fallback notes. Timed message choreography, <code>@Published</code> state driving page transitions, per-user Keychain persistence keyed to customer profile ID, flowing straight into chat on completion.</p></div>
+
+      <div class="mod"><h4><span>04</span>Chat ViewModel &amp; session state</h4>
+        <p>A <code>ChatViewState</code> enum (loading / welcome / active), paginated circularly-cycling suggestion pills, a 300-character input limit with backend-supplied regex for unsupported-character detection, haptics behind an injectable protocol, accordion disclosures modal, per-response thumbs-up/down feedback, and typed error alerts. Combine throughout, <code>@MainActor</code> for UI safety.</p></div>
+
+      <div class="mod"><h4><span>05</span>Orchestration service</h4>
+        <p>Owns session lifecycle: service-agreement acceptance, stream subscription, chunk-by-chunk message assembly, smart-loading handoff to the first response chunk, contextual suggested intents, backend-driven intro content, session-ID correlation for analytics, and cancel/retry semantics.</p></div>
+
+      <div class="mod"><h4><span>06</span>Service layer</h4>
+        <p>HTTP streaming to the BFF over Alamofire <code>DataStreamRequest</code>, plus toggle, service-agreement, content and feedback endpoints. A custom <code>@globalActor</code> for serialized stream processing and an <code>actor</code> repository bridging async/await to callbacks through throwing continuations.</p></div>
+
+      <div class="mod"><h4><span>07</span>Stream tokenizer &amp; DTOs</h4>
+        <p>An <code>actor</code>-isolated JSONL tokenizer — buffer accumulation, delimiter splitting, complete-object extraction — emitting through a Combine <code>PassthroughSubject</code>. Eight component types decoded on a <code>component</code> discriminator, with validation at the parse boundary (table header/row parity, chart value bounds) and graceful degradation on unknown types.</p></div>
+
+      <div class="mod"><h4><span>08</span>Chat UI package — 50+ files</h4>
+        <p>A SwiftUI component library covering the full chat surface: message rows, markdown-rendered AI text, tables, ordered/unordered lists, line/bar/composition charts with dedicated chart ViewModels, typing indicator, smart-loading states, queue-position indicator, inline retry, character-limited input, suggestion pills, keyboard-responsive scrolling, link parsing and identity labels. Built on the client's design-system tokens; the base chat view was reused for live-agent chat as well.</p></div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="wire">
+        <thead><tr><th>Wire value</th><th>DTO case</th><th>UI rendering</th></tr></thead>
+        <tbody>
+          <tr><td>chat-response</td><td>.text</td><td>Markdown text bubble</td></tr>
+          <tr><td>table</td><td>.table</td><td>PlainTable grid</td></tr>
+          <tr><td>ordered-list</td><td>.orderedList</td><td>Numbered list</td></tr>
+          <tr><td>unordered-list</td><td>.unorderedList</td><td>Bullet list</td></tr>
+          <tr><td>line-chart</td><td>.lineChart</td><td>LineChart view</td></tr>
+          <tr><td>bar-chart</td><td>.barChart</td><td>BarChart view</td></tr>
+          <tr><td>pie-chart</td><td>.pieChart</td><td>BarCompositionChart</td></tr>
+          <tr><td>suggested-user-intents</td><td>.suggestedUserIntents</td><td>Suggestion pills</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mod" style="margin-top:2rem">
+      <h4><span>AI</span>Claude in the development loop</h4>
+      <p>Claude was used throughout as a working tool, not a novelty. I authored <strong>custom Claude development commands</strong> for the team that automate first-pass code review and enforce the project's Swift/SwiftUI coding guidelines before human review. Beyond that: scaffolding and refactoring across the eight modules — ViewModels, protocol/mock pairs, DTO boilerplate — and test generation for the tokenizer, DTO decoding and ViewModel layers, then hardened by hand against real streaming edge cases. Every generated output was reviewed for correctness and performance. The engineer stays accountable for what ships.</p>
+    </div>
+
+    <div class="statline">
+      <div><b>8</b><span>Modules</span></div>
+      <div><b>50+</b><span>Chat package files</span></div>
+      <div><b>17</b><span>Coach-mark files</span></div>
+      <div><b>8</b><span>Component types</span></div>
+      <div><b>0.1%</b><span>Phase 1 rollout</span></div>
+      <div><b>17→26</b><span>iOS support</span></div>
+    </div>
+  </div>
 
   <section id="apps">
     <div class="label mono">§ 03 — Apps Shipped</div>
