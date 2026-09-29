@@ -236,6 +236,15 @@
   .repo h4 { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); margin-bottom: 0.5rem; }
   .repo p { font-size: 0.85rem; color: var(--ink-dim); margin-bottom: 0.75rem; }
   .repo .stars { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-dim); }
+  .repo-group { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; margin-top: 3.5rem; display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  .repo-group .mono { text-transform: none; letter-spacing: 0.02em; }
+  .forks { list-style: none; margin-top: 1.5rem; border-top: 1px solid var(--rule); }
+  .forks li { display: grid; grid-template-columns: minmax(160px, 220px) 90px 1fr; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--rule); font-size: 0.85rem; align-items: baseline; }
+  .forks li a { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); border: none; }
+  .forks li a:hover { color: var(--ink); }
+  .fork-meta { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.04em; }
+  .fork-desc { color: var(--ink-dim); }
+  @media (max-width: 600px) { .forks li { grid-template-columns: 1fr; gap: 0.2rem; } }
 
   /* Contact */
   .contact { padding: 6rem 0 4rem; }
@@ -760,45 +769,179 @@
   <section id="code">
     <div class="label mono">§ 07 — Open Source</div>
     <h2>Public experiments, mostly at the intersection <em>of Swift and AI.</em></h2>
-    <p class="lede">Selected repositories from <a href="https://github.com/imuks" target="_blank" rel="noopener">github.com/imuks</a> — early Swift integrations for OpenAI and Stable Diffusion, the Doctor AI Swift Package, and reference work in Swift architecture and DSA.</p>
+    <p class="lede">All 44 public repositories from <a href="https://github.com/imuks" target="_blank" rel="noopener">github.com/imuks</a> — 30 original projects spanning Swift/SwiftUI, AI agents and full-stack TypeScript, plus 14 forks kept as references. Last synced September 2026.</p>
 
+    <h3 class="repo-group">Original work <span class="mono">30 repositories · newest first</span></h3>
     <div class="repos">
-      <a class="repo" href="https://github.com/imuks/chatGPT_iOS" target="_blank" rel="noopener">
-        <h4>chatGPT_iOS</h4>
-        <p>Native iOS client for OpenAI's chat API — published January 2023, one of the earliest public Swift integrations after the API launched.</p>
-        <div class="stars">Swift · MIT · Jan 2023</div>
+      <a class="repo" href="https://github.com/iMuks/imuks.github.io" target="_blank" rel="noopener">
+        <h4>imuks.github.io</h4>
+        <p>This site — a single hand-written HTML page deployed on GitHub Pages.</p>
+        <div class="stars">HTML · 2026</div>
       </a>
-      <a class="repo" href="https://github.com/imuks/StableDiffusion_iOS" target="_blank" rel="noopener">
-        <h4>StableDiffusion_iOS</h4>
-        <p>Stability AI / Stable Diffusion integration for on-device iOS image generation, published shortly after the model release.</p>
-        <div class="stars">Swift · MIT · 2023</div>
+      <a class="repo" href="https://github.com/iMuks/Zafin-pfm-agent" target="_blank" rel="noopener">
+        <h4>Zafin-pfm-agent</h4>
+        <p>Penny — a conversational personal-finance agent that answers questions over six months of transactions by calling analytics tools, never doing the arithmetic itself.</p>
+        <div class="stars">Python · 2026</div>
       </a>
-      <a class="repo" href="https://github.com/imuks/AIDoctor-SPM" target="_blank" rel="noopener">
-        <h4>AIDoctor-SPM</h4>
-        <p>The shared Swift Package powering the Doctor AI iOS client — domain logic, transport, and AI orchestration types.</p>
-        <div class="stars">Swift</div>
+      <a class="repo" href="https://github.com/iMuks/ms-dropshipping-market-research" target="_blank" rel="noopener">
+        <h4>ms-dropshipping-market-research</h4>
+        <p>Claude Code skill for high-ticket dropshipping market research — evidence-cited opportunity briefs scored on a multi-criteria rubric.</p>
+        <div class="stars">Python · MIT · 2026</div>
       </a>
-      <a class="repo" href="https://github.com/imuks/Pharma-iOS" target="_blank" rel="noopener">
+      <a class="repo" href="https://github.com/iMuks/nuvista-realtor-platform" target="_blank" rel="noopener">
+        <h4>nuvista-realtor-platform</h4>
+        <p>NuVista — full-stack real-estate platform with live IDX listing sync, an AI assistant and a market-analytics dashboard. React + TypeScript, Node/Express, MongoDB.</p>
+        <div class="stars">TypeScript · 2026</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/storefront-engine" target="_blank" rel="noopener">
+        <h4>storefront-engine</h4>
+        <p>AI-native pipeline for building and scaling high-ticket Shopify stores — Python research engine with paired domain-expert reviewers, Langfuse-traced.</p>
+        <div class="stars">Python · MIT · 2026</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/car_sale_whatsapp_bot" target="_blank" rel="noopener">
+        <h4>car_sale_whatsapp_bot</h4>
+        <p>CarSales Bot — AI WhatsApp sales agent for car dealerships: Baileys transport, agent loop and SQLite inventory behind a 3-tier service layout.</p>
+        <div class="stars">TypeScript · 2026 · ★ 1</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/carsales-ai-installer" target="_blank" rel="noopener">
+        <h4>carsales-ai-installer</h4>
+        <p>Installer / packaging layer for CarSales Bot — the signed, notarized Electron desktop app, with electron-updater OTA via GitHub Releases.</p>
+        <div class="stars">2026</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/SteadyAI-main" target="_blank" rel="noopener">
+        <h4>SteadyAI-main</h4>
+        <p>SteadyAI — TypeScript backend (Node + Prisma) with web and Android clients, Dockerized for deployment.</p>
+        <div class="stars">TypeScript · 2026</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/reactiv-ios" target="_blank" rel="noopener">
+        <h4>reactiv-ios</h4>
+        <p>SwiftUI take-home: App Clip deep-link parsing over a reusable coordinator/router, repository and network layer.</p>
+        <div class="stars">Swift · 2026</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/Pharma-iOS" target="_blank" rel="noopener">
         <h4>Pharma-iOS</h4>
         <p>Swift/SwiftUI exploration of healthcare iOS patterns inspired by the Pfizer-era work.</p>
-        <div class="stars">Swift</div>
+        <div class="stars">Swift · 2025</div>
       </a>
-      <a class="repo" href="https://github.com/imuks/swift_DSA" target="_blank" rel="noopener">
+      <a class="repo" href="https://github.com/iMuks/MedPalAI-iOS" target="_blank" rel="noopener">
+        <h4>MedPalAI-iOS</h4>
+        <p>MedPal AI — the Doctor AI iOS client in Swift/SwiftUI, currently on TestFlight beta.</p>
+        <div class="stars">Swift · 2025 · ★ 1</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/Nodejs-backend-doctor-ai" target="_blank" rel="noopener">
+        <h4>Nodejs-backend-doctor-ai</h4>
+        <p>TypeScript + Node.js backend for Doctor AI — LLM orchestration on Google App Engine.</p>
+        <div class="stars">JavaScript · 2025</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/swift_DSA" target="_blank" rel="noopener">
         <h4>swift_DSA</h4>
         <p>Data structures and algorithms in Swift — a public interview-prep reference.</p>
-        <div class="stars">Swift</div>
+        <div class="stars">Swift · MIT · 2024 · ★ 1</div>
       </a>
-      <a class="repo" href="https://github.com/imuks/carsales-ai-installer" target="_blank" rel="noopener">
-        <h4>carsales-ai-installer</h4>
-        <p>Installer / packaging layer for CarSales Bot — the signed, notarized Electron desktop app powering AI WhatsApp automation for car dealerships.</p>
-        <div class="stars">TypeScript · Electron · 2026</div>
+      <a class="repo" href="https://github.com/iMuks/tg-aaa" target="_blank" rel="noopener">
+        <h4>tg-aaa</h4>
+        <p>Apple App Site Association hosting for TypeGenie universal links.</p>
+        <div class="stars">2024</div>
       </a>
-      <a class="repo" href="https://github.com/imuks" target="_blank" rel="noopener">
-        <h4>github.com/imuks →</h4>
-        <p>Full profile — additional iOS, AI, and tooling repositories.</p>
-        <div class="stars">All work</div>
+      <a class="repo" href="https://github.com/iMuks/aasa-host" target="_blank" rel="noopener">
+        <h4>aasa-host</h4>
+        <p>Apple App Site Association hosting for universal links and App Clips.</p>
+        <div class="stars">2024</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/visionFramework" target="_blank" rel="noopener">
+        <h4>visionFramework</h4>
+        <p>Apple Vision framework experiments in Swift.</p>
+        <div class="stars">Swift · 2024</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/medial-ai-dev" target="_blank" rel="noopener">
+        <h4>medial-ai-dev</h4>
+        <p>JavaScript development sandbox for the Doctor AI stack.</p>
+        <div class="stars">JavaScript · 2024</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/ai-doctor-components" target="_blank" rel="noopener">
+        <h4>ai-doctor-components</h4>
+        <p>Evaluation notebook for Doctor AI prompt iteration.</p>
+        <div class="stars">Jupyter Notebook · 2024</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/AIDoctor-SPM" target="_blank" rel="noopener">
+        <h4>AIDoctor-SPM</h4>
+        <p>The shared Swift Package powering the Doctor AI iOS client — domain logic, transport, and AI orchestration types.</p>
+        <div class="stars">2024</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/iOS-doctor-ai" target="_blank" rel="noopener">
+        <h4>iOS-doctor-ai</h4>
+        <p>Earlier iteration of the Doctor AI iOS client.</p>
+        <div class="stars">Swift · 2024</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/doctor-ai-twilio" target="_blank" rel="noopener">
+        <h4>doctor-ai-twilio</h4>
+        <p>Twilio Video integration for Doctor AI consultations.</p>
+        <div class="stars">2024</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/typegenie-iOS" target="_blank" rel="noopener">
+        <h4>typegenie-iOS</h4>
+        <p>iOS client experiment for TypeGenie.</p>
+        <div class="stars">2023</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/worklow_log" target="_blank" rel="noopener">
+        <h4>worklow_log</h4>
+        <p>Workflow log scratch repo.</p>
+        <div class="stars">MIT · 2023</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/StableDiffusion_iOS" target="_blank" rel="noopener">
+        <h4>StableDiffusion_iOS</h4>
+        <p>Stability AI / Stable Diffusion integration for on-device iOS image generation, published shortly after the model release.</p>
+        <div class="stars">Swift · MIT · 2023 · ★ 9</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/chatGPT_iOS" target="_blank" rel="noopener">
+        <h4>chatGPT_iOS</h4>
+        <p>Native iOS client for OpenAI&#x27;s chat API — published January 2023, one of the earliest public Swift integrations after the API launched.</p>
+        <div class="stars">Swift · MIT · 2023 · ★ 9</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/GerritTest" target="_blank" rel="noopener">
+        <h4>GerritTest</h4>
+        <p>Testing a Gerrit code-review setup.</p>
+        <div class="stars">MIT · 2017</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/Sona" target="_blank" rel="noopener">
+        <h4>Sona</h4>
+        <p>Learning repo.</p>
+        <div class="stars">2017</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/PlayWithiOS" target="_blank" rel="noopener">
+        <h4>PlayWithiOS</h4>
+        <p>Early Objective-C playground.</p>
+        <div class="stars">Objective-C · 2016 · ★ 1</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/Hello-iOS" target="_blank" rel="noopener">
+        <h4>Hello-iOS</h4>
+        <p>Demo apps from the Objective-C era.</p>
+        <div class="stars">2016</div>
+      </a>
+      <a class="repo" href="https://github.com/iMuks/Gittutorials" target="_blank" rel="noopener">
+        <h4>Gittutorials</h4>
+        <p>Git tutorial exercises.</p>
+        <div class="stars">2016</div>
       </a>
     </div>
+
+    <h3 class="repo-group">Forks &amp; references <span class="mono">14 repositories</span></h3>
+    <ul class="forks">
+      <li><a href="https://github.com/iMuks/ImgGenSD2" target="_blank" rel="noopener">ImgGenSD2</a><span class="fork-meta">—</span><span class="fork-desc">An iOS app that generates images using Stable Diffusion v2.</span></li>
+      <li><a href="https://github.com/iMuks/github-example" target="_blank" rel="noopener">github-example</a><span class="fork-meta">—</span><span class="fork-desc">github example</span></li>
+      <li><a href="https://github.com/iMuks/MVVM" target="_blank" rel="noopener">MVVM</a><span class="fork-meta">Swift</span><span class="fork-desc">MVVM architecture in ios swift </span></li>
+      <li><a href="https://github.com/iMuks/Swift30Projects" target="_blank" rel="noopener">Swift30Projects</a><span class="fork-meta">Swift</span><span class="fork-desc">30 mini Swift Apps for self-study</span></li>
+      <li><a href="https://github.com/iMuks/ViewStyle" target="_blank" rel="noopener">ViewStyle</a><span class="fork-meta">Swift</span><span class="fork-desc">ViewStyle provides a way to set UIView&#x27;s visual appearance properties like CSS</span></li>
+      <li><a href="https://github.com/iMuks/git-internals-pdf" target="_blank" rel="noopener">git-internals-pdf</a><span class="fork-meta">PostScript</span><span class="fork-desc">PDF on Git Internals</span></li>
+      <li><a href="https://github.com/iMuks/infer" target="_blank" rel="noopener">infer</a><span class="fork-meta">OCaml</span><span class="fork-desc">A static analyzer for Java, C and Objective-C</span></li>
+      <li><a href="https://github.com/iMuks/PSOperations" target="_blank" rel="noopener">PSOperations</a><span class="fork-meta">Swift</span><span class="fork-desc">A framework for advanced NSOperations usage</span></li>
+      <li><a href="https://github.com/iMuks/VIPERS-Router" target="_blank" rel="noopener">VIPERS-Router</a><span class="fork-meta">Swift</span><span class="fork-desc">Router implementation used by the iOS application framework &quot;VIPERS&quot;.</span></li>
+      <li><a href="https://github.com/iMuks/Overdrive" target="_blank" rel="noopener">Overdrive</a><span class="fork-meta">Swift</span><span class="fork-desc">⚡️ Fast async task based API in Swift with focus on type safety, concurrency and multi…</span></li>
+      <li><a href="https://github.com/iMuks/Design-Patterns-In-Swift" target="_blank" rel="noopener">Design-Patterns-In-Swift</a><span class="fork-meta">Swift</span><span class="fork-desc">Design Patterns implemented in Swift</span></li>
+      <li><a href="https://github.com/iMuks/TWRDownloadManager" target="_blank" rel="noopener">TWRDownloadManager</a><span class="fork-meta">Objective-C</span><span class="fork-desc">A modern download manager based on NSURLSession to deal with asynchronous downloading…</span></li>
+      <li><a href="https://github.com/iMuks/MZDownloadManager" target="_blank" rel="noopener">MZDownloadManager</a><span class="fork-meta">Objective-C</span><span class="fork-desc">This download manager uses NSURLSession api to download files. It can download multiple…</span></li>
+      <li><a href="https://github.com/iMuks/ADBDownloadManager" target="_blank" rel="noopener">ADBDownloadManager</a><span class="fork-meta">Objective-C</span><span class="fork-desc">A download manager for iOS. Actually, all that you need to download files without any…</span></li>
+    </ul>
   </section>
 
   <section class="contact" id="contact">
