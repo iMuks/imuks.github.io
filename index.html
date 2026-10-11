@@ -322,6 +322,31 @@
   .statline span { font-family: var(--mono); font-size: .74rem; letter-spacing: .07em;
                    text-transform: uppercase; color: var(--ink-dim); }
   @media (max-width: 640px) { .statline { gap: 1.4rem; } .statline b { font-size: 1.5rem; } }
+
+  /* Penny */
+  .penny-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0 0; }
+  .btn { display: inline-block; padding: .8rem 1.3rem; font-family: var(--mono); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--accent); color: var(--bg); background: var(--accent); }
+  .btn:hover { color: var(--bg); background: var(--ink); border-color: var(--ink); }
+  .btn.ghost { background: transparent; color: var(--accent); }
+  .btn.ghost:hover { color: var(--ink); border-color: var(--ink); background: transparent; }
+  .shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin: 3rem 0 1rem; }
+  .shots figure { margin: 0; }
+  .shots .phone { aspect-ratio: 1320 / 2868; border: 1px solid var(--rule); border-radius: 22px; overflow: hidden; background: var(--bg-raised); display: flex; align-items: center; justify-content: center; text-align: center; padding: 1rem; color: var(--ink-faint); font-family: var(--mono); font-size: .7rem; }
+  .shots .phone img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .shots .phone:has(img) { padding: 0; }
+  .shots figcaption { margin-top: .75rem; font-size: .85rem; color: var(--ink-dim); }
+  .shots figcaption b { color: var(--ink); font-weight: 500; display: block; }
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 3rem; }
+  .pgrid > div { background: var(--bg); padding: 2rem 1.75rem; }
+  .pgrid h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; margin-bottom: 1rem; letter-spacing: -0.01em; }
+  .pgrid p, .pgrid li { color: var(--ink-dim); font-size: .95rem; }
+  .pgrid ol, .pgrid ul { padding-left: 1.2rem; display: grid; gap: .55rem; }
+  .pgrid li strong, .pgrid p strong { color: var(--ink); font-weight: 500; }
+  .pgrid code, .creds code { font-family: var(--mono); font-size: .85em; color: var(--accent); }
+  .pgrid .wide { grid-column: 1 / -1; }
+  .creds { display: grid; grid-template-columns: auto 1fr; gap: .4rem 1.25rem; margin: 1rem 0; padding: 1rem 1.25rem; border: 1px dashed var(--accent-dim); font-size: .92rem; color: var(--ink-dim); }
+  .tag { display: inline-block; font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent-dim); padding: .15rem .45rem; margin-left: .4rem; vertical-align: middle; }
+  @media (max-width: 760px) { .shots { grid-template-columns: repeat(2, 1fr); } .pgrid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -330,6 +355,7 @@
   <nav>
     <div class="sig">mks<span>.</span></div>
     <ul>
+      <li><a href="#penny">Penny</a></li>
       <li><a href="#now">Now</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#apps">Apps</a></li>
@@ -360,8 +386,102 @@
     </div>
   </header>
 
+  <section id="penny">
+    <div class="label mono">§ 01 — Penny · TestFlight beta</div>
+    <h2>Penny, a money coach <em>you can just ask.</em></h2>
+    <p class="lede">Most people don't know where their money goes until the month is over. Penny is my answer: an iPhone app where you link your bank once, then ask about your spending in plain words, by typing or by voice, and get the answer back as a sentence and a chart. The goal is simple: help anyone understand their day-to-day spending, catch the subscriptions and habits quietly costing them, and decide what to cut without a spreadsheet.</p>
+
+    <div class="penny-cta">
+      <a class="btn" href="https://testflight.apple.com/join/zxSFk3yd" target="_blank" rel="noopener">Download the beta on TestFlight</a>
+      <a class="btn ghost" href="#penny-test">How to test it</a>
+      <a class="btn ghost" href="https://mirapenny.com/app-privacy" target="_blank" rel="noopener">Privacy policy</a>
+    </div>
+    <p class="mono" style="margin-top:1rem">Latest beta: version 1.0 (build 11) · iPhone · iOS 26 or later · Test environment</p>
+
+    <!-- Screenshots: add images to assets/penny/ and restore this block.
+    <div class="shots">
+      <figure>
+        <div class="phone" data-shot="bar">Screenshot coming soon</div>
+        <figcaption><b>Spending by day</b>A bar chart for "How much did I spend each day this week?"</figcaption>
+      </figure>
+      <figure>
+        <div class="phone" data-shot="line">Screenshot coming soon</div>
+        <figcaption><b>Spending over time</b>A line chart of the trend, month by month</figcaption>
+      </figure>
+      <figure>
+        <div class="phone" data-shot="pie">Screenshot coming soon</div>
+        <figcaption><b>Where it went</b>A pie chart by category: groceries, dining, transport, bills</figcaption>
+      </figure>
+      <figure>
+        <div class="phone" data-shot="list">Screenshot coming soon</div>
+        <figcaption><b>The details</b>The transactions behind any answer, in a list</figcaption>
+      </figure>
+    </div>
+    -->
+
+    <div class="pgrid">
+      <div>
+        <h3>How Penny helps you track spending</h3>
+        <ul>
+          <li><strong>Link your bank once.</strong> Read-only, through Plaid. Penny never sees your bank password.</li>
+          <li><strong>Ask in plain words.</strong> "What did I spend on dining this month?" "Which subscriptions am I paying for?"</li>
+          <li><strong>See it, not just read it.</strong> Answers come with bar, line and pie charts, tables and transaction lists. Touch a chart to see exact values.</li>
+          <li><strong>Talk to it.</strong> "Hey Siri, talk to Penny" starts a voice conversation. The Lock Screen shows only the call state, never your money.</li>
+          <li><strong>Locked by default.</strong> Face ID every time you open it, and your figures are hidden from screenshots and the app switcher.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Built with</h3>
+        <p>Swift 6 and SwiftUI with Swift Charts, App Intents and Siri, a voice Live Activity on the Lock Screen and Dynamic Island, and Face ID through the Keychain. The backend is Python on AWS in Canada (ECS Fargate, RDS Postgres, Cognito sign-in), with Plaid for bank data and Claude as the language model that writes Penny's answers.</p>
+        <div class="stack" style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem">
+          <span class="tag" style="margin:0">Swift 6</span><span class="tag" style="margin:0">SwiftUI</span><span class="tag" style="margin:0">Swift Charts</span><span class="tag" style="margin:0">App Intents</span><span class="tag" style="margin:0">Live Activities</span><span class="tag" style="margin:0">AWS</span><span class="tag" style="margin:0">Plaid</span><span class="tag" style="margin:0">Claude</span>
+        </div>
+      </div>
+
+      <div class="wide" id="penny-test">
+        <h3>Download and test it <span class="tag">Test environment</span></h3>
+        <p style="margin-bottom:1rem">This beta runs on Penny's <strong>test server</strong> with a <strong>test bank</strong>. No real bank account is needed, and none should be used. The transactions you'll see are sample data from Plaid's sandbox.</p>
+        <ol>
+          <li>On your iPhone (iOS 26 or later), install <a href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">TestFlight</a> from the App Store.</li>
+          <li>Open <a href="https://testflight.apple.com/join/zxSFk3yd" target="_blank" rel="noopener">testflight.apple.com/join/zxSFk3yd</a> on that iPhone, tap <strong>Accept</strong>, then <strong>Install</strong>. The app appears as <strong>Penny Dev</strong>.</li>
+          <li>Open Penny Dev and tap <strong>Sign in or create account</strong>. Create an account with your email and a password; you'll get a code by email to confirm it. Your password goes to Amazon Cognito, never to the app.</li>
+          <li>Set up Face ID when asked, then tap to <strong>link a bank</strong>. In Plaid's window, pick any bank and sign in with Plaid's public test login:
+            <div class="creds">
+              <span>Username</span><code>user_good</code>
+              <span>Password</span><code>pass_good</code>
+              <span>Code, if asked</span><code>1234</code>
+            </div>
+            These are Plaid's published sandbox credentials. They only work in the test environment and connect to a sample account, not a real bank.</li>
+          <li>Ask Penny about your spending. Try:
+            <ul style="margin-top:.5rem">
+              <li>"How much did I spend each day this week?" <em>(bar chart)</em></li>
+              <li>"Show my spending trend over the last few months" <em>(line chart)</em></li>
+              <li>"Break down my spending by category" <em>(pie chart)</em></li>
+              <li>"Which subscriptions am I paying for?"</li>
+            </ul>
+          </li>
+          <li>Optional: say <strong>"Hey Siri, talk to Penny Dev"</strong> to ask by voice.</li>
+          <li>Send feedback: open TestFlight → Penny Dev → <strong>Send Beta Feedback</strong>.</li>
+        </ol>
+      </div>
+
+      <div class="wide">
+        <h3>Your data and privacy, plainly</h3>
+        <ul>
+          <li><strong>Kept in Canada, in our own AWS account.</strong> Everything Penny stores lives in its Amazon Web Services account in the Canada (Central) region, encrypted in transit and at rest.</li>
+          <li><strong>No ads, no tracking, no selling.</strong> The app has no advertising, analytics or tracking code. Your information is never sold, rented or used for advertising.</li>
+          <li><strong>Your bank password stays with Plaid.</strong> The link is read-only. Penny can't move money.</li>
+          <li><strong>The chat on your phone is short-lived.</strong> It is encrypted, never included in backups, and cleared 30 minutes after a conversation starts, when you start a new chat, or when you sign out. Conversation context on the server is deleted after 30 minutes too.</li>
+          <li><strong>How answers are written.</strong> Your question and the relevant spending figures are sent to Anthropic's Claude model to write Penny's answer, processed in the United States. Card numbers, PINs and passwords typed into the chat are blocked.</li>
+          <li><strong>What is kept, and for how long.</strong> Your account, linked transactions and a record of your questions and Penny's answers are kept while your account is open. AI request logs are kept for 1 year and server logs for 90 days, for security and quality. You can ask for everything to be deleted at any time.</li>
+        </ul>
+        <p style="margin-top:1.25rem">The full details are in the <a href="https://mirapenny.com/app-privacy" target="_blank" rel="noopener">MeetPenny app privacy policy</a>. Penny explains your own spending; it is not financial, tax or legal advice, and it is for people 18 and older.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="now">
-    <div class="label mono">§ 01 — Now</div>
+    <div class="label mono">§ 02 — Now</div>
     <h2>Two full-stack AI projects, <em>built in public.</em></h2>
     <p class="lede">When I'm not shipping payments at TruPOS, I'm building solo. Doctor AI explores what an LLM-native clinical app can look like on iOS. CarSales Bot ships AI-driven WhatsApp automation as a signed, notarized macOS / Linux desktop app for car dealerships. Both end-to-end, one engineer.</p>
 
@@ -387,7 +507,7 @@
   </section>
 
   <section id="work">
-    <div class="label mono">§ 02 — Selected Work</div>
+    <div class="label mono">§ 03 — Selected Work</div>
     <h2>Fourteen years, across <em>payments, banking, retail, health, smart cities.</em></h2>
     <p class="lede">A continuous arc from Objective-C and iOS 5 in 2011 to Swift 6, SwiftUI, structured concurrency, and LoRA-fine-tuned Apple Foundation Models running on device in 2026 — owning architecture, CI/CD, reusable frameworks, and the engineers around me at each stop.</p>
 
@@ -507,7 +627,7 @@
   </section>
 
     <div class="case">
-    <div class="label mono">§ 02a — Case study · Simple fintech AI assistant</div>
+    <div class="label mono">§ 03a — Case study · Simple fintech AI assistant</div>
     <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:.6rem">Eight modules, one streaming assistant.</h2>
     <p class="lede">The hard problems weren't the model. They were streaming correctness under concurrency, a response schema that degrades gracefully when the backend sends something the client doesn't recognise, and a component library other engineers could adopt without re-implementing chat.</p>
 
@@ -569,7 +689,7 @@
   </div>
 
   <section id="apps">
-    <div class="label mono">§ 03 — Apps Shipped</div>
+    <div class="label mono">§ 04 — Apps Shipped</div>
     <h2>Thirty-plus apps, <em>from iOS 5 to iOS 18.</em></h2>
     <p class="lede">A representative slice of the production apps I've architected, shipped, or led across the App Store, enterprise distribution, and TestFlight — from Objective-C in 2011 to Swift Concurrency and SwiftUI today. Counting the Kroger and GAP Inc. banner storefronts, the Ontario Hydro Green Button apps, and the six Pfizer internal apps individually, the total comes to <strong style="color: var(--ink);">30+ production iOS apps</strong>.</p>
 
@@ -668,7 +788,7 @@
   </section>
 
   <section id="impact">
-    <div class="label mono">§ 04 — Architecture &amp; Impact</div>
+    <div class="label mono">§ 05 — Architecture &amp; Impact</div>
     <h2>Reusable frameworks, design reviews, <em>and the engineers around me.</em></h2>
     <p class="lede">My most leveraged work isn't a single app — it's the platforms, packages, and patterns other teams build on top of. Reusable iOS infrastructure, mentorship, and stakeholder-facing design reviews are the through-line.</p>
 
@@ -701,7 +821,7 @@
   </section>
 
   <section id="stack">
-    <div class="label mono">§ 05 — Stack</div>
+    <div class="label mono">§ 06 — Stack</div>
     <h2>The toolset, <em>kept current.</em></h2>
     <p class="lede">Across the years, the through-line has been Swift and the Apple platform — but the stack I reach for in 2026 is meaningfully different from 2016. A snapshot of what I'm fluent in today.</p>
 
@@ -754,7 +874,7 @@
   </section>
 
   <section id="education">
-    <div class="label mono">§ 06 — Education</div>
+    <div class="label mono">§ 07 — Education</div>
     <h2>Where it <em>started.</em></h2>
     <div class="role" style="border-top: none; padding-top: 0;">
       <div class="when">2007 — 2011</div>
@@ -767,7 +887,7 @@
   </section>
 
   <section id="code">
-    <div class="label mono">§ 07 — Open Source</div>
+    <div class="label mono">§ 08 — Open Source</div>
     <h2>Public experiments, mostly at the intersection <em>of Swift and AI.</em></h2>
     <p class="lede">All 44 public repositories from <a href="https://github.com/imuks" target="_blank" rel="noopener">github.com/imuks</a> — 30 original projects spanning Swift/SwiftUI, AI agents and full-stack TypeScript, plus 14 forks kept as references. Last synced September 2026.</p>
 
@@ -945,7 +1065,7 @@
   </section>
 
   <section class="contact" id="contact">
-    <div class="label mono">§ 08 — Contact</div>
+    <div class="label mono">§ 09 — Contact</div>
     <h2>Open to conversations<br>about <em>staff and lead iOS roles.</em></h2>
     <p style="color: var(--ink-dim); max-width: 56ch; margin-top: 1.5rem;">Based in London, Ontario. Canadian citizen — <strong style="color:var(--ink)">ready to relocate immediately to Toronto, San Francisco, New York, or Seattle</strong>, and TN-eligible for US roles with no lottery or petition. Interested in product-focused teams doing serious work with Swift, on-device ML, or modern AI tooling on iOS.</p>
     <div class="links">
