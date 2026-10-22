@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mukesh Kumar Sharma — Senior iOS Engineer</title>
+<style>
+  @page { size: Letter; margin: 0.36in 0.5in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 9.1pt; line-height: 1.3; color: #1a1a1a; background: #fff; }
+  .page { max-width: 7.4in; margin: 0 auto; }
+  @media screen { body { background: #e9e7e1; padding: 32px 16px; } .page { background: #fff; padding: 0.5in 0.55in; box-shadow: 0 2px 18px rgba(0,0,0,.12); } }
+  a { color: inherit; text-decoration: none; }
+  h1 { font-size: 20pt; font-weight: 600; letter-spacing: -0.01em; }
+  .title { font-size: 10.5pt; color: #8a5a22; font-weight: 500; margin-top: 1pt; }
+  .contact { margin-top: 4pt; font-size: 8.8pt; color: #444; }
+  h2 { font-size: 8.6pt; font-weight: 700; text-transform: uppercase; color: #8a5a22; border-bottom: 0.75pt solid #d9cbb8; padding-bottom: 2pt; margin: 8pt 0 3.5pt; }
+  .summary { font-size: 9.3pt; }
+  ul { padding-left: 11pt; }
+  li { margin-top: 1.4pt; }
+  li::marker { color: #8a5a22; }
+  .cases li { margin-top: 3.5pt; }
+  .cases b, .role b.lead { font-weight: 600; }
+  .link { color: #8a5a22; white-space: nowrap; }
+  .role { margin-top: 5pt; }
+  .role-head, .where { break-after: avoid-page; }
+  li { break-inside: avoid-page; }
+  .role-head { display: flex; justify-content: space-between; gap: 8pt; }
+  .role-head .what { font-weight: 600; }
+  .role-head .when { color: #555; white-space: nowrap; font-size: 9pt; }
+  .where { color: #555; font-style: italic; font-size: 9pt; }
+  .skills p { margin-top: 1.5pt; }
+  .muted { color: #555; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>Mukesh Kumar Sharma</h1>
+    <div class="title">Senior iOS Engineer · Swift, SwiftUI, Swift Concurrency, Mobile Architecture, On-Device AI</div>
+    <div class="contact">Toronto &amp; London, ON, Canada · Canadian citizen, TN-eligible · Open to relocation · +1 519-859-0693 · <a href="mailto:mukesh.ct.pce@gmail.com">mukesh.ct.pce@gmail.com</a><br>
+      <a href="https://linkedin.com/in/imuks">linkedin.com/in/imuks</a> · <a href="https://github.com/imuks">github.com/imuks</a> · <a href="https://imuks.github.io"><b>imuks.github.io</b></a> (case studies)</div>
+  </header>
+
+  <h2>Summary</h2>
+  <p class="summary">I build iOS apps for the moments that usually break them: a field rep taking a card payment with no signal, an investor waiting on an AI answer, a doctor who can't let a patient's voice leave the room. I've been shipping iOS since 2011 across banking, retail, payments, healthcare and smart cities, including apps used by millions of customers at TD, Kroger and Gap. 10+ years in Swift and 5+ in SwiftUI. I design the frameworks other teams build on (one is used by ~20 apps), own release quality, and mentor the engineers around me.</p>
+
+  <h2>Selected case studies</h2>
+  <ul class="cases">
+    <li><b>AI answers that appear as they're written, without data races.</b> An actor-isolated streaming tokenizer that feeds 8 typed UI components in an investing assistant, shipped to production in a staged rollout. <a class="link" href="https://imuks.github.io/#case-assistant">imuks.github.io/#case-assistant</a></li>
+    <li><b>Payments that go through with no signal.</b> A durable offline queue with 72-hour retention that brought offline transaction failures to effectively zero for field sales teams. <a class="link" href="https://imuks.github.io/#case-payments">imuks.github.io/#case-payments</a></li>
+    <li><b>Clinical AI that keeps patient audio on the phone.</b> LoRA-tuned Apple Foundation Models with live two-party transcription in video consultations, built solo. <a class="link" href="https://imuks.github.io/#case-ondevice">imuks.github.io/#case-ondevice</a></li>
+  </ul>
+
+  <h2>Professional experience</h2>
+
+  <div class="role">
+    <div class="role-head"><span class="what">Senior iOS Engineer</span><span class="when">Mar 2026 – Aug 2026</span></div>
+    <div class="where">Vanguard (contract via Publicis Sapient) · Toronto, ON (hybrid)</div>
+    <ul>
+      <li>Gave investors answers that appear as they're written: built real-time LLM streaming for Vanguard's generative-AI investing assistant (Alamofire DataStreamRequest, a custom newline-delimited JSON tokenizer, Combine) across 8 Swift/SwiftUI modules, through the phase 1 production release (staged rollout).</li>
+      <li>Eliminated data races under load by isolating the tokenizer in an actor, serializing stream processing on a custom @globalActor, and enforcing @MainActor UI boundaries with full Sendable conformance.</li>
+      <li>Agreed the streaming contract with backend, AI-platform and design teams before writing the parser: 8 response types (markdown, tables, lists, charts) with custom Decodable parsing, validated at the parse boundary so a malformed table or chart never reaches an investor's screen and unknown types degrade gracefully.</li>
+      <li>Helped first-time users find their way with a TipKit-style coach-mark framework back-deployed to iOS 17 and an animated onboarding flow; other engineers adopted the framework, and it was validated through iOS 26.</li>
+      <li>Kept the feature safe to change: SPM packages with a protocol and mock per ViewModel, XCTest and Swift Testing coverage, and custom Claude commands that run a first-pass review against team guidelines.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="role-head"><span class="what">Lead iOS Engineer</span><span class="when">Dec 2024 – Mar 2026</span></div>
+    <div class="where">Tech Mahindra · Enterprise payments platform (iOS) and TruGreen consumer app (React Native)</div>
+    <ul>
+      <li>Let field sales staff take card payments with no signal: designed an offline transaction queue (Core Data, BGTaskScheduler, 72-hour retention) that syncs on reconnect, reducing offline transaction failures to effectively zero.</li>
+      <li>Led 0-to-1 delivery of the client's SwiftUI payments app, the checkout hub for several business lines; owned MVVM architecture, checkout, transaction history and merchant onboarding, and ran design reviews with product, design and QA.</li>
+      <li>Kept payments moving at customer sites: integrated Bluetooth card readers and MFi accessories with background modes and a retry layer, live payment-status updates (Combine, URLSession), and App Intents shortcuts for frequent payment actions.</li>
+      <li>Ended per-app rewrites for 3 internal apps with a reusable Swift package for payments, receipts and deep linking, including universal links from field tools such as Field Service 365.</li>
+      <li>Cut release cycle time 20–50% by automating TestFlight and App Store releases (Fastlane, GitHub Actions, Xcode Cloud); reached 80% unit-test coverage on business logic and used Instruments to fix retain cycles and improve cold start and memory pressure.</li>
+      <li>Shipped TruGreen features to iOS and Android from one React Native (TypeScript) codebase, with native Swift modules for biometrics, deep links and secure storage.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="role-head"><span class="what">Founder &amp; Lead Engineer</span><span class="when">Jan 2024 – Present</span></div>
+    <div class="where">Dr Godly, on-device AI healthcare product (iOS, Android, Node.js) · Limited production pilot with early customers</div>
+    <ul>
+      <li>Built an assistant that writes consultation notes without patient audio or transcripts ever reaching a server for AI processing: fine-tuned Apple Foundation Models with LoRA adapters for clinical vocabulary and note summarization, with default safety guardrails.</li>
+      <li>Let doctor and patient follow each other's words in real time: live two-party speech-to-text during Twilio Video calls, plus text-to-speech playback, using Apple Speech and the LoRA-tuned on-device model.</li>
+      <li>Built the full stack solo across 6+ repos: iOS, Android, a shared Swift package and a Node.js backend on App Engine.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="role-head"><span class="what">Senior / Lead iOS Engineer</span><span class="when">Jun 2023 – Jan 2024</span></div>
+    <div class="where">NEOM (via Tech Mahindra) · Smart City, Saudi Arabia</div>
+    <ul>
+      <li>Architected and shipped the first App Store release of the NEOM Smart City app for residents, visitors and service providers.</li>
+      <li>Spared ~20 internal app teams from rebuilding networking and security: designed the core SPM framework (networking, OAuth, SSL pinning, shared UI), with its interface contracts and versioning strategy, and integrated Apollo iOS for type-safe GraphQL.</li>
+      <li>Let residents ask for help in their own words: integrated an in-app assistant for utilities, transport and support (OpenAI iOS client, LangChain-based prompt SDK), Twilio audio/video calls to support agents, and Apple Speech voice input.</li>
+      <li>Mentored 3 engineers and led a small iOS team to launch, running design reviews with product, backend and security.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="role-head"><span class="what">Senior / Lead iOS &amp; Release Engineer</span><span class="when">Jan 2023 – Jun 2023</span></div>
+    <div class="where">Kroger (via Tech Mahindra)</div>
+    <ul>
+      <li>Delivered the Gamification module (v1.0 and v2.0) to the full customer base across Kroger, Ralphs, Fred Meyer and Harris Teeter, behind Firebase Remote Config flags and A/B experiments, monitored in Grafana and Crashlytics.</li>
+      <li>Gave the whole iOS org one way to ship: authored the build, sign and deploy pipelines (Fastlane, GitHub Actions, shell, Ruby, Node.js) adopted across 4 Kroger banner apps.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="role-head"><span class="what">Senior iOS Engineer</span><span class="when">Jun 2022 – Dec 2022</span></div>
+    <div class="where">Gap Inc. (via Avenue Code)</div>
+    <ul>
+      <li>Delivered features for shoppers on 4 storefronts (Gap, Athleta, Banana Republic, Old Navy) in Swift, SwiftUI and Objective-C, and led the Notification System workstream from scratch to production launch with product and backend partners.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="role-head"><span class="what">Senior iOS Engineer</span><span class="when">2021 – 2022</span></div>
+    <div class="where">TD Bank (via Clearbridge Mobile / Amdocs)</div>
+    <ul>
+      <li>Led 3 core banking modules, including the SIJ, MHA and CIBA loan flows, in Swift and Objective-C, shipping features used by millions of TD banking customers.</li>
+      <li>Made sign-in faster and safer with Face ID and Touch ID (LocalAuthentication, Keychain), hardened the app against jailbreak and tampering, and contributed to TD's iOS Banking Foundation Framework (CocoaPods); mentored co-op students.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="role-head"><span class="what">Lead iOS Engineer</span><span class="when">2017 – 2021</span></div>
+    <div class="where">Tata Consultancy Services · Smart-utility and Green Button apps</div>
+    <ul>
+      <li>Helped homeowners watch and control their energy use: owned the iOS codebase for a smart-utility app (real-time energy gauges, device control, push) on an AWS backend, and led its Swift 3 to Swift 4 migration.</li>
+      <li>Gave customers of 3 utilities (Toronto Hydro, London Hydro, Whitby Hydro) access to their own energy-use data with cross-platform Green Button apps (Ionic/Capacitor, Angular, TypeScript) that work offline.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="role-head"><span class="what">iOS Engineer</span><span class="when">2011 – 2017</span></div>
+    <div class="where">Pfizer (via Tata Consultancy Services), GlobalLogic, smartData, Regard Solutions</div>
+    <ul>
+      <li>Shipped 6 internal Pfizer apps (Objective-C, Swift) with custom Core Graphics charts, Janrain SSO and offline sync, including conflict resolution so several caregivers could update the same child's records from different devices.</li>
+      <li>Shipped 8+ App Store apps across healthcare, retail and consumer (including MINDBODY Yoga and Emergency Link), and did accessibility R&amp;D for blind and low-vision users on Qualcomm Healthy Circle.</li>
+    </ul>
+  </div>
+
+  <h2>Technical skills</h2>
+  <div class="skills">
+    <p><b>Languages &amp; cross-platform:</b> Swift 6 and 5.x, Objective-C, TypeScript, JavaScript, Ruby (Fastlane), Python · React Native with native Swift modules, Ionic/Capacitor, Node.js</p>
+    <p><b>iOS:</b> SwiftUI, UIKit, Combine, Observation, Core Data, Core Animation, Core Graphics, AVFoundation, MapKit, WidgetKit, App Intents, TipKit, Accessibility (VoiceOver, Dynamic Type)</p>
+    <p><b>Concurrency &amp; architecture:</b> async/await, actors, @globalActor, Sendable, strict concurrency, GCD · MVVM-C, Clean/VIP, protocol-oriented design, DI, repository pattern, SOLID, SPM modularization</p>
+    <p><b>AI on device:</b> Apple Foundation Models, Core ML, LoRA adapters, LLM streaming (SSE, newline-delimited JSON), Apple Speech, OpenAI API, prompt engineering</p>
+    <p><b>Networking &amp; security:</b> URLSession, Alamofire, REST, GraphQL (Apollo iOS), WebSockets, OAuth 2.0, Keychain, Face ID / Touch ID, SSL pinning, APNs, Firebase</p>
+    <p><b>Quality &amp; release:</b> XCTest, Swift Testing, XCUITest, TDD, Instruments · Fastlane, GitHub Actions, Xcode Cloud, TestFlight, feature flags, A/B testing, Crashlytics, Sentry</p>
+  </div>
+
+  <h2>Open source &amp; education</h2>
+  <p><b>github.com/imuks</b> · chatGPT_iOS (Swift OpenAI client with streaming, Jan 2023) · StableDiffusion_iOS (on-device image generation) · swift_DSA</p>
+  <p style="margin-top:2pt">B.E., Computer Technology · Priyadarshini College of Engineering, R.T.M. Nagpur University · 2011</p>
+
+</div>
+</body>
+</html>
