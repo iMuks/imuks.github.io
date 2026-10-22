@@ -3,1084 +3,887 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mukesh Kumar Sharma — Staff / Lead iOS Engineer</title>
-<meta name="description" content="Staff / Lead iOS Engineer — 14+ years in the Apple ecosystem, 10+ in Swift. Shipped 30+ production apps across payments, banking, retail, healthcare and smart cities. Built a simple fintech AI assistant end to end — real-time LLM streaming and Swift Concurrency — and fine-tunes Apple Foundation Models with LoRA adapters to run fully on device.">
+<title>Mukesh Kumar Sharma — Senior iOS Engineer</title>
+<meta name="description" content="Senior iOS engineer, shipping since 2011. Case studies on real-time LLM streaming in SwiftUI, offline-first payments, on-device clinical AI, a framework used by ~20 apps, and a release pipeline for four retail apps.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #122340;
-    --bg-raised: #182c4d;
-    --ink: #f5f1e8;
-    --ink-dim: #8a9bb4;
-    --ink-faint: #4a5c7a;
-    --accent: #d4a574;
-    --accent-dim: #8a6d43;
-    --rule: #26385c;
+    --bg: #111312;
+    --bg-raised: #191c1a;
+    --ink: #f3f1ea;
+    --ink-dim: #a6a9a1;
+    --ink-faint: #6f736c;
+    --rule: rgba(243, 241, 234, .13);
+    --accent: #d9ad7c;
+    --accent-soft: rgba(217, 173, 124, .14);
+    --on-accent: #111312;
+    --max: 1180px;
     --serif: 'Fraunces', Georgia, serif;
-    --sans: 'Inter Tight', -apple-system, sans-serif;
-    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    color-scheme: dark;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-weight: 300;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: 'ss01', 'cv11';
-    overflow-x: hidden;
+  :root[data-theme="light"] {
+    --bg: #f4f2ec;
+    --bg-raised: #ffffff;
+    --ink: #151716;
+    --ink-dim: #52574f;
+    --ink-faint: #868a82;
+    --rule: rgba(21, 23, 22, .14);
+    --accent: #95662c;
+    --accent-soft: rgba(149, 102, 44, .12);
+    --on-accent: #ffffff;
+    color-scheme: light;
   }
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: radial-gradient(ellipse at 15% 0%, rgba(212,165,116,0.08), transparent 55%);
-    pointer-events: none;
-    z-index: 0;
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f4f2ec;
+      --bg-raised: #ffffff;
+      --ink: #151716;
+      --ink-dim: #52574f;
+      --ink-faint: #868a82;
+      --rule: rgba(21, 23, 22, .14);
+      --accent: #95662c;
+      --accent-soft: rgba(149, 102, 44, .12);
+      --on-accent: #ffffff;
+      color-scheme: light;
+    }
   }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-  .mono { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-dim); letter-spacing: 0.04em; text-transform: uppercase; }
-  a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent-dim); transition: color .2s, border-color .2s; }
-  a:hover { color: var(--accent); border-color: var(--accent); }
 
-  /* Nav */
-  nav { padding: 2.5rem 0 0; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; }
-  nav .sig { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; letter-spacing: -0.01em; }
-  nav .sig span { color: var(--accent); }
-  nav ul { display: flex; gap: 1.75rem; list-style: none; flex-wrap: wrap; }
-  nav ul a { border: none; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-dim); }
-  nav ul a:hover { color: var(--accent); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; }
+  ::selection { background: var(--accent); color: var(--on-accent); }
+  .wrap { width: min(var(--max), 100% - 32px); margin-inline: auto; }
+  .mono { font-family: var(--mono); font-size: .75rem; letter-spacing: .04em; }
+  .eyebrow { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  em { font-style: italic; font-family: var(--serif); font-weight: 300; color: var(--accent); }
+
+  /* Draft markers: reasoning inferred from the resume that still needs confirming.
+     Remove class="draft" from <body> once every .tbc span is confirmed or rewritten. */
+  .draft-banner { display: none; }
+  body.draft .draft-banner { display: block; background: var(--accent); color: var(--on-accent); font-family: var(--mono); font-size: .72rem; text-align: center; padding: .45rem 16px; }
+  body.draft .tbc { background: var(--accent-soft); border-bottom: 1px dashed var(--accent); cursor: help; }
+
+  /* Top bar */
+  .topbar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--rule); }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 60px; }
+  .mark { font-family: var(--mono); font-weight: 500; font-size: .82rem; letter-spacing: .14em; text-decoration: none; }
+  .nav { display: flex; gap: 1.6rem; list-style: none; }
+  .nav a { font-size: .88rem; color: var(--ink-dim); text-decoration: none; transition: color .2s ease; }
+  .nav a:hover { color: var(--ink); }
+  .theme-toggle { background: none; border: 1px solid var(--rule); color: var(--ink-dim); border-radius: 999px; width: 34px; height: 34px; cursor: pointer; font-size: .9rem; transition: color .2s ease, border-color .2s ease; }
+  .theme-toggle:hover { color: var(--ink); border-color: var(--ink-dim); }
+  .bar-right { display: flex; align-items: center; gap: 1.4rem; }
 
   /* Hero */
-  header.hero { padding: 7rem 0 6rem; border-bottom: 1px solid var(--rule); }
-  header.hero .label { margin-bottom: 2rem; }
-  header.hero h1 {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.035em;
-    font-variation-settings: 'opsz' 144;
-    max-width: 14ch;
-  }
-  header.hero h1 em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--accent);
-  }
-  header.hero p.tagline {
-    margin-top: 2.25rem;
-    font-size: 1.15rem;
-    max-width: 56ch;
-    color: var(--ink-dim);
-    font-weight: 300;
-  }
-  header.hero .meta { margin-top: 3rem; display: flex; gap: 2.5rem; flex-wrap: wrap; }
-  header.hero .meta div { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-dim); }
-  header.hero .meta strong { display: block; color: var(--ink); font-weight: 500; margin-top: 0.35rem; text-transform: none; letter-spacing: 0; }
+  .hero { padding: 6rem 0 4rem; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(260px, .55fr); gap: 4rem; align-items: end; }
+  .status { display: inline-flex; align-items: center; gap: .55rem; font-family: var(--mono); font-size: .74rem; color: var(--ink-dim); border: 1px solid var(--rule); border-radius: 999px; padding: .35rem .8rem; margin-bottom: 2rem; }
+  .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #6fcf8a; box-shadow: 0 0 0 3px rgba(111, 207, 138, .18); }
+  h1 { font-family: var(--serif); font-weight: 300; font-size: clamp(2.5rem, 6vw, 4.6rem); line-height: 1.04; letter-spacing: -.025em; }
+  h1 em { font-weight: 300; }
+  .hero-copy p { margin-top: 1.75rem; max-width: 58ch; color: var(--ink-dim); font-size: 1.08rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2.25rem; }
+  .button { display: inline-block; text-decoration: none; font-size: .92rem; font-weight: 500; padding: .8rem 1.3rem; border: 1px solid var(--accent); background: var(--accent); color: var(--on-accent); transition: transform .2s ease, background .2s ease; }
+  .button:hover { transform: translateY(-2px); }
+  .button.ghost { background: transparent; color: var(--ink); border-color: var(--rule); }
+  .button.ghost:hover { border-color: var(--ink-dim); }
+  .hero-aside { border: 1px solid var(--rule); background: var(--bg-raised); padding: 1.5rem; }
+  .hero-aside dl { display: grid; gap: 1.1rem; }
+  .hero-aside dt { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+  .hero-aside dd { font-size: .95rem; margin-top: .2rem; }
+  .hero-aside dd a { color: var(--accent); text-decoration: none; }
 
-  /* Section framing */
-  section { padding: 6rem 0; border-bottom: 1px solid var(--rule); }
-  section .label { margin-bottom: 3rem; display: flex; align-items: baseline; gap: 1rem; }
-  section .label::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--accent); }
-  section h2 {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(2rem, 4vw, 3rem);
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-    max-width: 22ch;
-    margin-bottom: 2rem;
-  }
-  section h2 em { font-style: italic; color: var(--accent); }
-  section p.lede { color: var(--ink-dim); max-width: 62ch; margin-bottom: 2rem; }
+  /* Metrics */
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .metric { padding: 1.75rem 1.5rem 1.75rem 0; }
+  .metric + .metric { padding-left: 1.5rem; border-left: 1px solid var(--rule); }
+  .metric-value { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 4vw, 2.9rem); line-height: 1; letter-spacing: -.02em; }
+  .metric-label { margin-top: .6rem; font-size: .85rem; color: var(--ink-dim); }
 
-  /* Numbers strip */
-  .numbers {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-top: 1rem;
-  }
-  .numbers div {
-    background: var(--bg);
-    padding: 1.75rem 1.25rem;
-  }
-  .numbers .n {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: 2.4rem;
-    letter-spacing: -0.02em;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
-  .numbers .k {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--ink-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
+  /* Sections */
+  .section { padding: 6.5rem 0 0; }
+  .section-heading { display: grid; grid-template-columns: .72fr 1.28fr; gap: 3rem; margin-bottom: 3rem; align-items: end; }
+  h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.08; letter-spacing: -.02em; margin-top: .75rem; }
+  .section-intro { color: var(--ink-dim); max-width: 56ch; }
 
-  /* Featured project */
-  .featured {
-    background: var(--bg-raised);
-    border: 1px solid var(--rule);
-    padding: 3rem;
-    margin-top: 2rem;
-    position: relative;
-  }
-  .featured::before {
-    content: attr(data-label);
-    position: absolute; top: -0.6rem; left: 2.5rem;
-    background: var(--bg);
-    padding: 0 0.75rem;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-  }
-  .featured + .featured { margin-top: 3.5rem; }
-  .featured h3 {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 2rem;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
-  }
-  .featured .kicker { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .featured p { color: var(--ink-dim); max-width: 62ch; margin-bottom: 1.5rem; }
-  .featured .stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
-  .featured .stack span {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    padding: 0.35rem 0.7rem;
-    border: 1px solid var(--ink-faint);
-    color: var(--ink-dim);
-  }
-  .featured code {
-    font-family: var(--mono);
-    font-size: 0.85em;
-    color: var(--accent);
-  }
+  /* Work cards */
+  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .card { display: flex; flex-direction: column; justify-content: space-between; gap: 2.25rem; min-height: 300px; padding: 1.6rem; border: 1px solid var(--rule); background: var(--bg-raised); text-decoration: none; transition: border-color .2s ease, transform .2s ease; }
+  .card:hover, .card:focus-visible { border-color: var(--accent); transform: translateY(-3px); outline: none; }
+  .card.featured { grid-column: 1 / -1; min-height: 340px; }
+  .card-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .card-index { font-family: var(--mono); font-size: .74rem; color: var(--ink-dim); letter-spacing: .04em; }
+  .card-arrow { color: var(--accent); font-size: 1.1rem; transition: transform .2s ease; }
+  .card:hover .card-arrow { transform: translate(3px, -3px); }
+  .card h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.35rem, 2.6vw, 1.9rem); line-height: 1.15; letter-spacing: -.015em; max-width: 26ch; }
+  .card.featured h3 { font-size: clamp(1.6rem, 3.4vw, 2.5rem); max-width: 22ch; }
+  .card p { margin-top: .85rem; color: var(--ink-dim); font-size: .95rem; max-width: 60ch; }
+  .chips { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.25rem; }
+  .chips span { font-family: var(--mono); font-size: .72rem; padding: .3rem .6rem; border: 1px solid var(--rule); color: var(--ink); }
+  .stackline { margin-top: 1rem; font-family: var(--mono); font-size: .72rem; color: var(--ink-faint); }
+  .stackline b { color: var(--ink-dim); font-weight: 500; }
 
-  /* Work timeline */
-  .work { display: grid; gap: 0; }
-  .role {
-    display: grid;
-    grid-template-columns: 1fr 2.5fr;
-    gap: 3rem;
-    padding: 2.25rem 0;
-    border-top: 1px solid var(--rule);
-  }
-  .role:first-child { border-top: none; padding-top: 0; }
-  .role .when { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-dim); padding-top: 0.4rem; }
-  .role h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 0.3rem; }
-  .role h3 em { color: var(--accent); font-style: normal; }
-  .role .company { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.9rem; }
-  .role p { color: var(--ink-dim); max-width: 58ch; font-size: 0.95rem; margin-bottom: 0.6rem; }
-  .role ul { color: var(--ink-dim); max-width: 58ch; font-size: 0.95rem; list-style: none; margin-top: 0.4rem; }
-  .role ul li { padding-left: 1.1rem; position: relative; margin-bottom: 0.45rem; }
-  .role ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent-dim); }
+  /* Full history */
+  details.history { margin-top: 1rem; border: 1px solid var(--rule); }
+  details.history > summary { cursor: pointer; list-style: none; padding: 1.1rem 1.6rem; display: flex; justify-content: space-between; gap: 1rem; font-size: .95rem; }
+  details.history > summary::-webkit-details-marker { display: none; }
+  details.history > summary::after { content: "+"; font-family: var(--mono); color: var(--accent); }
+  details.history[open] > summary::after { content: "−"; }
+  .roles { list-style: none; border-top: 1px solid var(--rule); }
+  .roles li { display: grid; grid-template-columns: 150px 1fr; gap: 1.5rem; padding: 1rem 1.6rem; border-bottom: 1px solid var(--rule); font-size: .92rem; }
+  .roles li:last-child { border-bottom: 0; }
+  .roles .when { font-family: var(--mono); font-size: .74rem; color: var(--ink-faint); padding-top: .2rem; }
+  .roles b { font-weight: 500; }
+  .roles span { color: var(--ink-dim); }
+  .history-extra { padding: 1.25rem 1.6rem 1.5rem; border-top: 1px solid var(--rule); display: grid; gap: .9rem; font-size: .9rem; color: var(--ink-dim); }
+  .history-extra b { color: var(--ink); font-weight: 500; }
 
-  /* Apps grid */
-  .apps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1rem; }
-  .app {
-    border: 1px solid var(--rule);
-    padding: 1.5rem;
-    transition: border-color .2s, transform .2s;
-    background: var(--bg-raised);
-  }
-  .app:hover { border-color: var(--accent-dim); transform: translateY(-2px); }
-  .app .domain { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
-  .app h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 0.4rem; }
-  .app .client { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
-  .app p { font-size: 0.85rem; color: var(--ink-dim); }
+  /* Products */
+  .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .product { display: flex; flex-direction: column; gap: 1rem; padding: 1.6rem; border: 1px solid var(--rule); background: var(--bg-raised); }
+  .product-type { font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
+  .product h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; letter-spacing: -.01em; }
+  .product p { color: var(--ink-dim); font-size: .94rem; flex: 1; }
+  .product .links { display: flex; flex-wrap: wrap; gap: 1.1rem; font-size: .88rem; }
+  .product .links a { color: var(--accent); text-decoration: none; }
+  .product .links a:hover { text-decoration: underline; }
+  .badge { display: inline-block; font-family: var(--mono); font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: .12rem .45rem; margin-left: .5rem; vertical-align: middle; }
 
-  /* Impact / leadership callouts */
-  .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 2rem; }
-  .pillars > div { background: var(--bg); padding: 2rem 1.75rem; }
-  .pillars h4 { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 0.6rem; }
-  .pillars h4 em { font-style: italic; color: var(--accent); }
-  .pillars p { color: var(--ink-dim); font-size: 0.9rem; }
+  details.penny { margin-top: 1rem; border: 1px solid var(--rule); }
+  details.penny > summary { cursor: pointer; list-style: none; padding: 1.1rem 1.6rem; display: flex; justify-content: space-between; gap: 1rem; font-size: .95rem; }
+  details.penny > summary::-webkit-details-marker { display: none; }
+  details.penny > summary::after { content: "+"; font-family: var(--mono); color: var(--accent); }
+  details.penny[open] > summary::after { content: "−"; }
+  .penny-body { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; padding: 1.5rem 1.6rem 2rem; border-top: 1px solid var(--rule); }
+  .penny-body h4 { font-family: var(--serif); font-weight: 400; font-size: 1.2rem; margin-bottom: .9rem; }
+  .penny-body ol, .penny-body ul { padding-left: 1.1rem; display: grid; gap: .55rem; color: var(--ink-dim); font-size: .92rem; }
+  .penny-body strong { color: var(--ink); font-weight: 500; }
+  .penny-body a { color: var(--accent); }
+  .penny-body code { font-family: var(--mono); font-size: .85em; color: var(--accent); }
+  .creds { display: grid; grid-template-columns: auto 1fr; gap: .3rem 1.2rem; margin: .7rem 0; padding: .8rem 1rem; border: 1px dashed var(--rule); }
+  .penny-body .note { margin-top: 1rem; font-size: .88rem; color: var(--ink-dim); }
 
-  /* Skills */
-  .skills { display: grid; gap: 1.5rem; margin-top: 1rem; }
-  .skill-row {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: 2rem;
-    padding: 1.25rem 0;
-    border-top: 1px solid var(--rule);
-  }
-  .skill-row:first-child { border-top: none; padding-top: 0; }
-  .skill-row .k { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; padding-top: 0.15rem; }
-  .skill-row .v { color: var(--ink-dim); font-size: 0.92rem; }
+  /* Principles */
+  .signals { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--rule); }
+  .signal { padding: 1.75rem 1.5rem 1.75rem 0; display: flex; flex-direction: column; gap: .9rem; }
+  .signal + .signal { padding-left: 1.5rem; border-left: 1px solid var(--rule); }
+  .signal h3 { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; line-height: 1.2; }
+  .signal p { color: var(--ink-dim); font-size: .92rem; flex: 1; }
+  .signal-link { font-family: var(--mono); font-size: .72rem; color: var(--ink-faint); }
+  .signal-link a { color: var(--accent); text-decoration: none; margin-left: .35rem; }
 
-  /* Repos grid */
-  .repos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 2rem; }
-  .repo {
-    border: 1px solid var(--rule);
-    padding: 1.5rem;
-    transition: border-color .2s, transform .2s;
-    display: block;
-    border-bottom: 1px solid var(--rule);
-  }
-  .repo:hover { border-color: var(--accent-dim); transform: translateY(-2px); color: var(--ink); }
-  .repo h4 { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); margin-bottom: 0.5rem; }
-  .repo p { font-size: 0.85rem; color: var(--ink-dim); margin-bottom: 0.75rem; }
-  .repo .stars { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-dim); }
-  .repo-group { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; margin-top: 3.5rem; display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
-  .repo-group .mono { text-transform: none; letter-spacing: 0.02em; }
-  .forks { list-style: none; margin-top: 1.5rem; border-top: 1px solid var(--rule); }
-  .forks li { display: grid; grid-template-columns: minmax(160px, 220px) 90px 1fr; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--rule); font-size: 0.85rem; align-items: baseline; }
-  .forks li a { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); border: none; }
-  .forks li a:hover { color: var(--ink); }
-  .fork-meta { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.04em; }
-  .fork-desc { color: var(--ink-dim); }
-  @media (max-width: 600px) { .forks li { grid-template-columns: 1fr; gap: 0.2rem; } }
+  /* Open source */
+  .repos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .repo { background: var(--bg); padding: 1.4rem; text-decoration: none; display: flex; flex-direction: column; gap: .5rem; transition: background .2s ease; }
+  .repo:hover { background: var(--bg-raised); }
+  .repo h3 { font-family: var(--mono); font-weight: 500; font-size: .9rem; }
+  .repo p { color: var(--ink-dim); font-size: .9rem; flex: 1; }
+  .repo .meta { font-family: var(--mono); font-size: .7rem; color: var(--ink-faint); }
+  .more { margin-top: 1.25rem; font-size: .92rem; color: var(--ink-dim); }
+  .more a { color: var(--accent); }
 
   /* Contact */
-  .contact { padding: 6rem 0 4rem; }
-  .contact h2 { margin-bottom: 2rem; }
-  .contact .links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
-  .contact .links a {
-    font-family: var(--serif);
-    font-size: 1.5rem;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    border: none;
-    display: inline-flex;
-    align-items: baseline;
-    gap: 1rem;
-  }
-  .contact .links a::before {
-    content: '→';
-    color: var(--accent);
-    font-family: var(--sans);
-    transition: transform .2s;
-  }
-  .contact .links a:hover::before { transform: translateX(4px); }
+  .contact { padding: 7rem 0 5rem; }
+  .contact-inner { border-top: 1px solid var(--rule); padding-top: 3.5rem; display: grid; grid-template-columns: 1.2fr .8fr; gap: 3rem; }
+  .contact h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-top: 0; }
+  .contact-copy { margin-top: 1.5rem; color: var(--ink-dim); max-width: 54ch; }
+  .contact-copy strong { color: var(--ink); font-weight: 500; }
+  .contact-links { display: grid; align-content: start; border-top: 1px solid var(--rule); }
+  .contact-links a { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); text-decoration: none; transition: color .2s ease; overflow-wrap: anywhere; }
+  .contact-links a:hover { color: var(--accent); }
+  .contact-links a span { color: var(--ink-faint); font-family: var(--mono); font-size: .72rem; }
+  footer { border-top: 1px solid var(--rule); padding: 1.5rem 0 2.5rem; }
+  .footer-inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-family: var(--mono); font-size: .72rem; color: var(--ink-faint); }
 
-  footer {
-    padding: 2rem 0 3rem;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--ink-dim);
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-    border-top: 1px solid var(--rule);
+  /* Case-study drawer */
+  dialog.case { margin: 0 0 0 auto; width: min(780px, 100vw); max-width: 100vw; height: 100dvh; max-height: 100dvh; border: 0; border-left: 1px solid var(--rule); background: var(--bg); color: var(--ink); padding: 0; overflow-y: auto; overscroll-behavior: contain; }
+  dialog.case:focus { outline: none; }
+  dialog.case[open] { animation: slide-in .28s cubic-bezier(.2, .7, .2, 1); }
+  dialog.case::backdrop { background: rgba(0, 0, 0, .55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  @keyframes slide-in { from { transform: translateX(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+  .case-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 2.25rem; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); }
+  .case-close { background: none; border: 1px solid var(--rule); color: var(--ink); width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; }
+  .case-close:hover { border-color: var(--accent); color: var(--accent); }
+  .case-body { padding: 2.5rem 2.25rem 4rem; }
+  .case-body h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-top: 0; }
+  .case-role { margin-top: 1rem; font-family: var(--mono); font-size: .74rem; color: var(--ink-faint); }
+  .case-intro { margin-top: 1.5rem; color: var(--ink-dim); font-size: 1.04rem; }
+  .case-body h3 { font-family: var(--mono); font-weight: 500; font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 2.75rem 0 1rem; }
+  .case-body > p, .case-body li { color: var(--ink-dim); font-size: .97rem; }
+  .case-body ul { padding-left: 1.1rem; display: grid; gap: .55rem; }
+  .case-body strong { color: var(--ink); font-weight: 500; }
+  .case-body code { font-family: var(--mono); font-size: .84em; color: var(--ink); }
+  .options { list-style: none; padding: 0 !important; display: grid; gap: .75rem !important; }
+  .options li { border: 1px solid var(--rule); padding: 1rem 1.1rem; }
+  .options li.chosen { border-color: var(--accent); background: var(--accent-soft); }
+  .options .verdict { display: block; font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: .35rem; }
+  .options li.chosen .verdict { color: var(--accent); }
+  .outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .outcomes div { background: var(--bg); padding: 1.1rem; }
+  .outcomes b { display: block; font-family: var(--serif); font-weight: 300; font-size: 1.7rem; line-height: 1.1; }
+  .outcomes span { display: block; margin-top: .4rem; font-size: .84rem; color: var(--ink-dim); }
+  .hindsight { border-left: 2px solid var(--accent); padding: .2rem 0 .2rem 1.1rem; color: var(--ink); font-family: var(--serif); font-weight: 300; font-size: 1.15rem; line-height: 1.5; }
+  .case-stack { margin-top: 2.75rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: .72rem; color: var(--ink-faint); }
+
+  /* Flow diagrams (HTML/CSS so they reflow on phones and follow the theme) */
+  .flow { list-style: none; padding: 0 !important; display: grid; gap: 0 !important; margin: .5rem 0 1.25rem; }
+  .flow > li { position: relative; border: 1px solid var(--rule); background: var(--bg-raised); padding: .8rem 1rem; margin-bottom: 1.6rem; }
+  .flow > li:not(:last-child)::after { content: "↓"; position: absolute; left: 1.1rem; bottom: -1.55rem; font-family: var(--mono); color: var(--accent); font-size: .9rem; line-height: 1.5rem; }
+  .flow > li:last-child { margin-bottom: 0; }
+  .flow b { display: block; font-family: var(--mono); font-weight: 500; font-size: .84rem; color: var(--ink); }
+  .flow span { display: block; margin-top: .2rem; font-size: .86rem; color: var(--ink-dim); }
+  .flow small { display: block; margin-top: .45rem; font-family: var(--mono); font-size: .7rem; color: var(--accent); }
+  .flow > li.fork { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; background: transparent; border-style: dashed; }
+  .flow > li.fork > div { border: 1px solid var(--rule); background: var(--bg-raised); padding: .7rem .85rem; }
+  .flow > li.hub { border-color: var(--accent); }
+  .fanout { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .55rem; }
+  .fanout i { font-style: normal; font-family: var(--mono); font-size: .7rem; border: 1px solid var(--rule); padding: .2rem .45rem; color: var(--ink-dim); }
+  .types { width: 100%; border-collapse: collapse; font-size: .86rem; margin-top: .5rem; }
+  .types th, .types td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--rule); }
+  .types th { font-family: var(--mono); font-weight: 500; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
+  .types td:first-child { font-family: var(--mono); font-size: .78rem; color: var(--ink); }
+  .types td { color: var(--ink-dim); }
+  .table-scroll { overflow-x: auto; }
+
+  @media (max-width: 960px) {
+    .hero-grid, .section-heading, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .product-grid, .repos { grid-template-columns: 1fr 1fr; }
+    .signals { grid-template-columns: 1fr 1fr; }
+    .signal:nth-child(3) { padding-left: 0; border-left: 0; }
+    .signal:nth-child(n+3) { border-top: 1px solid var(--rule); }
+    .metrics { grid-template-columns: 1fr 1fr; }
+    .metric:nth-child(3) { padding-left: 0; border-left: 0; }
+    .metric:nth-child(n+3) { border-top: 1px solid var(--rule); }
   }
-
-  /* Entrance */
-  @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  .rise { animation: rise 0.9s cubic-bezier(.2,.7,.3,1) both; }
-  .rise:nth-child(2) { animation-delay: 0.12s; }
-  .rise:nth-child(3) { animation-delay: 0.24s; }
-  .rise:nth-child(4) { animation-delay: 0.36s; }
-
   @media (max-width: 680px) {
-    .wrap { padding: 0 1.5rem; }
-    header.hero { padding: 5rem 0 4rem; }
-    section { padding: 4rem 0; }
-    .role { grid-template-columns: 1fr; gap: 0.5rem; }
-    .skill-row { grid-template-columns: 1fr; gap: 0.4rem; }
-    .featured { padding: 2rem 1.5rem; }
-    .numbers { grid-template-columns: repeat(2, 1fr); }
-    .numbers .n { font-size: 1.9rem; }
-    nav ul { gap: 1.1rem; }
+    body { font-size: 16px; }
+    .nav { display: none; }
+    .hero { padding: 3.5rem 0 3rem; }
+    .work-grid, .product-grid, .repos, .signals, .penny-body, .outcomes { grid-template-columns: 1fr; }
+    .signal, .signal + .signal { padding: 1.5rem 0; border-left: 0; }
+    .signal + .signal { border-top: 1px solid var(--rule); }
+    .metric, .metric + .metric { padding: 1.4rem 1rem 1.4rem 0; }
+    .metric:nth-child(even) { padding-left: 1rem; }
+    .card { min-height: 0; }
+    .roles li { grid-template-columns: 1fr; gap: .2rem; padding: 1rem; }
+    details.history > summary, details.penny > summary { padding: 1rem; }
+    .history-extra, .penny-body { padding: 1.25rem 1rem; }
+    .case-head { padding: .85rem 16px; }
+    .case-body { padding: 2rem 16px 3rem; }
+    .flow > li.fork { grid-template-columns: 1fr; }
+    .section { padding-top: 4.5rem; }
   }
-
-  /* Case study */
-  .case { margin: 3.5rem 0 1rem; padding: 2rem 0 0; border-top: 1px solid var(--rule); }
-  .case > .label { margin-bottom: 1.25rem; }
-  .modules { display: grid; gap: 1.1rem; margin: 1.5rem 0 0; }
-  .mod { padding-left: 1.1rem; border-left: 2px solid var(--ink-faint); }
-  .mod:hover { border-left-color: var(--accent-dim); }
-  .mod h4 { font-family: var(--sans); font-size: .95rem; font-weight: 600;
-            color: var(--ink); margin-bottom: .3rem; letter-spacing: .01em; }
-  .mod h4 span { color: var(--accent); font-family: var(--mono); font-size: .78rem; margin-right: .5rem; }
-  .mod p { color: var(--ink-dim); font-size: .92rem; line-height: 1.7; max-width: 68ch; }
-  .wire { width: 100%; border-collapse: collapse; margin: 1.5rem 0 .5rem; font-size: .86rem; }
-  .wire th { text-align: left; padding: .55rem .7rem; font-family: var(--mono);
-             font-size: .75rem; letter-spacing: .08em; text-transform: uppercase;
-             color: var(--accent); border-bottom: 1px solid var(--rule); font-weight: 500; }
-  .wire td { padding: .5rem .7rem; border-bottom: 1px solid rgba(26,41,66,.6); color: var(--ink-dim); }
-  .wire td:first-child, .wire td:nth-child(2) { font-family: var(--mono); font-size: .78rem; color: var(--ink); }
-  .wire tr:hover td { background: rgba(212,165,116,.04); }
-  .tablewrap { overflow-x: auto; }
-  .statline { display: flex; flex-wrap: wrap; gap: 2.2rem; margin: 2rem 0 0;
-              padding-top: 1.5rem; border-top: 1px solid var(--rule); }
-  .statline div { min-width: 90px; }
-  .statline b { display: block; font-family: var(--serif); font-size: 1.9rem;
-                font-weight: 300; color: var(--accent); line-height: 1; }
-  .statline span { font-family: var(--mono); font-size: .74rem; letter-spacing: .07em;
-                   text-transform: uppercase; color: var(--ink-dim); }
-  @media (max-width: 640px) { .statline { gap: 1.4rem; } .statline b { font-size: 1.5rem; } }
-
-  /* Penny */
-  .penny-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0 0; }
-  .btn { display: inline-block; padding: .8rem 1.3rem; font-family: var(--mono); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--accent); color: var(--bg); background: var(--accent); }
-  .btn:hover { color: var(--bg); background: var(--ink); border-color: var(--ink); }
-  .btn.ghost { background: transparent; color: var(--accent); }
-  .btn.ghost:hover { color: var(--ink); border-color: var(--ink); background: transparent; }
-  .shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin: 3rem 0 1rem; }
-  .shots figure { margin: 0; }
-  .shots .phone { aspect-ratio: 1320 / 2868; border: 1px solid var(--rule); border-radius: 22px; overflow: hidden; background: var(--bg-raised); display: flex; align-items: center; justify-content: center; text-align: center; padding: 1rem; color: var(--ink-faint); font-family: var(--mono); font-size: .7rem; }
-  .shots .phone img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .shots .phone:has(img) { padding: 0; }
-  .shots figcaption { margin-top: .75rem; font-size: .85rem; color: var(--ink-dim); }
-  .shots figcaption b { color: var(--ink); font-weight: 500; display: block; }
-  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 3rem; }
-  .pgrid > div { background: var(--bg); padding: 2rem 1.75rem; }
-  .pgrid h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; margin-bottom: 1rem; letter-spacing: -0.01em; }
-  .pgrid p, .pgrid li { color: var(--ink-dim); font-size: .95rem; }
-  .pgrid ol, .pgrid ul { padding-left: 1.2rem; display: grid; gap: .55rem; }
-  .pgrid li strong, .pgrid p strong { color: var(--ink); font-weight: 500; }
-  .pgrid code, .creds code { font-family: var(--mono); font-size: .85em; color: var(--accent); }
-  .pgrid .wide { grid-column: 1 / -1; }
-  .creds { display: grid; grid-template-columns: auto 1fr; gap: .4rem 1.25rem; margin: 1rem 0; padding: 1rem 1.25rem; border: 1px dashed var(--accent-dim); font-size: .92rem; color: var(--ink-dim); }
-  .tag { display: inline-block; font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent-dim); padding: .15rem .45rem; margin-left: .4rem; vertical-align: middle; }
-  @media (max-width: 760px) { .shots { grid-template-columns: repeat(2, 1fr); } .pgrid { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
 </style>
 </head>
-<body>
+<body class="draft">
 
-<div class="wrap">
-  <nav>
-    <div class="sig">mks<span>.</span></div>
+<div class="draft-banner">Draft: highlighted text is inferred reasoning that still needs confirming</div>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="mark" href="#top">MUKESH SHARMA</a>
+    <div class="bar-right">
+      <ul class="nav">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#principles">How I work</a></li>
+        <li><a href="#code">Code</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Toggle light and dark theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="status">Open to senior and lead iOS roles · Canada, US (TN), remote</div>
+      <h1>I build iOS apps that keep working <em>when conditions don't.</em></h1>
+      <p>AI answers that render while they're still being written. Payments that go through with no signal. Clinical AI that never sends a patient's voice off the phone. I've been shipping iOS since 2011 across banking, retail, payments, health and smart cities. Below are the decisions behind that code, not just the job titles.</p>
+      <div class="actions">
+        <a class="button" href="#work">Read the case studies ↓</a>
+        <a class="button ghost" href="#contact">Start a conversation</a>
+      </div>
+    </div>
+    <aside class="hero-aside" aria-label="At a glance">
+      <dl>
+        <div><dt>Most recently</dt><dd>Streaming chat for a fintech AI assistant · 2026</dd></div>
+        <div><dt>Building</dt><dd><a href="#products">Penny</a>, a money coach on TestFlight</dd></div>
+        <div><dt>Core</dt><dd>Swift 6 · SwiftUI · Concurrency · on-device AI</dd></div>
+        <div><dt>Based in</dt><dd>London, Ontario · Canadian citizen</dd></div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<div class="wrap metrics" aria-label="Highlights">
+  <div class="metric"><div class="metric-value">15</div><div class="metric-label">years shipping iOS, since 2011</div></div>
+  <div class="metric"><div class="metric-value">30+</div><div class="metric-label">production apps shipped</div></div>
+  <div class="metric"><div class="metric-value">~20</div><div class="metric-label">apps built on a framework I designed</div></div>
+  <div class="metric"><div class="metric-value">≈0</div><div class="metric-label">offline payment failures after the queue</div></div>
+</div>
+
+<!-- Work -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">↘ Selected work</div>
+        <h2>Five problems, <em>and how I reasoned through them.</em></h2>
+      </div>
+      <p class="section-intro">Each card opens the full story: the constraints, the options I turned down, the design I chose, and what I'd change today.</p>
+    </div>
+
+    <div class="work-grid">
+      <a class="card featured" href="#case-assistant" data-case="case-assistant">
+        <div class="card-top"><span class="card-index">01 / Fintech AI assistant</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+        <div>
+          <h3>Answers that appear as they're written, without a single data race.</h3>
+          <p>I built the real-time LLM streaming layer and the chat surface for a generative-AI investing assistant inside a flagship iOS app: eight Swift/SwiftUI modules, from the entry point to the tokenizer.</p>
+          <div class="chips"><span>8 modules</span><span>8 response types</span><span>iOS 17 → 26</span></div>
+          <div class="stackline"><b>Swift 6</b> · SwiftUI · Combine · actors · Alamofire streaming · Swift Testing</div>
+        </div>
+      </a>
+
+      <a class="card" href="#case-payments" data-case="case-payments">
+        <div class="card-top"><span class="card-index">02 / TruPOS payments</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+        <div>
+          <h3>Field sales kept taking payments with no signal.</h3>
+          <p>I led the 0→1 SwiftUI checkout hub, built around an offline transaction queue that syncs when the device reconnects.</p>
+          <div class="chips"><span>72h offline retention</span><span>3 apps, 1 package</span><span>20–50% faster releases</span></div>
+          <div class="stackline"><b>SwiftUI</b> · Core Data · BGTaskScheduler · Bluetooth/MFi · Fastlane</div>
+        </div>
+      </a>
+
+      <a class="card" href="#case-ondevice" data-case="case-ondevice">
+        <div class="card-top"><span class="card-index">03 / Dr Godly</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+        <div>
+          <h3>Clinical AI that never sends a patient's voice to a server.</h3>
+          <p>Apple Foundation Models fine-tuned with LoRA for clinical vocabulary, plus live two-party transcription in video consults. Built solo across iOS, Android and the backend.</p>
+          <div class="chips"><span>On-device inference</span><span>6+ repos, solo</span><span>Production pilot</span></div>
+          <div class="stackline"><b>Foundation Models</b> · LoRA · Apple Speech · Twilio Video · Node.js</div>
+        </div>
+      </a>
+
+      <a class="card" href="#case-framework" data-case="case-framework">
+        <div class="card-top"><span class="card-index">04 / NEOM Smart City</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+        <div>
+          <h3>One framework under ~20 apps, so no team rebuilt networking or auth.</h3>
+          <p>I designed the core Swift package for networking, OAuth, SSL pinning and shared UI, and shipped the Smart City app's first App Store release.</p>
+          <div class="chips"><span>~20 adopting apps</span><span>First App Store release</span><span>3 engineers mentored</span></div>
+          <div class="stackline"><b>SPM</b> · Apollo GraphQL · OAuth 2.0 · SSL pinning</div>
+        </div>
+      </a>
+
+      <a class="card" href="#case-release" data-case="case-release">
+        <div class="card-top"><span class="card-index">05 / Kroger</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+        <div>
+          <h3>The release pipeline the whole iOS org shipped with.</h3>
+          <p>I wrote the build, sign and deploy pipelines for four grocery banner apps, and shipped the Gamification module to the full customer base behind feature flags.</p>
+          <div class="chips"><span>4 banner apps</span><span>Org-wide adoption</span><span>v1.0 → v2.0</span></div>
+          <div class="stackline"><b>Fastlane</b> · GitHub Actions · Ruby · Remote Config · Crashlytics</div>
+        </div>
+      </a>
+    </div>
+
+    <details class="history">
+      <summary>Full history: 11 roles, 2011 → 2026</summary>
+      <ul class="roles">
+        <li><div class="when">Mar 2026 – Aug 2026</div><div><b>Senior iOS Engineer</b> · Publicis Sapient<br><span>Generative-AI investing assistant for a wealth-management client (case study 01).</span></div></li>
+        <li><div class="when">Dec 2024 – Mar 2026</div><div><b>Lead iOS Engineer</b> · Tech Mahindra<br><span>TruPOS enterprise payments app (case study 02).</span></div></li>
+        <li><div class="when">Dec 2024 – Mar 2026</div><div><b>Senior Mobile Engineer, React Native</b> · Tech Mahindra<br><span>TruGreen consumer app on iOS and Android, with native Swift modules for biometrics, deep links and secure storage.</span></div></li>
+        <li><div class="when">Jan 2024 – present</div><div><b>Founder &amp; Lead Engineer</b> · Dr Godly<br><span>On-device AI for clinical consultations (case study 03).</span></div></li>
+        <li><div class="when">Jun 2023 – Jan 2024</div><div><b>Senior / Lead iOS Engineer</b> · NEOM via Tech Mahindra<br><span>Smart City app and the core framework (case study 04).</span></div></li>
+        <li><div class="when">Jan 2023 – Jun 2023</div><div><b>Senior / Lead iOS &amp; Release Engineer</b> · Kroger via Tech Mahindra<br><span>Gamification module and org-wide release pipelines (case study 05).</span></div></li>
+        <li><div class="when">Jun 2022 – Dec 2022</div><div><b>Senior iOS Engineer</b> · Gap Inc. via Avenue Code<br><span>Features for Gap, Athleta, Banana Republic and Old Navy; led the Notification System workstream from scratch to launch.</span></div></li>
+        <li><div class="when">Sep 2021 – Jun 2022</div><div><b>Senior iOS Engineer</b> · TD Bank via Clearbridge Mobile / Amdocs<br><span>Three core banking modules, Face ID / Touch ID sign-in, jailbreak and tamper hardening, and contributions to TD's iOS Banking Foundation Framework.</span></div></li>
+        <li><div class="when">Nov 2017 – Aug 2021</div><div><b>Lead iOS Engineer</b> · Tata Consultancy Services<br><span>Trickl smart-utility app; Green Button apps for Toronto, London and Whitby Hydro.</span></div></li>
+        <li><div class="when">Jan 2015 – Nov 2017</div><div><b>iOS Engineer</b> · Tata Consultancy Services<br><span>Six internal Pfizer apps with custom Core Graphics charts, Janrain SSO and offline sync, including multi-caregiver conflict resolution in GroAssist.</span></div></li>
+        <li><div class="when">Aug 2011 – Dec 2014</div><div><b>iOS Engineer</b> · GlobalLogic, smartData, Regard Solutions<br><span>8+ App Store apps across healthcare, retail and consumer, plus accessibility R&amp;D for Qualcomm Healthy Circle.</span></div></li>
+      </ul>
+      <div class="history-extra">
+        <p><b>Toolbox.</b> Swift 6 and 5.x, Objective-C, SwiftUI, UIKit, Combine, async/await, actors, Sendable, Core Data, Core Animation, Core Graphics, App Intents, WidgetKit, TipKit · MVVM-C, Clean/VIP, protocol-oriented design, SPM modularization · Apple Foundation Models, Core ML, LoRA, LLM streaming · URLSession, Alamofire, GraphQL (Apollo), OAuth 2.0, Keychain, SSL pinning · XCTest, Swift Testing, XCUITest, Instruments · Fastlane, GitHub Actions, Xcode Cloud, Crashlytics, Sentry · React Native, Node.js/TypeScript.</p>
+        <p><b>Education.</b> B.E., Computer Technology, Priyadarshini College of Engineering, R.T.M. Nagpur University, 2011.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="section" id="products">
+  <div class="wrap">
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">↘ Products</div>
+        <h2>Things I've built, <em>and am building.</em></h2>
+      </div>
+      <p class="section-intro">Solo and end to end: the client, the backend and the release. These are where I test ideas before I'd recommend them to a team.</p>
+    </div>
+
+    <div class="product-grid">
+      <article class="product" id="penny">
+        <div class="product-type">Personal finance · iPhone</div>
+        <h3>Penny <span class="badge">TestFlight beta</span></h3>
+        <p>A money coach you can just ask. Link your bank once, then ask about your spending in plain words, by typing or by voice, and get the answer back as a sentence and a chart.</p>
+        <div class="stackline"><b>Swift 6</b> · SwiftUI · Swift Charts · App Intents · Live Activities · AWS · Plaid · Claude</div>
+        <div class="links"><a href="https://testflight.apple.com/join/zxSFk3yd" target="_blank" rel="noopener">Join the beta ↗</a><a href="#penny-test" data-open-penny>How to test it</a></div>
+      </article>
+
+      <article class="product">
+        <div class="product-type">Sales automation · macOS + Linux</div>
+        <h3>CarSales Bot</h3>
+        <p>A WhatsApp sales agent for car dealerships. It answers inventory questions around the clock through an OpenAI tool-calling agent and hands serious buyers to a human. It ships as a signed, notarized desktop app so dealers can install it themselves.</p>
+        <div class="stackline"><b>TypeScript</b> · Electron · Baileys · SQLite · 290+ Vitest tests</div>
+        <div class="links"><a href="https://github.com/iMuks/car_sale_whatsapp_bot" target="_blank" rel="noopener">Source ↗</a></div>
+      </article>
+
+      <article class="product">
+        <div class="product-type">Clinical AI · iOS + Android</div>
+        <h3>Dr Godly <span class="badge">Pilot</span></h3>
+        <p>On-device AI for doctor–patient consultations: live two-party transcription and note summaries from a LoRA-tuned Apple Foundation Model. Patient audio stays on the phone.</p>
+        <div class="stackline"><b>Foundation Models</b> · Apple Speech · Twilio Video · Node.js</div>
+        <div class="links"><a href="#case-ondevice" data-case="case-ondevice">Read the case study</a><a href="https://github.com/imuks/AIDoctor-SPM" target="_blank" rel="noopener">Swift package ↗</a></div>
+      </article>
+    </div>
+
+    <details class="penny" id="penny-test">
+      <summary>Testing the Penny beta, and what happens to your data</summary>
+      <div class="penny-body">
+        <div>
+          <h4>Download and test it</h4>
+          <p class="note" style="margin:0 0 1rem">The beta runs on Penny's <strong>test server</strong> with a <strong>test bank</strong>. No real bank account is needed, and none should be used.</p>
+          <ol>
+            <li>On an iPhone running iOS 26 or later, install <a href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">TestFlight</a>.</li>
+            <li>Open <a href="https://testflight.apple.com/join/zxSFk3yd" target="_blank" rel="noopener">testflight.apple.com/join/zxSFk3yd</a> on that iPhone, tap <strong>Accept</strong>, then <strong>Install</strong>. The app appears as <strong>Penny Dev</strong>.</li>
+            <li>Tap <strong>Sign in or create account</strong> and create an account with your email. You'll get a code by email to confirm it.</li>
+            <li>Set up Face ID, then <strong>link a bank</strong>. Pick any bank in Plaid's window and use Plaid's public sandbox login:
+              <div class="creds"><span>Username</span><code>user_good</code><span>Password</span><code>pass_good</code><span>Code, if asked</span><code>1234</code></div>
+              These only work in the test environment and connect to sample data.</li>
+            <li>Ask: "How much did I spend each day this week?", "Break down my spending by category" or "Which subscriptions am I paying for?"</li>
+            <li>Optional: say <strong>"Hey Siri, talk to Penny Dev"</strong> to ask by voice.</li>
+            <li>Send feedback from TestFlight → Penny Dev → <strong>Send Beta Feedback</strong>.</li>
+          </ol>
+        </div>
+        <div>
+          <h4>Your data and privacy, plainly</h4>
+          <ul>
+            <li><strong>Kept in Canada.</strong> Everything Penny stores lives in its own AWS account in the Canada (Central) region, encrypted in transit and at rest.</li>
+            <li><strong>No ads, no tracking, no selling.</strong> No advertising, analytics or tracking code.</li>
+            <li><strong>Your bank password stays with Plaid.</strong> The link is read-only; Penny can't move money.</li>
+            <li><strong>Short-lived chat.</strong> Encrypted on the phone, never backed up, and cleared after 30 minutes, on a new chat, or on sign-out. Server-side context is deleted after 30 minutes too.</li>
+            <li><strong>How answers are written.</strong> Your question and the relevant figures go to Anthropic's Claude, processed in the United States. Card numbers, PINs and passwords typed into chat are blocked.</li>
+            <li><strong>Retention.</strong> Account data is kept while the account is open; AI request logs for 1 year and server logs for 90 days. You can ask for deletion at any time.</li>
+          </ul>
+          <p class="note">Full details are in the <a href="https://mirapenny.com/app-privacy" target="_blank" rel="noopener">MeetPenny app privacy policy</a>. Penny explains your own spending. It isn't financial, tax or legal advice, and it's for people 18 and older.</p>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- Principles -->
+<section class="section" id="principles">
+  <div class="wrap">
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">↘ How I work</div>
+        <h2>Principles, <em>with receipts.</em></h2>
+      </div>
+      <p class="section-intro">Four habits that show up in every case study above. Each one links to where it actually happened.</p>
+    </div>
+    <div class="signals">
+      <div class="signal">
+        <h3>Agree on the contract before the code.</h3>
+        <p>I co-designed the streaming schema with backend and AI-platform teams before writing a parser, and gave a ~20-app framework explicit interface contracts and a versioning strategy.</p>
+        <div class="signal-link">Seen in <a href="#case-assistant" data-case="case-assistant">01</a><a href="#case-framework" data-case="case-framework">04</a></div>
+      </div>
+      <div class="signal">
+        <h3>Design for the bad day.</h3>
+        <p>No signal at a customer site. A response type the app has never seen. A stream arriving faster than the UI can draw. Those cases set the architecture, not the happy path.</p>
+        <div class="signal-link">Seen in <a href="#case-payments" data-case="case-payments">02</a><a href="#case-assistant" data-case="case-assistant">01</a></div>
+      </div>
+      <div class="signal">
+        <h3>Build the piece other teams reuse.</h3>
+        <p>A core package under ~20 apps, a payments package that ended rewrites in 3, and a coach-mark framework other engineers adopted. Leverage beats heroics.</p>
+        <div class="signal-link">Seen in <a href="#case-framework" data-case="case-framework">04</a><a href="#case-payments" data-case="case-payments">02</a></div>
+      </div>
+      <div class="signal">
+        <h3>Make releasing boring.</h3>
+        <p>One pipeline for four banner apps, release cycles 20–50% shorter, and risky features behind flags and staged rollouts. Shipping should be the calm part.</p>
+        <div class="signal-link">Seen in <a href="#case-release" data-case="case-release">05</a><a href="#case-payments" data-case="case-payments">02</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Open source -->
+<section class="section" id="code">
+  <div class="wrap">
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">↘ Open source</div>
+        <h2>Public experiments, <em>mostly Swift and AI.</em></h2>
+      </div>
+      <p class="section-intro">Six worth your time. The rest, including older reference forks, is on GitHub.</p>
+    </div>
+    <div class="repos">
+      <a class="repo" href="https://github.com/iMuks/chatGPT_iOS" target="_blank" rel="noopener"><h3>chatGPT_iOS</h3><p>Native SwiftUI client for OpenAI's chat API with streaming. Published January 2023, soon after the API launched.</p><div class="meta">Swift · MIT · ★ 9</div></a>
+      <a class="repo" href="https://github.com/iMuks/StableDiffusion_iOS" target="_blank" rel="noopener"><h3>StableDiffusion_iOS</h3><p>On-device image generation with Stable Diffusion on iOS, published shortly after the model's release.</p><div class="meta">Swift · MIT · ★ 9</div></a>
+      <a class="repo" href="https://github.com/iMuks/AIDoctor-SPM" target="_blank" rel="noopener"><h3>AIDoctor-SPM</h3><p>The shared Swift package behind the clinical AI client: domain logic, transport and AI orchestration types.</p><div class="meta">Swift · 2024</div></a>
+      <a class="repo" href="https://github.com/iMuks/Zafin-pfm-agent" target="_blank" rel="noopener"><h3>Zafin-pfm-agent</h3><p>Penny's agent: answers questions over six months of transactions by calling analytics tools rather than doing arithmetic in the model.</p><div class="meta">Python · 2026</div></a>
+      <a class="repo" href="https://github.com/iMuks/car_sale_whatsapp_bot" target="_blank" rel="noopener"><h3>car_sale_whatsapp_bot</h3><p>CarSales Bot: Baileys transport, agent loop and SQLite inventory behind a three-tier service layout.</p><div class="meta">TypeScript · 2026</div></a>
+      <a class="repo" href="https://github.com/iMuks/swift_DSA" target="_blank" rel="noopener"><h3>swift_DSA</h3><p>Data structures and algorithms in Swift, kept as a public interview-prep reference.</p><div class="meta">Swift · MIT · ★ 1</div></a>
+    </div>
+    <p class="more">All 44 public repositories are on <a href="https://github.com/imuks" target="_blank" rel="noopener">github.com/imuks</a>.</p>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <div>
+      <div class="eyebrow">↘ Contact</div>
+      <h2>Shipping something on iOS <em>that has to just work?</em></h2>
+      <p class="contact-copy">I'm looking for senior and lead iOS roles on product teams doing serious work with Swift, on-device ML or AI on iOS. I'm based in London, Ontario and I'm a Canadian citizen. I can <strong>relocate immediately to Toronto, San Francisco, New York or Seattle</strong>, and I'm TN-eligible for US roles, with no lottery or petition needed.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:mukesh.ct.pce@live.com">mukesh.ct.pce@live.com <span>Email</span></a>
+      <a href="https://linkedin.com/in/imuks" target="_blank" rel="noopener">linkedin.com/in/imuks <span>↗</span></a>
+      <a href="https://github.com/imuks" target="_blank" rel="noopener">github.com/imuks <span>↗</span></a>
+      <a href="Mukesh_Kumar_Sharma_Resume.pdf" target="_blank" rel="noopener">Résumé <span>PDF</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 Mukesh Kumar Sharma · London, ON</span>
+    <span>Hand-written HTML · no framework</span>
+  </div>
+</footer>
+
+<!-- ============ Case studies ============ -->
+
+<dialog class="case" id="case-assistant" aria-labelledby="case-assistant-title">
+  <div class="case-head"><span class="card-index">01 / Fintech AI assistant</span><button class="case-close" type="button" aria-label="Close case study">×</button></div>
+  <div class="case-body">
+    <h2 id="case-assistant-title">Answers that appear as they're written, without a single data race.</h2>
+    <div class="case-role">Senior iOS Engineer (contract) · Publicis Sapient · Mar 2026 – Aug 2026 · Toronto, hybrid</div>
+    <p class="case-intro">A wealth-management firm was adding a generative-AI investing assistant to its flagship iOS app. Answers had to stream in token by token, like a consumer chat app, but they also had to render tables, lists and charts, in a financial app where a half-drawn table is worse than none.</p>
+
+    <h3>Constraints</h3>
     <ul>
-      <li><a href="#penny">Penny</a></li>
-      <li><a href="#now">Now</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#apps">Apps</a></li>
-      <li><a href="#impact">Impact</a></li>
-      <li><a href="#stack">Stack</a></li>
-      <li><a href="#code">Code</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><strong>Correctness over flair.</strong> A chart with an out-of-range value or a table with a missing column can't reach an investor's screen.</li>
+      <li><strong>A moving schema.</strong> The backend could start sending new response types before the app knew about them.</li>
+      <li><strong>iOS 17 minimum.</strong> That ruled out newer TipKit features for onboarding.</li>
+      <li><strong>A mixed host app.</strong> The assistant had to launch from both SwiftUI and legacy UIKit screens.</li>
+      <li><strong>Staged rollout.</strong> Phase 1 went to a small slice of customers first, so everything needed to be observable and reversible.</li>
     </ul>
-  </nav>
 
-  <header class="hero">
-    <div class="label mono rise">London / Toronto, ON · iOS since 2011</div>
-    <h1 class="rise">Mukesh Kumar<br>Sharma<em>.</em></h1>
-    <p class="tagline rise">Staff / Lead iOS Engineer — fourteen years in the Apple ecosystem, shipping 30+ production apps in Swift, SwiftUI, Combine, and Swift Concurrency across wealth management, payments, banking, retail, healthcare, and smart cities. Most recently built <a href="#work">a simple fintech AI assistant</a> end to end, and builds solo AI products — <a href="#now">Doctor AI</a> on iOS and <a href="#now">CarSales Bot</a> on macOS desktop.</p>
-    <div class="meta rise">
-      <div>Focus<strong>iOS · Swift · AI</strong></div>
-      <div>Shipped<strong>30+ production apps</strong></div>
-      <div>Recently<strong>Simple fintech AI assistant</strong></div>
-      <div>Status<strong>Open to staff / lead iOS roles · TN-eligible</strong></div>
-    </div>
+    <h3>Options I weighed</h3>
+    <ul class="options">
+      <li><span class="verdict">Rejected</span><strong>Wait for the whole response, then render.</strong> Simplest to build, but <span class="tbc" title="Needs confirmation">users would stare at a spinner for the length of a full generation</span>.</li>
+      <li><span class="verdict">Rejected</span><strong>Server-Sent Events with a generic client.</strong> <span class="tbc" title="Needs confirmation">Event framing alone doesn't tell the client what kind of UI component it's receiving, so typed rendering would still need a second layer.</span></li>
+      <li class="chosen"><span class="verdict">Chosen</span><strong>Newline-delimited JSON over an HTTP data stream, parsed by a custom tokenizer.</strong> Each line is a complete, typed component, so a table arrives and renders as one unit instead of being guessed from partial markdown.</li>
+    </ul>
 
-    <div class="numbers rise" style="margin-top: 3.5rem;">
-      <div><div class="n">14+</div><div class="k">Years on iOS · since 2011</div></div>
-      <div><div class="n">10+</div><div class="k">Years in Swift · 5+ in SwiftUI</div></div>
-      <div><div class="n">~20</div><div class="k">NEOM apps using NEOMCore</div></div>
-      <div><div class="n">80%</div><div class="k">Test coverage on TruPOS</div></div>
-    </div>
-  </header>
-
-  <section id="penny">
-    <div class="label mono">§ 01 — Penny · TestFlight beta</div>
-    <h2>Penny, a money coach <em>you can just ask.</em></h2>
-    <p class="lede">Most people don't know where their money goes until the month is over. Penny is my answer: an iPhone app where you link your bank once, then ask about your spending in plain words, by typing or by voice, and get the answer back as a sentence and a chart. The goal is simple: help anyone understand their day-to-day spending, catch the subscriptions and habits quietly costing them, and decide what to cut without a spreadsheet.</p>
-
-    <div class="penny-cta">
-      <a class="btn" href="https://testflight.apple.com/join/zxSFk3yd" target="_blank" rel="noopener">Download the beta on TestFlight</a>
-      <a class="btn ghost" href="#penny-test">How to test it</a>
-      <a class="btn ghost" href="https://mirapenny.com/app-privacy" target="_blank" rel="noopener">Privacy policy</a>
-    </div>
-    <p class="mono" style="margin-top:1rem">Latest beta: version 1.0 (build 11) · iPhone · iOS 26 or later · Test environment</p>
-
-    <!-- Screenshots: add images to assets/penny/ and restore this block.
-    <div class="shots">
-      <figure>
-        <div class="phone" data-shot="bar">Screenshot coming soon</div>
-        <figcaption><b>Spending by day</b>A bar chart for "How much did I spend each day this week?"</figcaption>
-      </figure>
-      <figure>
-        <div class="phone" data-shot="line">Screenshot coming soon</div>
-        <figcaption><b>Spending over time</b>A line chart of the trend, month by month</figcaption>
-      </figure>
-      <figure>
-        <div class="phone" data-shot="pie">Screenshot coming soon</div>
-        <figcaption><b>Where it went</b>A pie chart by category: groceries, dining, transport, bills</figcaption>
-      </figure>
-      <figure>
-        <div class="phone" data-shot="list">Screenshot coming soon</div>
-        <figcaption><b>The details</b>The transactions behind any answer, in a list</figcaption>
-      </figure>
-    </div>
-    -->
-
-    <div class="pgrid">
-      <div>
-        <h3>How Penny helps you track spending</h3>
-        <ul>
-          <li><strong>Link your bank once.</strong> Read-only, through Plaid. Penny never sees your bank password.</li>
-          <li><strong>Ask in plain words.</strong> "What did I spend on dining this month?" "Which subscriptions am I paying for?"</li>
-          <li><strong>See it, not just read it.</strong> Answers come with bar, line and pie charts, tables and transaction lists. Touch a chart to see exact values.</li>
-          <li><strong>Talk to it.</strong> "Hey Siri, talk to Penny" starts a voice conversation. The Lock Screen shows only the call state, never your money.</li>
-          <li><strong>Locked by default.</strong> Face ID every time you open it, and your figures are hidden from screenshots and the app switcher.</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Built with</h3>
-        <p>Swift 6 and SwiftUI with Swift Charts, App Intents and Siri, a voice Live Activity on the Lock Screen and Dynamic Island, and Face ID through the Keychain. The backend is Python on AWS in Canada (ECS Fargate, RDS Postgres, Cognito sign-in), with Plaid for bank data and Claude as the language model that writes Penny's answers.</p>
-        <div class="stack" style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem">
-          <span class="tag" style="margin:0">Swift 6</span><span class="tag" style="margin:0">SwiftUI</span><span class="tag" style="margin:0">Swift Charts</span><span class="tag" style="margin:0">App Intents</span><span class="tag" style="margin:0">Live Activities</span><span class="tag" style="margin:0">AWS</span><span class="tag" style="margin:0">Plaid</span><span class="tag" style="margin:0">Claude</span>
-        </div>
-      </div>
-
-      <div class="wide" id="penny-test">
-        <h3>Download and test it <span class="tag">Test environment</span></h3>
-        <p style="margin-bottom:1rem">This beta runs on Penny's <strong>test server</strong> with a <strong>test bank</strong>. No real bank account is needed, and none should be used. The transactions you'll see are sample data from Plaid's sandbox.</p>
-        <ol>
-          <li>On your iPhone (iOS 26 or later), install <a href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">TestFlight</a> from the App Store.</li>
-          <li>Open <a href="https://testflight.apple.com/join/zxSFk3yd" target="_blank" rel="noopener">testflight.apple.com/join/zxSFk3yd</a> on that iPhone, tap <strong>Accept</strong>, then <strong>Install</strong>. The app appears as <strong>Penny Dev</strong>.</li>
-          <li>Open Penny Dev and tap <strong>Sign in or create account</strong>. Create an account with your email and a password; you'll get a code by email to confirm it. Your password goes to Amazon Cognito, never to the app.</li>
-          <li>Set up Face ID when asked, then tap to <strong>link a bank</strong>. In Plaid's window, pick any bank and sign in with Plaid's public test login:
-            <div class="creds">
-              <span>Username</span><code>user_good</code>
-              <span>Password</span><code>pass_good</code>
-              <span>Code, if asked</span><code>1234</code>
-            </div>
-            These are Plaid's published sandbox credentials. They only work in the test environment and connect to a sample account, not a real bank.</li>
-          <li>Ask Penny about your spending. Try:
-            <ul style="margin-top:.5rem">
-              <li>"How much did I spend each day this week?" <em>(bar chart)</em></li>
-              <li>"Show my spending trend over the last few months" <em>(line chart)</em></li>
-              <li>"Break down my spending by category" <em>(pie chart)</em></li>
-              <li>"Which subscriptions am I paying for?"</li>
-            </ul>
-          </li>
-          <li>Optional: say <strong>"Hey Siri, talk to Penny Dev"</strong> to ask by voice.</li>
-          <li>Send feedback: open TestFlight → Penny Dev → <strong>Send Beta Feedback</strong>.</li>
-        </ol>
-      </div>
-
-      <div class="wide">
-        <h3>Your data and privacy, plainly</h3>
-        <ul>
-          <li><strong>Kept in Canada, in our own AWS account.</strong> Everything Penny stores lives in its Amazon Web Services account in the Canada (Central) region, encrypted in transit and at rest.</li>
-          <li><strong>No ads, no tracking, no selling.</strong> The app has no advertising, analytics or tracking code. Your information is never sold, rented or used for advertising.</li>
-          <li><strong>Your bank password stays with Plaid.</strong> The link is read-only. Penny can't move money.</li>
-          <li><strong>The chat on your phone is short-lived.</strong> It is encrypted, never included in backups, and cleared 30 minutes after a conversation starts, when you start a new chat, or when you sign out. Conversation context on the server is deleted after 30 minutes too.</li>
-          <li><strong>How answers are written.</strong> Your question and the relevant spending figures are sent to Anthropic's Claude model to write Penny's answer, processed in the United States. Card numbers, PINs and passwords typed into the chat are blocked.</li>
-          <li><strong>What is kept, and for how long.</strong> Your account, linked transactions and a record of your questions and Penny's answers are kept while your account is open. AI request logs are kept for 1 year and server logs for 90 days, for security and quality. You can ask for everything to be deleted at any time.</li>
-        </ul>
-        <p style="margin-top:1.25rem">The full details are in the <a href="https://mirapenny.com/app-privacy" target="_blank" rel="noopener">MeetPenny app privacy policy</a>. Penny explains your own spending; it is not financial, tax or legal advice, and it is for people 18 and older.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="now">
-    <div class="label mono">§ 02 — Now</div>
-    <h2>Two full-stack AI projects, <em>built in public.</em></h2>
-    <p class="lede">When I'm not shipping payments at TruPOS, I'm building solo. Doctor AI explores what an LLM-native clinical app can look like on iOS. CarSales Bot ships AI-driven WhatsApp automation as a signed, notarized macOS / Linux desktop app for car dealerships. Both end-to-end, one engineer.</p>
-
-    <div class="featured" data-label="TESTFLIGHT BETA · SOLO BUILD">
-      <div class="kicker">Personal Project · Jan 2024 → Present</div>
-      <h3>Doctor AI</h3>
-      <p>An iOS + Android consultation tool that uses LLMs to generate structured clinical notes from doctor–patient conversations. Solo-built across six repositories: a Swift/SwiftUI client, an Android companion, a shared Swift Package (<a href="https://github.com/imuks/AIDoctor-SPM" target="_blank" rel="noopener">AIDoctor-SPM</a>), a TypeScript + Node.js backend on Google App Engine, and an evaluation notebook for prompt iteration.</p>
-      <p>The interesting parts: Twilio Video for secure doctor–patient calls, Apple Speech for on-device transcription, and server-side LLM orchestration so prompts can be versioned without shipping a new iOS build. Firebase (Auth, Firestore, FCM) covers identity, realtime data, and push for the beta cohort. A Jupyter notebook handles model evaluation between prompt iterations.</p>
-      <div class="stack">
-        <span>Swift</span><span>SwiftUI</span><span>Combine</span><span>Swift Concurrency</span><span>Apple Speech</span><span>Twilio Video</span><span>TypeScript</span><span>Node.js</span><span>Google App Engine</span><span>Firebase</span><span>OpenAI</span><span>LangChain</span>
-      </div>
-    </div>
-
-    <div class="featured" data-label="DESKTOP APP · MACOS + LINUX · SIGNED &amp; NOTARIZED">
-      <div class="kicker">Personal Project · March 2026 → Present</div>
-      <h3>CarSales Bot</h3>
-      <p>An AI-driven WhatsApp sales assistant for car dealerships, shipped as a signed and notarized desktop app (macOS DMG, Linux .deb / AppImage) so non-technical dealers can install it themselves. The system pairs to a dealership's WhatsApp number, answers inventory questions through an OpenAI tool-calling agent, sends vehicle photos and videos as native attachments, and keeps the catalog fresh via a scheduled scraping daemon — replacing hours of repetitive sales-rep messaging with a 24/7 first-line bot that qualifies leads and routes serious buyers to a human.</p>
-      <p>The interesting parts: a 3-tier service layout (Repository → Service → Adapter) cleanly separates the Baileys WhatsApp transport, the agent loop, and the SQLite inventory; pluggable scraper adapters (cheerio + undici) feed the catalog; QR pairing is rendered as SVG in the Electron main process and piped over IPC to a sandboxed renderer (<code>contextIsolation: true</code>, <code>nodeIntegration: false</code>); electron-builder produces arm64/x64 DMGs with Developer ID signing + notarization, with electron-updater wired to GitHub Releases for OTA. <strong style="color: var(--ink); font-weight: 500;">290+ Vitest tests</strong>, strict TypeScript end-to-end, and a companion license server for dealer-key issuance. On macOS: menu-bar status glyphs, Notification Center alerts, and login-item auto-start.</p>
-      <div class="stack">
-        <span>TypeScript</span><span>Node.js 22</span><span>Electron 33</span><span>OpenAI</span><span>Baileys</span><span>SQLite</span><span>cheerio</span><span>undici</span><span>electron-builder</span><span>electron-updater</span><span>@electron/notarize</span><span>Vitest</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="work">
-    <div class="label mono">§ 03 — Selected Work</div>
-    <h2>Fourteen years, across <em>payments, banking, retail, health, smart cities.</em></h2>
-    <p class="lede">A continuous arc from Objective-C and iOS 5 in 2011 to Swift 6, SwiftUI, structured concurrency, and LoRA-fine-tuned Apple Foundation Models running on device in 2026 — owning architecture, CI/CD, reusable frameworks, and the engineers around me at each stop.</p>
-
-    <div class="work">
-      <div class="role">
-        <div class="when">Mar 2026 — Aug 2026</div>
-        <div>
-          <h3>Senior iOS Engineer <em>— Simple fintech AI assistant</em></h3>
-          <div class="company">Publicis Sapient · Wealth Management · Toronto</div>
-          <p>Built a simple fintech AI assistant end to end in Swift and SwiftUI <strong>across 8 modules</strong> — from the floating entry point on Portfolio Home through first-run onboarding to a fully streaming conversational interface — shipped to the client's <strong>phase 1 production release at a 0.1% customer rollout</strong>.</p>
-          <ul>
-            <li>Co-designed the streaming response contract with the backend and AI-platform teams, then implemented <strong>real-time LLM streaming</strong> over Alamofire <code>DataStreamRequest</code> with a custom newline-delimited JSON tokenizer, publishing decoded chunks to the UI through a Combine <code>PassthroughSubject</code> as they arrive.</li>
-            <li>Adopted <strong>Swift Concurrency end to end</strong> — an actor-isolated tokenizer, a custom <code>@globalActor</code> for serialized stream processing, <code>@MainActor</code> UI boundaries, and full Sendable conformance — eliminating data races under load.</li>
-            <li>Drove a component-discriminated streaming schema to agreement across iOS, backend, and design: 8 renderable response types with custom <code>Decodable</code> initializers, parse-boundary validation, and graceful degradation on unrecognized payloads.</li>
-            <li>Shipped a reusable <strong>coach-mark framework (17 files)</strong> modeled on TipKit but back-deployed to iOS 17, plus a 5-page animated onboarding flow — <strong>adopted by other engineers</strong>; validated through iOS 26.</li>
-            <li>Modularized the feature into internal SPM packages with a protocol and paired mock per ViewModel over a repository pattern, covered with XCTest and Swift Testing.</li>
-            <li>Authored <strong>custom Claude AI development commands</strong> that automate first-pass code review and enforce the team's Swift/SwiftUI coding guidelines across the feature.</li>
-          </ul>
-        </div>
-      </div>
-
-
-      <div class="role">
-        <div class="when">Dec 2024 — Mar 2026</div>
-        <div>
-          <h3>Lead iOS Engineer <em>— TruPOS, Enterprise POS</em></h3>
-          <div class="company">Tech Mahindra · Payments</div>
-          <p>0→1 development of TruPOS, the enterprise's central payment platform iOS app in Swift/SwiftUI/Combine — the single checkout hub for multiple business lines, with deep-link integrations into systems like Field Service 365.</p>
-          <ul>
-            <li>Designed an offline transaction queue (Core Data + BGTaskScheduler, 72-hour retention) so field sales teams can take payments in low-connectivity sites and sync on reconnect — closing the dominant cause of failed transactions in remote scenarios.</li>
-            <li>Authored a reusable payment Swift Package (checkout, receipts, deep links) adopted by 3 internal apps.</li>
-            <li>Real-time payment status with async/await, Actors, and Sendable; integrated MFi Bluetooth card readers with background-mode support and a custom retry/error layer.</li>
-            <li>80% unit-test coverage on business logic (XCTest/XCUITest), full CI/CD on Fastlane + GitHub Actions + Xcode Cloud, Crashlytics + Sentry symbolicated reporting, Face ID via LocalAuthentication + Keychain.</li>
-            <li>Profiled launch and memory with Instruments — diagnosed retain cycles and redundant work in the checkout path. Replaced a manual release process with automated TestFlight + App Store delivery.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="role">
-        <div class="when">Dec 2024 — Mar 2026</div>
-        <div>
-          <h3>Senior Mobile Engineer (React Native) <em>— TruGreen</em></h3>
-          <div class="company">Tech Mahindra · Consumer · concurrent engagement</div>
-          <p>Concurrent Tech Mahindra engagement alongside TruPOS. Shipped production features for the TruGreen consumer app in React Native + TypeScript across iOS and Android. Authored native iOS modules in Swift and bridged them to JS — exposing biometrics, deep links, and secure storage that pure JS couldn't reach. Debugged Metro / Hermes / native-bridge issues and symbolicated cross-platform Crashlytics.</p>
-        </div>
-      </div>
-
-      <div class="role">
-        <div class="when">Jun 2023 — Jan 2024</div>
-        <div>
-          <h3>Senior / Lead iOS Engineer <em>— NEOM Smart City</em></h3>
-          <div class="company">Tech Mahindra · Saudi Arabia</div>
-          <p>Architected and shipped the first production release of the NEOM Smart City iOS app for residents, visitors, and service providers — and the platform framework that powers ~20 other NEOM apps.</p>
-          <ul>
-            <li>Defined the architecture, interface contracts, and versioning strategy for <strong>NEOMCore</strong> — a reusable SPM framework for networking, OAuth, SSL pinning, and shared UI adopted across ~20 internal NEOM mobile apps.</li>
-            <li>Built MVVM SwiftUI modules with async/await; designed reusable NavigationStacks, ViewModifiers, and ViewBuilders.</li>
-            <li>Integrated Apollo iOS for type-safe GraphQL, OpenAI + a LangChain-based prompt SDK for an in-app digital assistant, Twilio audio/video for resident-agent support, and Apple Speech for voice interactions.</li>
-            <li>Led a small iOS team across the project: design reviews, architectural decisions, mentoring 3 engineers, Grafana observability for API latency and crash-free rate.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="role">
-        <div class="when">Jan 2023 — Jun 2023</div>
-        <div>
-          <h3>Senior / Lead iOS &amp; Release Engineer <em>— Kroger &amp; Banner Apps</em></h3>
-          <div class="company">Tech Mahindra · Retail</div>
-          <p>Owned end-to-end iOS delivery for the Kroger Gamification module (v1.0 and v2.0), shipped across Kroger and sister-banner apps (Ralph's, Fred Meyer, Harris Teeter). Authored DevOps pipelines in Fastlane + GitHub Actions + shell/Ruby/Node.js used by the entire iOS org. Instrumented Gamification with Firebase Remote Config feature flags and A/B experiments; monitored rollouts via Crashlytics and Grafana.</p>
-        </div>
-      </div>
-
-      <div class="role">
-        <div class="when">Jun 2022 — Dec 2022</div>
-        <div>
-          <h3>Senior iOS Engineer <em>— GAP Browse</em></h3>
-          <div class="company">Avenue Code @ GAP Inc.</div>
-          <p>Delivered iOS features across GAP, Athleta, Banana Republic, and Old Navy storefronts in Swift/SwiftUI and Objective-C. Led the Notification System workstream from scratch to production — story-pointing, code reviews, stakeholder demos.</p>
-        </div>
-      </div>
-
-      <div class="role">
-        <div class="when">Sep 2021 — Jun 2022</div>
-        <div>
-          <h3>Senior iOS Engineer <em>— TD Canada Banking</em></h3>
-          <div class="company">Clearbridge Mobile / Amdocs</div>
-          <p>Led development on the SIJ, MHA, and CIBA loan modules in Swift and Objective-C — features used by millions of TD customers. Integrated Face ID / Touch ID via LocalAuthentication + Keychain and hardened the app against jailbreak and tampering. Contributed to the TD iOS Banking Foundation Framework and republished it via CocoaPods.</p>
-        </div>
-      </div>
-
-      <div class="role">
-        <div class="when">Nov 2017 — Aug 2021</div>
-        <div>
-          <h3>Lead iOS Engineer <em>— Trickl &amp; Green Button</em></h3>
-          <div class="company">Tata Consultancy Services · Smart Utilities</div>
-          <p>Owned the iOS codebase for Trickl, a smart-utility app: real-time energy gauges, device-control toggles, push notifications. Migrated the codebase Swift 3 → Swift 4 as the language evolved. Architected Core Data persistence and a GCD-based networking layer over AWS. Built cross-platform Green Button utility apps for Toronto Hydro, London Hydro, and Whitby Hydro on Ionic 4/Capacitor + Angular 9, sharing reusable iOS components as a framework.</p>
-        </div>
-      </div>
-
-      <div class="role">
-        <div class="when">Jan 2015 — Nov 2017</div>
-        <div>
-          <h3>iOS Engineer <em>— Pfizer Internal Apps</em></h3>
-          <div class="company">Tata Consultancy Services · Pharma</div>
-          <p>Shipped six internal Pfizer iOS apps in Objective-C and Swift — Events, Emotions, GroAssist, Gavi Stats, KC Planner, and supporting tooling. Built reusable expandable table cells, custom Core Graphics charts (scatter, bar, rocker), Janrain SSO integrations, and offline sync modules. Authored technical design docs, class/sequence diagrams, and mentored teammates through code-quality reviews.</p>
-        </div>
-      </div>
-
-      <div class="role">
-        <div class="when">Aug 2011 — Dec 2014</div>
-        <div>
-          <h3>iOS Engineer <em>— GlobalLogic, smartData, Regard Solutions</em></h3>
-          <div class="company">Healthcare · Retail · Consumer</div>
-          <p>The decade's foundation: 8+ apps to the App Store across healthcare, retail, and consumer — Reliance Jio World, Wall Mall, MindBody Yoga/Fitness, Digital PA, Emergency Link, Share My Pair, EQY-P, Viva iPad. Worked across Objective-C, Titanium, and early iOS SDKs (iOS 5–7). Contributed to accessibility R&amp;D for the Qualcomm Healthy Circle POC.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-    <div class="case">
-    <div class="label mono">§ 03a — Case study · Simple fintech AI assistant</div>
-    <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:.6rem">Eight modules, one streaming assistant.</h2>
-    <p class="lede">The hard problems weren't the model. They were streaming correctness under concurrency, a response schema that degrades gracefully when the backend sends something the client doesn't recognise, and a component library other engineers could adopt without re-implementing chat.</p>
-
-    <div class="modules">
-      <div class="mod"><h4><span>01</span>Entry point &amp; FAB</h4>
-        <p>Floating action button injected into Portfolio Home, My Portfolio and Performance via a SwiftUI <code>ViewModifier</code> for SwiftUI screens and a protocol + <code>UIHostingController</code> bridge for legacy UIKit screens. iPad-aware placement, remote eligibility and version gating, full-screen cover into chat or onboarding, typed error alerts. Service-locator DI, analytics on every interaction.</p></div>
-
-      <div class="mod"><h4><span>02</span>VGCoachMark — 17 files</h4>
-        <p>A TipKit-inspired framework built in-house so it could run back to iOS 17: tip-content protocol, tip identifier enum, display <code>ViewModifier</code> and a <code>View+VGTip</code> extension, rich-popover and standard styles, and per-user show-once persistence. Adopted by other engineers on the project. Fixed for iOS 26.</p></div>
-
-      <div class="mod"><h4><span>03</span>Onboarding</h4>
-        <p>Five-page animated walkthrough: welcome, account-snapshot demo (animated table), navigation help (animated line chart), decision guardrails, and privacy / human-fallback notes. Timed message choreography, <code>@Published</code> state driving page transitions, per-user Keychain persistence keyed to customer profile ID, flowing straight into chat on completion.</p></div>
-
-      <div class="mod"><h4><span>04</span>Chat ViewModel &amp; session state</h4>
-        <p>A <code>ChatViewState</code> enum (loading / welcome / active), paginated circularly-cycling suggestion pills, a 300-character input limit with backend-supplied regex for unsupported-character detection, haptics behind an injectable protocol, accordion disclosures modal, per-response thumbs-up/down feedback, and typed error alerts. Combine throughout, <code>@MainActor</code> for UI safety.</p></div>
-
-      <div class="mod"><h4><span>05</span>Orchestration service</h4>
-        <p>Owns session lifecycle: service-agreement acceptance, stream subscription, chunk-by-chunk message assembly, smart-loading handoff to the first response chunk, contextual suggested intents, backend-driven intro content, session-ID correlation for analytics, and cancel/retry semantics.</p></div>
-
-      <div class="mod"><h4><span>06</span>Service layer</h4>
-        <p>HTTP streaming to the BFF over Alamofire <code>DataStreamRequest</code>, plus toggle, service-agreement, content and feedback endpoints. A custom <code>@globalActor</code> for serialized stream processing and an <code>actor</code> repository bridging async/await to callbacks through throwing continuations.</p></div>
-
-      <div class="mod"><h4><span>07</span>Stream tokenizer &amp; DTOs</h4>
-        <p>An <code>actor</code>-isolated JSONL tokenizer — buffer accumulation, delimiter splitting, complete-object extraction — emitting through a Combine <code>PassthroughSubject</code>. Eight component types decoded on a <code>component</code> discriminator, with validation at the parse boundary (table header/row parity, chart value bounds) and graceful degradation on unknown types.</p></div>
-
-      <div class="mod"><h4><span>08</span>Chat UI package — 50+ files</h4>
-        <p>A SwiftUI component library covering the full chat surface: message rows, markdown-rendered AI text, tables, ordered/unordered lists, line/bar/composition charts with dedicated chart ViewModels, typing indicator, smart-loading states, queue-position indicator, inline retry, character-limited input, suggestion pills, keyboard-responsive scrolling, link parsing and identity labels. Built on the client's design-system tokens; the base chat view was reused for live-agent chat as well.</p></div>
-    </div>
-
-    <div class="tablewrap">
-      <table class="wire">
-        <thead><tr><th>Wire value</th><th>DTO case</th><th>UI rendering</th></tr></thead>
+    <h3>The design</h3>
+    <ol class="flow">
+      <li><b>Alamofire DataStreamRequest</b><span>Raw bytes from the backend-for-frontend, as they arrive.</span></li>
+      <li class="hub"><b>actor JSONLTokenizer</b><span>Accumulates a buffer, splits on newlines, extracts only complete objects.</span><small>actor isolation: no shared mutable buffer</small></li>
+      <li><b>Decode on a component discriminator</b><span>Eight types, validated at the parse boundary (table header/row parity, chart value bounds). Unknown types degrade gracefully instead of crashing.</span></li>
+      <li><b>Orchestration service · custom @globalActor</b><span>Session lifecycle, chunk-by-chunk message assembly, handoff from loading state to first chunk, cancel and retry.</span></li>
+      <li><b>ChatViewModel · @MainActor</b><span>UI state is only touched on the main actor; everything crossing the boundary is Sendable.</span></li>
+      <li><b>SwiftUI chat package</b><span>50+ files covering messages, markdown, tables, lists, charts, typing and retry. Later reused for live-agent chat.</span></li>
+    </ol>
+    <div class="table-scroll">
+      <table class="types">
+        <thead><tr><th>Wire value</th><th>Renders as</th></tr></thead>
         <tbody>
-          <tr><td>chat-response</td><td>.text</td><td>Markdown text bubble</td></tr>
-          <tr><td>table</td><td>.table</td><td>PlainTable grid</td></tr>
-          <tr><td>ordered-list</td><td>.orderedList</td><td>Numbered list</td></tr>
-          <tr><td>unordered-list</td><td>.unorderedList</td><td>Bullet list</td></tr>
-          <tr><td>line-chart</td><td>.lineChart</td><td>LineChart view</td></tr>
-          <tr><td>bar-chart</td><td>.barChart</td><td>BarChart view</td></tr>
-          <tr><td>pie-chart</td><td>.pieChart</td><td>BarCompositionChart</td></tr>
-          <tr><td>suggested-user-intents</td><td>.suggestedUserIntents</td><td>Suggestion pills</td></tr>
+          <tr><td>chat-response</td><td>Markdown text bubble</td></tr>
+          <tr><td>table</td><td>Plain table grid</td></tr>
+          <tr><td>ordered-list / unordered-list</td><td>Numbered or bullet list</td></tr>
+          <tr><td>line-chart / bar-chart / pie-chart</td><td>Chart views with their own ViewModels</td></tr>
+          <tr><td>suggested-user-intents</td><td>Suggestion pills</td></tr>
         </tbody>
       </table>
     </div>
-
-    <div class="mod" style="margin-top:2rem">
-      <h4><span>AI</span>Claude in the development loop</h4>
-      <p>Claude was used throughout as a working tool, not a novelty. I authored <strong>custom Claude development commands</strong> for the team that automate first-pass code review and enforce the project's Swift/SwiftUI coding guidelines before human review. Beyond that: scaffolding and refactoring across the eight modules — ViewModels, protocol/mock pairs, DTO boilerplate — and test generation for the tokenizer, DTO decoding and ViewModel layers, then hardened by hand against real streaming edge cases. Every generated output was reviewed for correctness and performance. The engineer stays accountable for what ships.</p>
-    </div>
-
-    <div class="statline">
-      <div><b>8</b><span>Modules</span></div>
-      <div><b>50+</b><span>Chat package files</span></div>
-      <div><b>17</b><span>Coach-mark files</span></div>
-      <div><b>8</b><span>Component types</span></div>
-      <div><b>0.1%</b><span>Phase 1 rollout</span></div>
-      <div><b>17→26</b><span>iOS support</span></div>
-    </div>
-  </div>
-
-  <section id="apps">
-    <div class="label mono">§ 04 — Apps Shipped</div>
-    <h2>Thirty-plus apps, <em>from iOS 5 to iOS 18.</em></h2>
-    <p class="lede">A representative slice of the production apps I've architected, shipped, or led across the App Store, enterprise distribution, and TestFlight — from Objective-C in 2011 to Swift Concurrency and SwiftUI today. Counting the Kroger and GAP Inc. banner storefronts, the Ontario Hydro Green Button apps, and the six Pfizer internal apps individually, the total comes to <strong style="color: var(--ink);">30+ production iOS apps</strong>.</p>
-
-    <div class="apps">
-      <div class="app">
-        <div class="domain">Payments · 2025 →</div>
-        <h4>TruPOS</h4>
-        <div class="client">Tech Mahindra · Enterprise POS</div>
-        <p>0→1 enterprise checkout app. Offline queue (Core Data + BGTaskScheduler), Bluetooth card readers, Face ID, async/await payment status, 80% test coverage.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Smart City · 2023–2025</div>
-        <h4>NEOM Smart City</h4>
-        <div class="client">Tech Mahindra · Saudi Arabia</div>
-        <p>First production release shipped to the App Store. NEOMCore SPM adopted by ~20 internal NEOM apps; Apollo GraphQL, OpenAI assistant, Twilio calling, Apple Speech.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Consumer · 2023–2024</div>
-        <h4>TruGreen Mobile</h4>
-        <div class="client">Tech Mahindra · React Native</div>
-        <p>React Native + TypeScript app shipped to iOS and Android. Authored native Swift modules and JS bridges for biometrics, deep links, and secure storage.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Retail · 2023</div>
-        <h4>Kroger Gamification (v1 &amp; v2)</h4>
-        <div class="client">Tech Mahindra · Kroger</div>
-        <p>End-to-end iOS delivery of the Gamification module, shipped across Kroger and sister-banner apps (Ralph's, Fred Meyer, Harris Teeter). Firebase Remote Config + A/B.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Retail · 2022</div>
-        <h4>GAP, Athleta, Banana Republic, Old Navy</h4>
-        <div class="client">Avenue Code @ GAP Inc.</div>
-        <p>iOS features shipped across all four GAP Inc. storefronts in Swift/SwiftUI and Objective-C. Owned the Notification System workstream from scratch to production.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Banking · 2021–2022</div>
-        <h4>TD Canada Banking</h4>
-        <div class="client">Clearbridge Mobile / Amdocs</div>
-        <p>SIJ, MHA, and CIBA loan modules used by millions of TD customers. Face ID / Touch ID via LocalAuthentication + Keychain; contributed to the TD iOS Banking Foundation Framework.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Smart Utilities · 2017–2021</div>
-        <h4>Trickl</h4>
-        <div class="client">Tata Consultancy Services</div>
-        <p>Smart-utility app with real-time energy gauges, device-control toggles, push notifications. Core Data + GCD networking over AWS. Swift 3 → Swift 4 migration.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Smart Utilities · 2018–2021</div>
-        <h4>Green Button (Toronto / London / Whitby Hydro)</h4>
-        <div class="client">TCS · Multiple Ontario hydros</div>
-        <p>Cross-platform utility apps on Ionic 4 / Capacitor + Angular 9, sharing reusable iOS components packaged as a framework across three Ontario hydro utilities.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Pharma · 2015–2017</div>
-        <h4>Pfizer iOS Suite — 6 internal apps</h4>
-        <div class="client">Tata Consultancy Services · Pfizer</div>
-        <p>Events, Emotions, GroAssist, Gavi Stats, KC Planner, and supporting tooling. Reusable expandable table cells, Janrain SSO, offline sync, and custom Core Graphics charts (scatter, bar, rocker) built from scratch.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Consumer · 2013–2014</div>
-        <h4>Reliance Jio World</h4>
-        <div class="client">GlobalLogic / smartData</div>
-        <p>Early-iOS consumer app for the Reliance Jio ecosystem in Objective-C.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Health &amp; Fitness · 2012–2014</div>
-        <h4>MindBody Yoga / Fitness</h4>
-        <div class="client">Regard Solutions</div>
-        <p>Yoga and fitness consumer iOS app — class booking, schedules, and user profiles.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Health · 2012–2014</div>
-        <h4>Emergency Link</h4>
-        <div class="client">Regard Solutions</div>
-        <p>Emergency / medical info app for first responders — early accessibility work.</p>
-      </div>
-      <div class="app">
-        <div class="domain">R&amp;D · 2011–2013</div>
-        <h4>Qualcomm Healthy Circle (POC)</h4>
-        <div class="client">smartData · Accessibility R&amp;D</div>
-        <p>Accessibility R&amp;D proof-of-concept exploring inclusive interaction patterns on early iOS.</p>
-      </div>
-      <div class="app">
-        <div class="domain">Early App Store — 2011–2014</div>
-        <h4>Five additional consumer apps</h4>
-        <div class="client">GlobalLogic / Regard Solutions</div>
-        <p>Wall Mall, Digital PA, Share My Pair, EQY-P, and Viva iPad — early-iOS storefront, productivity, social, loyalty, and iPad-enterprise apps shipped in Objective-C and Titanium across iOS 5–7.</p>
-      </div>
-      <div class="app">
-        <div class="domain">AI · 2024 →</div>
-        <h4>Doctor AI</h4>
-        <div class="client">Personal Project · TestFlight Beta</div>
-        <p>Solo full-stack: Swift/SwiftUI iOS client, Android companion, shared Swift Package, Node.js + TypeScript backend on Google App Engine, Firebase, OpenAI orchestration. Apple Speech transcription + Twilio Video.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="impact">
-    <div class="label mono">§ 05 — Architecture &amp; Impact</div>
-    <h2>Reusable frameworks, design reviews, <em>and the engineers around me.</em></h2>
-    <p class="lede">My most leveraged work isn't a single app — it's the platforms, packages, and patterns other teams build on top of. Reusable iOS infrastructure, mentorship, and stakeholder-facing design reviews are the through-line.</p>
-
-    <div class="pillars">
-      <div>
-        <h4>NEOMCore <em>SPM</em></h4>
-        <p>Reusable iOS framework — networking, OAuth, SSL pinning, shared UI — defined and shipped for the NEOM platform. Adopted across <strong>~20 internal NEOM apps</strong>.</p>
-      </div>
-      <div>
-        <h4>TruPOS Payment <em>Package</em></h4>
-        <p>Swift Package for payment flows, receipt generation, and deep linking — adopted by <strong>3 internal apps</strong>, eliminating per-app reimplementation.</p>
-      </div>
-      <div>
-        <h4>TD Banking <em>Foundation Framework</em></h4>
-        <p>Contributed to and republished the shared iOS framework via CocoaPods to streamline dependency management across the TD Canada banking iOS estate.</p>
-      </div>
-      <div>
-        <h4>Kroger <em>DevOps</em></h4>
-        <p>Authored Fastlane + GitHub Actions + shell/Ruby/Node.js pipelines used by the <strong>entire Kroger iOS org</strong> for build, sign, and deploy.</p>
-      </div>
-      <div>
-        <h4>Green Button <em>Cross-platform</em></h4>
-        <p>Built reusable iOS components packaged as a framework, shared across <strong>three Ontario hydro utilities</strong> (Toronto, London, Whitby).</p>
-      </div>
-      <div>
-        <h4>Stakeholder <em>design reviews</em></h4>
-        <p>Drove design-review sessions across product, backend, security, and design — translating business requirements into documented architecture, interface contracts, and risk plans across TruPOS, NEOM, Kroger, and TD.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="stack">
-    <div class="label mono">§ 06 — Stack</div>
-    <h2>The toolset, <em>kept current.</em></h2>
-    <p class="lede">Across the years, the through-line has been Swift and the Apple platform — but the stack I reach for in 2026 is meaningfully different from 2016. A snapshot of what I'm fluent in today.</p>
-
-    <div class="skills">
-      <div class="skill-row">
-        <div class="k">Languages</div>
-        <div class="v">Swift 5.x · SwiftUI · Objective-C · JavaScript / TypeScript (React Native) · C / C++ · Python</div>
-      </div>
-      <div class="skill-row">
-        <div class="k">Apple Frameworks</div>
-        <div class="v">UIKit · SwiftUI · Combine · Swift Concurrency (async/await, Actors, Sendable) · Core Data · Core Animation · Core Graphics · AppIntents · Speech · AVFoundation · MapKit · WidgetKit</div>
-      </div>
-      <div class="skill-row">
-        <div class="k">Architecture</div>
-        <div class="v">MVVM · MVC · VIP/Clean · SOLID · Protocol-Oriented Programming · Dependency Injection · Modularization (SPM) · Apple HIG</div>
-      </div>
-      <div class="skill-row">
-        <div class="k">Networking</div>
-        <div class="v">REST/JSON · GraphQL (Apollo iOS) · OAuth 2.0 · SSL / certificate pinning · WebSockets · URLSession · Codable</div>
-      </div>
-      <div class="skill-row">
-        <div class="k">Security &amp; Platform</div>
-        <div class="v">Keychain · LocalAuthentication (Face ID / Touch ID) · App Transport Security · Universal Links · APNs · Notification Service Extensions</div>
-      </div>
-      <div class="skill-row">
-        <div class="k">AI / LLM on iOS</div>
-        <div class="v">OpenAI SDK integration · prompt engineering · LangChain-based iOS prompt templates · on-device Speech-to-Text · AI-assisted dev workflow (GitHub Copilot, Claude, ChatGPT)</div>
-      </div>
-      <div class="skill-row">
-        <div class="k">Testing</div>
-        <div class="v">XCTest · XCUITest · TDD · mocks / stubs · Accessibility Inspector (VoiceOver)</div>
-      </div>
-      <div class="skill-row">
-        <div class="k">Backend &amp; Tooling</div>
-        <div class="v">Node.js + TypeScript (REST APIs, LLM orchestration, Google App Engine) · Firebase (Auth, Firestore, FCM) · Fastlane (Ruby) · GitHub Actions · Xcode Cloud · Bitbucket · JIRA · Confluence · shell / Bash · Python</div>
-      </div>
-      <div class="skill-row">
-        <div class="k">Performance</div>
-        <div class="v">Instruments (Time Profiler, Allocations, Leaks) · Crashlytics · Sentry · symbolication · launch-time and memory optimization</div>
-      </div>
-      <div class="skill-row">
-        <div class="k">Experimentation</div>
-        <div class="v">Firebase Remote Config · feature flags · A/B testing · Google Analytics · Grafana observability</div>
-      </div>
-      <div class="skill-row">
-        <div class="k">Integrations</div>
-        <div class="v">Bluetooth / MFi accessories · OpenAI SDK · Twilio Video · Apple Speech · MapKit · Core Location</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="education">
-    <div class="label mono">§ 07 — Education</div>
-    <h2>Where it <em>started.</em></h2>
-    <div class="role" style="border-top: none; padding-top: 0;">
-      <div class="when">2007 — 2011</div>
-      <div>
-        <h3>B.E., Computer Technology</h3>
-        <div class="company">Priyadarshini College of Engineering · R.T.M. Nagpur University</div>
-        <p>Graduated 2011. Started shipping iOS apps to the App Store the same year.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="code">
-    <div class="label mono">§ 08 — Open Source</div>
-    <h2>Public experiments, mostly at the intersection <em>of Swift and AI.</em></h2>
-    <p class="lede">All 44 public repositories from <a href="https://github.com/imuks" target="_blank" rel="noopener">github.com/imuks</a> — 30 original projects spanning Swift/SwiftUI, AI agents and full-stack TypeScript, plus 14 forks kept as references. Last synced September 2026.</p>
-
-    <h3 class="repo-group">Original work <span class="mono">30 repositories · newest first</span></h3>
-    <div class="repos">
-      <a class="repo" href="https://github.com/iMuks/imuks.github.io" target="_blank" rel="noopener">
-        <h4>imuks.github.io</h4>
-        <p>This site — a single hand-written HTML page deployed on GitHub Pages.</p>
-        <div class="stars">HTML · 2026</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/Zafin-pfm-agent" target="_blank" rel="noopener">
-        <h4>Zafin-pfm-agent</h4>
-        <p>Penny — a conversational personal-finance agent that answers questions over six months of transactions by calling analytics tools, never doing the arithmetic itself.</p>
-        <div class="stars">Python · 2026</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/ms-dropshipping-market-research" target="_blank" rel="noopener">
-        <h4>ms-dropshipping-market-research</h4>
-        <p>Claude Code skill for high-ticket dropshipping market research — evidence-cited opportunity briefs scored on a multi-criteria rubric.</p>
-        <div class="stars">Python · MIT · 2026</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/nuvista-realtor-platform" target="_blank" rel="noopener">
-        <h4>nuvista-realtor-platform</h4>
-        <p>NuVista — full-stack real-estate platform with live IDX listing sync, an AI assistant and a market-analytics dashboard. React + TypeScript, Node/Express, MongoDB.</p>
-        <div class="stars">TypeScript · 2026</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/storefront-engine" target="_blank" rel="noopener">
-        <h4>storefront-engine</h4>
-        <p>AI-native pipeline for building and scaling high-ticket Shopify stores — Python research engine with paired domain-expert reviewers, Langfuse-traced.</p>
-        <div class="stars">Python · MIT · 2026</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/car_sale_whatsapp_bot" target="_blank" rel="noopener">
-        <h4>car_sale_whatsapp_bot</h4>
-        <p>CarSales Bot — AI WhatsApp sales agent for car dealerships: Baileys transport, agent loop and SQLite inventory behind a 3-tier service layout.</p>
-        <div class="stars">TypeScript · 2026 · ★ 1</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/carsales-ai-installer" target="_blank" rel="noopener">
-        <h4>carsales-ai-installer</h4>
-        <p>Installer / packaging layer for CarSales Bot — the signed, notarized Electron desktop app, with electron-updater OTA via GitHub Releases.</p>
-        <div class="stars">2026</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/SteadyAI-main" target="_blank" rel="noopener">
-        <h4>SteadyAI-main</h4>
-        <p>SteadyAI — TypeScript backend (Node + Prisma) with web and Android clients, Dockerized for deployment.</p>
-        <div class="stars">TypeScript · 2026</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/reactiv-ios" target="_blank" rel="noopener">
-        <h4>reactiv-ios</h4>
-        <p>SwiftUI take-home: App Clip deep-link parsing over a reusable coordinator/router, repository and network layer.</p>
-        <div class="stars">Swift · 2026</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/Pharma-iOS" target="_blank" rel="noopener">
-        <h4>Pharma-iOS</h4>
-        <p>Swift/SwiftUI exploration of healthcare iOS patterns inspired by the Pfizer-era work.</p>
-        <div class="stars">Swift · 2025</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/MedPalAI-iOS" target="_blank" rel="noopener">
-        <h4>MedPalAI-iOS</h4>
-        <p>MedPal AI — the Doctor AI iOS client in Swift/SwiftUI, currently on TestFlight beta.</p>
-        <div class="stars">Swift · 2025 · ★ 1</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/Nodejs-backend-doctor-ai" target="_blank" rel="noopener">
-        <h4>Nodejs-backend-doctor-ai</h4>
-        <p>TypeScript + Node.js backend for Doctor AI — LLM orchestration on Google App Engine.</p>
-        <div class="stars">JavaScript · 2025</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/swift_DSA" target="_blank" rel="noopener">
-        <h4>swift_DSA</h4>
-        <p>Data structures and algorithms in Swift — a public interview-prep reference.</p>
-        <div class="stars">Swift · MIT · 2024 · ★ 1</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/tg-aaa" target="_blank" rel="noopener">
-        <h4>tg-aaa</h4>
-        <p>Apple App Site Association hosting for TypeGenie universal links.</p>
-        <div class="stars">2024</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/aasa-host" target="_blank" rel="noopener">
-        <h4>aasa-host</h4>
-        <p>Apple App Site Association hosting for universal links and App Clips.</p>
-        <div class="stars">2024</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/visionFramework" target="_blank" rel="noopener">
-        <h4>visionFramework</h4>
-        <p>Apple Vision framework experiments in Swift.</p>
-        <div class="stars">Swift · 2024</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/medial-ai-dev" target="_blank" rel="noopener">
-        <h4>medial-ai-dev</h4>
-        <p>JavaScript development sandbox for the Doctor AI stack.</p>
-        <div class="stars">JavaScript · 2024</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/ai-doctor-components" target="_blank" rel="noopener">
-        <h4>ai-doctor-components</h4>
-        <p>Evaluation notebook for Doctor AI prompt iteration.</p>
-        <div class="stars">Jupyter Notebook · 2024</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/AIDoctor-SPM" target="_blank" rel="noopener">
-        <h4>AIDoctor-SPM</h4>
-        <p>The shared Swift Package powering the Doctor AI iOS client — domain logic, transport, and AI orchestration types.</p>
-        <div class="stars">2024</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/iOS-doctor-ai" target="_blank" rel="noopener">
-        <h4>iOS-doctor-ai</h4>
-        <p>Earlier iteration of the Doctor AI iOS client.</p>
-        <div class="stars">Swift · 2024</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/doctor-ai-twilio" target="_blank" rel="noopener">
-        <h4>doctor-ai-twilio</h4>
-        <p>Twilio Video integration for Doctor AI consultations.</p>
-        <div class="stars">2024</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/typegenie-iOS" target="_blank" rel="noopener">
-        <h4>typegenie-iOS</h4>
-        <p>iOS client experiment for TypeGenie.</p>
-        <div class="stars">2023</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/worklow_log" target="_blank" rel="noopener">
-        <h4>worklow_log</h4>
-        <p>Workflow log scratch repo.</p>
-        <div class="stars">MIT · 2023</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/StableDiffusion_iOS" target="_blank" rel="noopener">
-        <h4>StableDiffusion_iOS</h4>
-        <p>Stability AI / Stable Diffusion integration for on-device iOS image generation, published shortly after the model release.</p>
-        <div class="stars">Swift · MIT · 2023 · ★ 9</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/chatGPT_iOS" target="_blank" rel="noopener">
-        <h4>chatGPT_iOS</h4>
-        <p>Native iOS client for OpenAI&#x27;s chat API — published January 2023, one of the earliest public Swift integrations after the API launched.</p>
-        <div class="stars">Swift · MIT · 2023 · ★ 9</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/GerritTest" target="_blank" rel="noopener">
-        <h4>GerritTest</h4>
-        <p>Testing a Gerrit code-review setup.</p>
-        <div class="stars">MIT · 2017</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/Sona" target="_blank" rel="noopener">
-        <h4>Sona</h4>
-        <p>Learning repo.</p>
-        <div class="stars">2017</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/PlayWithiOS" target="_blank" rel="noopener">
-        <h4>PlayWithiOS</h4>
-        <p>Early Objective-C playground.</p>
-        <div class="stars">Objective-C · 2016 · ★ 1</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/Hello-iOS" target="_blank" rel="noopener">
-        <h4>Hello-iOS</h4>
-        <p>Demo apps from the Objective-C era.</p>
-        <div class="stars">2016</div>
-      </a>
-      <a class="repo" href="https://github.com/iMuks/Gittutorials" target="_blank" rel="noopener">
-        <h4>Gittutorials</h4>
-        <p>Git tutorial exercises.</p>
-        <div class="stars">2016</div>
-      </a>
-    </div>
-
-    <h3 class="repo-group">Forks &amp; references <span class="mono">14 repositories</span></h3>
-    <ul class="forks">
-      <li><a href="https://github.com/iMuks/ImgGenSD2" target="_blank" rel="noopener">ImgGenSD2</a><span class="fork-meta">—</span><span class="fork-desc">An iOS app that generates images using Stable Diffusion v2.</span></li>
-      <li><a href="https://github.com/iMuks/github-example" target="_blank" rel="noopener">github-example</a><span class="fork-meta">—</span><span class="fork-desc">github example</span></li>
-      <li><a href="https://github.com/iMuks/MVVM" target="_blank" rel="noopener">MVVM</a><span class="fork-meta">Swift</span><span class="fork-desc">MVVM architecture in ios swift </span></li>
-      <li><a href="https://github.com/iMuks/Swift30Projects" target="_blank" rel="noopener">Swift30Projects</a><span class="fork-meta">Swift</span><span class="fork-desc">30 mini Swift Apps for self-study</span></li>
-      <li><a href="https://github.com/iMuks/ViewStyle" target="_blank" rel="noopener">ViewStyle</a><span class="fork-meta">Swift</span><span class="fork-desc">ViewStyle provides a way to set UIView&#x27;s visual appearance properties like CSS</span></li>
-      <li><a href="https://github.com/iMuks/git-internals-pdf" target="_blank" rel="noopener">git-internals-pdf</a><span class="fork-meta">PostScript</span><span class="fork-desc">PDF on Git Internals</span></li>
-      <li><a href="https://github.com/iMuks/infer" target="_blank" rel="noopener">infer</a><span class="fork-meta">OCaml</span><span class="fork-desc">A static analyzer for Java, C and Objective-C</span></li>
-      <li><a href="https://github.com/iMuks/PSOperations" target="_blank" rel="noopener">PSOperations</a><span class="fork-meta">Swift</span><span class="fork-desc">A framework for advanced NSOperations usage</span></li>
-      <li><a href="https://github.com/iMuks/VIPERS-Router" target="_blank" rel="noopener">VIPERS-Router</a><span class="fork-meta">Swift</span><span class="fork-desc">Router implementation used by the iOS application framework &quot;VIPERS&quot;.</span></li>
-      <li><a href="https://github.com/iMuks/Overdrive" target="_blank" rel="noopener">Overdrive</a><span class="fork-meta">Swift</span><span class="fork-desc">⚡️ Fast async task based API in Swift with focus on type safety, concurrency and multi…</span></li>
-      <li><a href="https://github.com/iMuks/Design-Patterns-In-Swift" target="_blank" rel="noopener">Design-Patterns-In-Swift</a><span class="fork-meta">Swift</span><span class="fork-desc">Design Patterns implemented in Swift</span></li>
-      <li><a href="https://github.com/iMuks/TWRDownloadManager" target="_blank" rel="noopener">TWRDownloadManager</a><span class="fork-meta">Objective-C</span><span class="fork-desc">A modern download manager based on NSURLSession to deal with asynchronous downloading…</span></li>
-      <li><a href="https://github.com/iMuks/MZDownloadManager" target="_blank" rel="noopener">MZDownloadManager</a><span class="fork-meta">Objective-C</span><span class="fork-desc">This download manager uses NSURLSession api to download files. It can download multiple…</span></li>
-      <li><a href="https://github.com/iMuks/ADBDownloadManager" target="_blank" rel="noopener">ADBDownloadManager</a><span class="fork-meta">Objective-C</span><span class="fork-desc">A download manager for iOS. Actually, all that you need to download files without any…</span></li>
+    <p style="margin-top:1.25rem">The data races were the real problem. <span class="tbc" title="Needs confirmation">The first version processed chunks off a callback queue, and races surfaced under load.</span> Moving the tokenizer into an actor, serializing stream processing on a custom global actor, enforcing <code>@MainActor</code> at the UI boundary and making every crossing type <code>Sendable</code> eliminated them.</p>
+    <ul style="margin-top:1rem">
+      <li><strong>Contract first.</strong> I co-designed the streaming schema with the backend and AI-platform teams, then aligned iOS, backend and design on it.</li>
+      <li><strong>Testable by construction.</strong> Eight SPM packages, with a protocol and a paired mock for every ViewModel. The tokenizer, decoding and ViewModels are covered with XCTest and Swift Testing.</li>
+      <li><strong>Coach marks without iOS 18.</strong> A 17-file TipKit-style framework back-deployed to iOS 17, adopted by other engineers and validated through iOS 26.</li>
+      <li><strong>Claude in the loop.</strong> Custom Claude commands run a first-pass review against the team's Swift/SwiftUI guidelines before a human looks.</li>
     </ul>
-  </section>
 
-  <section class="contact" id="contact">
-    <div class="label mono">§ 09 — Contact</div>
-    <h2>Open to conversations<br>about <em>staff and lead iOS roles.</em></h2>
-    <p style="color: var(--ink-dim); max-width: 56ch; margin-top: 1.5rem;">Based in London, Ontario. Canadian citizen — <strong style="color:var(--ink)">ready to relocate immediately to Toronto, San Francisco, New York, or Seattle</strong>, and TN-eligible for US roles with no lottery or petition. Interested in product-focused teams doing serious work with Swift, on-device ML, or modern AI tooling on iOS.</p>
-    <div class="links">
-      <a href="mailto:mukesh.ct.pce@live.com">mukesh.ct.pce@live.com</a>
-      <a href="https://linkedin.com/in/imuks" target="_blank" rel="noopener">linkedin.com/in/imuks</a>
-      <a href="https://github.com/imuks" target="_blank" rel="noopener">github.com/imuks</a>
-      <a href="Mukesh_Kumar_Sharma_Resume.pdf" target="_blank" rel="noopener">Download résumé (PDF)</a>
+    <h3>Outcome</h3>
+    <div class="outcomes">
+      <div><b>Phase 1</b><span>Shipped to production on a staged rollout</span></div>
+      <div><b>0</b><span>Data races under load after the actor redesign</span></div>
+      <div><b>17 → 26</b><span>iOS range the coach-mark framework supports</span></div>
     </div>
-  </section>
 
-  <footer>
-    <div>© 2026 Mukesh Kumar Sharma</div>
-    <div>London, ON · Canadian Citizen · TN-eligible · Ready to relocate</div>
-  </footer>
-</div>
+    <h3>What I'd do differently</h3>
+    <p class="hindsight"><span class="tbc" title="Needs confirmation">Put an explicit schema version in the stream from day one. Graceful degradation keeps the app from breaking, but it also hides when the client has fallen behind the backend.</span></p>
 
+    <div class="case-stack">Swift 6 · SwiftUI · Combine · async/await · actors · @globalActor · Sendable · Alamofire · SPM · XCTest · Swift Testing</div>
+  </div>
+</dialog>
+
+<dialog class="case" id="case-payments" aria-labelledby="case-payments-title">
+  <div class="case-head"><span class="card-index">02 / TruPOS payments</span><button class="case-close" type="button" aria-label="Close case study">×</button></div>
+  <div class="case-body">
+    <h2 id="case-payments-title">Field sales kept taking payments with no signal.</h2>
+    <div class="case-role">Lead iOS Engineer · Tech Mahindra · Dec 2024 – Mar 2026</div>
+    <p class="case-intro">The client needed one iOS app to be the checkout hub for several business lines. Its users are field sales staff taking card payments at customer sites, often in basements, rural properties and other places with weak or no signal. Every payment that failed there was lost revenue and an awkward moment with a customer.</p>
+
+    <h3>Constraints</h3>
+    <ul>
+      <li><strong>Unreliable connectivity is the normal case</strong>, not an edge case.</li>
+      <li><strong>Hardware in the loop.</strong> Bluetooth card readers and MFi accessories had to keep working with the app in the background.</li>
+      <li><strong>Shared logic.</strong> Several internal apps needed the same payment, receipt and deep-link behaviour.</li>
+      <li><strong>Integrations.</strong> External tools such as Field Service 365 launch into checkout through universal links and URL schemes.</li>
+    </ul>
+
+    <h3>Options I weighed</h3>
+    <ul class="options">
+      <li><span class="verdict">Rejected</span><strong>Block checkout while offline.</strong> Easiest to reason about, but it fails exactly the people the app exists for.</li>
+      <li><span class="verdict">Rejected</span><strong>Hold failed requests in memory and retry.</strong> <span class="tbc" title="Needs confirmation">The app can be killed or the phone restarted long before signal returns, and the payment would be lost silently.</span></li>
+      <li class="chosen"><span class="verdict">Chosen</span><strong>A durable queue in Core Data, drained by background tasks, with a 72-hour retention window.</strong> Payments survive app termination and sync on reconnect. <span class="tbc" title="Needs confirmation">72 hours covers a field team's longest realistic stretch without signal.</span></li>
+    </ul>
+
+    <h3>The design</h3>
+    <ol class="flow">
+      <li><b>Checkout · SwiftUI + MVVM</b><span>Dynamic, form-based screens for checkout, history and merchant onboarding.</span></li>
+      <li><b>PaymentService</b><span>Bluetooth card reader with background modes and a retry layer for flaky accessory connections.</span></li>
+      <li class="fork">
+        <div><b>Online</b><span>Submit to API, then poll status live (Combine + URLSession) and update the UI as it settles.</span></div>
+        <div><b>Offline</b><span>Write to the Core Data queue: status, attempt count, created-at (≤ 72h).</span></div>
+      </li>
+      <li class="hub"><b>BGTaskScheduler + reconnect trigger</b><span>Drains the queue with retries and marks each payment synced.</span><small><span class="tbc" title="Needs confirmation">client-generated transaction ID, so a retry can't charge twice</span></small></li>
+      <li><b>Shared Swift package</b><span>Payments, receipts and deep linking, used by three internal apps.</span></li>
+    </ol>
+    <ul style="margin-top:1rem">
+      <li><strong>Release engineering.</strong> I owned CI/CD and automated TestFlight and App Store delivery with Fastlane, GitHub Actions and Xcode Cloud, replacing a manual process.</li>
+      <li><strong>Performance.</strong> Instruments traces found retain cycles and redundant work in the checkout path. Fixing them improved cold start and memory pressure.</li>
+      <li><strong>Quality.</strong> 80% unit-test coverage on business logic.</li>
+    </ul>
+
+    <h3>Outcome</h3>
+    <div class="outcomes">
+      <div><b>≈0</b><span>Offline transaction failures</span></div>
+      <div><b>3 apps</b><span>On one payments package, with no more per-app rewrites</span></div>
+      <div><b>20–50%</b><span>Shorter release cycles after automation</span></div>
+    </div>
+
+    <h3>What I'd do differently</h3>
+    <p class="hindsight"><span class="tbc" title="Needs confirmation">Show the queue to the user sooner: something like "3 payments waiting to sync" on the home screen. Trust in an offline system comes from seeing it work.</span></p>
+
+    <div class="case-stack">Swift · SwiftUI · Combine · async/await · Core Data · BGTaskScheduler · Bluetooth / MFi · App Intents · Fastlane · GitHub Actions · Xcode Cloud · Instruments</div>
+  </div>
+</dialog>
+
+<dialog class="case" id="case-ondevice" aria-labelledby="case-ondevice-title">
+  <div class="case-head"><span class="card-index">03 / Dr Godly</span><button class="case-close" type="button" aria-label="Close case study">×</button></div>
+  <div class="case-body">
+    <h2 id="case-ondevice-title">Clinical AI that never sends a patient's voice to a server.</h2>
+    <div class="case-role">Founder &amp; Lead Engineer · Jan 2024 – present · limited production pilot with early customers</div>
+    <p class="case-intro">Doctors lose consultation time to note-writing. An assistant that transcribes and summarizes helps, but in healthcare, sending patient audio to a third-party model creates privacy and trust problems. I wanted to know whether the whole loop could stay on the phone.</p>
+
+    <h3>Constraints</h3>
+    <ul>
+      <li><strong>Privacy as a hard rule.</strong> Patient audio and transcripts never reach a server for AI processing.</li>
+      <li><strong>Clinical vocabulary.</strong> General-purpose models handle drug names and clinical shorthand poorly.</li>
+      <li><strong>Real time.</strong> Transcription has to keep up with a live video call between two people.</li>
+      <li><strong>One engineer.</strong> The iOS client, Android companion, shared package and backend are all built by me.</li>
+    </ul>
+
+    <h3>Options I weighed</h3>
+    <ul class="options">
+      <li><span class="verdict">Rejected</span><strong>A cloud LLM for transcription and summaries.</strong> Fastest to build, and the approach I'd used in earlier telehealth work. <span class="tbc" title="Needs confirmation">Rejected because patient audio would leave the device, which is a hard sell to clinics.</span></li>
+      <li><span class="verdict">Rejected</span><strong>The base on-device model alone.</strong> <span class="tbc" title="Needs confirmation">Private, but it stumbled on clinical terms and note structure.</span></li>
+      <li class="chosen"><span class="verdict">Chosen</span><strong>Apple Foundation Models with a LoRA adapter</strong> tuned for clinical vocabulary and note summarization, with default safety guardrails. Private by design, and good enough at the domain.</li>
+    </ul>
+
+    <h3>The design</h3>
+    <ol class="flow">
+      <li><b>Twilio Video consultation</b><span>Doctor and patient on a secure call.</span></li>
+      <li class="fork">
+        <div><b>Apple Speech · doctor</b><span>Real-time speech-to-text</span></div>
+        <div><b>Apple Speech · patient</b><span>Real-time speech-to-text</span></div>
+      </li>
+      <li><b>Speaker-tagged transcript</b><span>Assembled and kept on the device.</span></li>
+      <li class="hub"><b>Foundation Model + clinical LoRA adapter</b><span>Note summary on device, plus text-to-speech playback.</span><small>no patient audio or transcript leaves the phone</small></li>
+      <li><b>Node.js backend · Google App Engine</b><span>Auth and sessions. <span class="tbc" title="Needs confirmation">It coordinates the workflow but never receives patient audio or transcripts.</span></span></li>
+    </ol>
+
+    <h3>Outcome</h3>
+    <div class="outcomes">
+      <div><b>100%</b><span>AI processing on device</span></div>
+      <div><b>6+ repos</b><span>iOS, Android, shared Swift package, backend, built solo</span></div>
+      <div><b>Pilot</b><span>Limited production use with early customers</span></div>
+    </div>
+
+    <h3>What I'd do differently</h3>
+    <p class="hindsight"><span class="tbc" title="Needs confirmation">Build a scored evaluation set of consented, de-identified clinical phrases before the first fine-tune, so every adapter version is measured rather than judged by feel.</span></p>
+
+    <div class="case-stack">Swift · SwiftUI · Apple Foundation Models · LoRA · Apple Speech · Twilio Video · Android · Node.js · TypeScript · Google App Engine</div>
+  </div>
+</dialog>
+
+<dialog class="case" id="case-framework" aria-labelledby="case-framework-title">
+  <div class="case-head"><span class="card-index">04 / NEOM Smart City</span><button class="case-close" type="button" aria-label="Close case study">×</button></div>
+  <div class="case-body">
+    <h2 id="case-framework-title">One framework under ~20 apps, so no team rebuilt networking or auth.</h2>
+    <div class="case-role">Senior / Lead iOS Engineer · NEOM via Tech Mahindra · Jun 2023 – Jan 2024 · Saudi Arabia</div>
+    <p class="case-intro">NEOM was building many apps for residents, visitors and service providers at once. Without a shared foundation, every team would have built its own networking, auth and security, each slightly different and each patched separately.</p>
+
+    <h3>Constraints</h3>
+    <ul>
+      <li><strong>One security baseline.</strong> OAuth and SSL pinning had to behave identically in every app.</li>
+      <li><strong>Many consumers.</strong> A breaking change would hit about 20 apps at once.</li>
+      <li><strong>GraphQL backends.</strong> Clients needed type safety, not hand-written query strings.</li>
+    </ul>
+
+    <h3>Options I weighed</h3>
+    <ul class="options">
+      <li><span class="verdict">Rejected</span><strong>A template project copied per app.</strong> Fast on day one, but <span class="tbc" title="Needs confirmation">security fixes drift as soon as the copies diverge</span>.</li>
+      <li><span class="verdict">Rejected</span><strong>A CocoaPods or binary framework.</strong> <span class="tbc" title="Needs confirmation">I'd used CocoaPods for TD's foundation framework. Here, SPM's first-party Xcode support and source visibility won.</span></li>
+      <li class="chosen"><span class="verdict">Chosen</span><strong>A Swift package with explicit interface contracts and a versioning strategy</strong>, so teams could upgrade on their own schedule.</li>
+    </ul>
+
+    <h3>The design</h3>
+    <ol class="flow">
+      <li class="hub"><b>Core framework · SPM, versioned</b><span>Networking · OAuth 2.0 · SSL pinning · Apollo iOS for type-safe GraphQL · shared UI</span></li>
+      <li><b>Adopting apps</b><div class="fanout"><i>Smart City app</i><i>app 2</i><i>app 3</i><i>…</i><i>~20 apps</i></div></li>
+      <li><b>Smart City app features</b><span>In-app assistant for utilities, transport and support (OpenAI client with LangChain-based prompts), Twilio audio and video for resident-to-agent support, and Apple Speech for voice.</span></li>
+    </ol>
+    <ul style="margin-top:1rem">
+      <li><strong>Design reviews</strong> with product, backend and security, where I owned the architectural decisions.</li>
+      <li><strong>People.</strong> I mentored three engineers and led a small iOS team through the full lifecycle to launch.</li>
+    </ul>
+
+    <h3>Outcome</h3>
+    <div class="outcomes">
+      <div><b>~20</b><span>Internal apps adopted the core framework</span></div>
+      <div><b>v1</b><span>The Smart City app's first App Store release</span></div>
+      <div><b>3</b><span>Engineers mentored to launch</span></div>
+    </div>
+
+    <h3>What I'd do differently</h3>
+    <p class="hindsight"><span class="tbc" title="Needs confirmation">Ship a small sample app alongside the framework from week one. Getting 20 teams to adopt something is mostly a documentation problem.</span></p>
+
+    <div class="case-stack">Swift · SwiftUI · Swift Package Manager · Apollo iOS · GraphQL · OAuth 2.0 · SSL pinning · OpenAI · Twilio · Apple Speech</div>
+  </div>
+</dialog>
+
+<dialog class="case" id="case-release" aria-labelledby="case-release-title">
+  <div class="case-head"><span class="card-index">05 / Kroger</span><button class="case-close" type="button" aria-label="Close case study">×</button></div>
+  <div class="case-body">
+    <h2 id="case-release-title">The release pipeline the whole iOS org shipped with.</h2>
+    <div class="case-role">Senior / Lead iOS &amp; Release Engineer · Kroger via Tech Mahindra · Jan 2023 – Jun 2023</div>
+    <p class="case-intro">Kroger runs a family of grocery banners (Kroger, Ralphs, Fred Meyer, Harris Teeter), and each is a separate App Store app with its own signing and release. I was also delivering a new customer-facing feature, Gamification, to all of them.</p>
+
+    <h3>Constraints</h3>
+    <ul>
+      <li><strong>Multiplication.</strong> Four apps × signing identities × dev and production environments.</li>
+      <li><strong>Full customer base.</strong> Gamification v1.0 and v2.0 went to everyone, so rollouts had to be measurable and reversible.</li>
+    </ul>
+
+    <h3>Options I weighed</h3>
+    <ul class="options">
+      <li><span class="verdict">Rejected</span><strong>Manual Xcode archives per banner.</strong> <span class="tbc" title="Needs confirmation">Slow, and one wrong signing identity costs a release day.</span></li>
+      <li><span class="verdict">Rejected</span><strong>Separate scripts per banner.</strong> <span class="tbc" title="Needs confirmation">Duplicated logic that drifts with each new banner.</span></li>
+      <li class="chosen"><span class="verdict">Chosen</span><strong><span class="tbc" title="Needs confirmation">One parameterized pipeline</span></strong>: Fastlane, GitHub Actions, shell, Ruby and Node.js, adopted by the entire iOS org across all four banner apps.</li>
+    </ul>
+
+    <h3>The design</h3>
+    <ol class="flow">
+      <li><b>Pull request → GitHub Actions</b><span>Every change goes through the same path.</span></li>
+      <li class="hub"><b>Fastlane lane (banner, environment)</b><div class="fanout"><i>kroger</i><i>ralphs</i><i>fred meyer</i><i>harris teeter</i><i>dev | prod</i></div></li>
+      <li><b>Build → sign → deliver</b><span>Per-banner identity, then TestFlight or the App Store.</span></li>
+      <li><b>Feature flags + experiments</b><span>Firebase Remote Config flags and A/B tests gate the Gamification rollout.</span></li>
+      <li><b>Monitor</b><span>Crashlytics and Grafana, watched during each rollout.</span></li>
+    </ol>
+
+    <h3>Outcome</h3>
+    <div class="outcomes">
+      <div><b>4</b><span>Banner apps on one pipeline</span></div>
+      <div><b>Org-wide</b><span>The pipeline was adopted by the entire iOS org</span></div>
+      <div><b>v1 → v2</b><span>Gamification shipped to the full customer base</span></div>
+    </div>
+
+    <h3>What I'd do differently</h3>
+    <p class="hindsight"><span class="tbc" title="Needs confirmation">Add automated screenshot diffs per banner. Most multi-brand bugs are visual, like the wrong logo or colour, and only humans were catching them.</span></p>
+
+    <div class="case-stack">Swift · Objective-C · SwiftUI · Fastlane · GitHub Actions · Ruby · shell · Node.js · Firebase Remote Config · Crashlytics · Grafana</div>
+  </div>
+</dialog>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+
+    // Theme: explicit choice wins, otherwise follow the system.
+    try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+    document.querySelector('.theme-toggle').addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') ||
+        (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      var next = current === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+
+    // Case-study drawers, deep-linkable by hash.
+    function openCase(id) {
+      var dialog = document.getElementById(id);
+      if (!dialog || dialog.tagName !== 'DIALOG' || dialog.open) return;
+      document.querySelectorAll('dialog[open]').forEach(function (d) { d.close(); });
+      dialog.showModal();
+      dialog.scrollTop = 0;
+      history.replaceState(null, '', '#' + id);
+    }
+    document.addEventListener('click', function (event) {
+      var trigger = event.target.closest('[data-case]');
+      if (!trigger) return;
+      event.preventDefault();
+      openCase(trigger.getAttribute('data-case'));
+    });
+    document.querySelectorAll('dialog.case').forEach(function (dialog) {
+      dialog.querySelector('.case-close').addEventListener('click', function () { dialog.close(); });
+      // Close on backdrop clicks only; clicks on empty space inside the panel also target the dialog.
+      dialog.addEventListener('click', function (event) {
+        if (event.target !== dialog) return;
+        var rect = dialog.getBoundingClientRect();
+        if (event.clientX < rect.left) dialog.close();
+      });
+      dialog.addEventListener('close', function () {
+        history.replaceState(null, '', location.pathname + location.search);
+        var card = document.querySelector('.card[data-case="' + dialog.id + '"]');
+        if (card) card.focus({ preventScroll: true });
+      });
+    });
+    if (location.hash.indexOf('#case-') === 0) openCase(location.hash.slice(1));
+
+    // "How to test it" opens the Penny details block.
+    document.querySelector('[data-open-penny]').addEventListener('click', function () {
+      document.getElementById('penny-test').open = true;
+    });
+  })();
+</script>
 </body>
 </html>
